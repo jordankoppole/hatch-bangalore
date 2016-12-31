@@ -1,4 +1,6 @@
 <?php
+ini_set("display_errors", "1");
+error_reporting(E_ALL);
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -14,8 +16,8 @@ $container = $app->getContainer();
 
 $app->get('/getUsers', function (Request $request, Response $response) {
 	global $userService;
-    $list = $userService->getUserList();
-    echo json_encode($list);
+	$userService->getUserList();
+	echoResponse($response, 200, $userService->responseText);
 });
 
 $app->post('/addUserDetails', function (Request $request, Response $response)  use ($app) {
@@ -24,26 +26,8 @@ $app->post('/addUserDetails', function (Request $request, Response $response)  u
 	if (is_array($getPostData))
 	{
 		global $userService;
-		$res = $userService->createUser($getPostData);
-
-		if ($res == USER_CREATED_SUCCESSFULLY)
-		{
-			$responseVal["error"] = false;
-			$responseVal["message"] = "You are successfully registered";
-			echoResponse($response, 200, $responseVal);
-		}
-		else if ($res == USER_CREATE_FAILED)
-		{
-			$responseVal["error"] = true;
-			$responseVal["message"] = "Oops! An error occurred while registereing";
-			echoResponse($response, 200, $responseVal);
-		}
-		else if ($res == USER_ALREADY_EXISTED)
-		{
-			$responseVal["error"] = true;
-			$responseVal["message"] = "Sorry, this email already existed";
-			echoResponse($response, 200, $responseVal);
-		}
+		$userService->createUser($getPostData);
+		echoResponse($response, 200, $userService->responseText);
 	}
 	else
 	{
@@ -60,8 +44,26 @@ $app->post('/checkLogin', function (Request $request, Response $response) {
 	if (is_array($getPostData))
 	{
 		global $userService;
-		$outPut = $userService->checkLogin($getPostData['emailID'], $getPostData['password']);
-		echo json_encode($outPut);
+		$userService->checkLogin($getPostData['emailID'], $getPostData['password']);
+		echoResponse($response, 200, $userService->responseText);
+	}
+	else
+	{
+		$responseVal["error"] = true;
+		$responseVal["message"] = "Oops! An error occurred while Login";
+		echoResponse($response, 200, $responseVal);
+	}
+});
+
+$app->post('/checkUserExists', function (Request $request, Response $response) {
+
+	$getPostData = $request->getParsedBody();
+
+	if (is_array($getPostData))
+	{
+		global $userService;
+		$userService->checkUserExists($getPostData['emailID']);
+		echoResponse($response, 200, $userService->responseText);
 	}
 	else
 	{

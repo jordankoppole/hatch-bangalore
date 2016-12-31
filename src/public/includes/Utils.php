@@ -63,6 +63,9 @@ function echoResponse($responseObj, $statusCode, $responseValue)
 {
  	$responseObj->withStatus($statusCode)
 	->withHeader('Content-Type', 'application/json')
+	->withHeader('Access-Control-Allow-Origin', 'http://localhost')
+	->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+	->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
 	->write(json_encode($responseValue));
 
 }

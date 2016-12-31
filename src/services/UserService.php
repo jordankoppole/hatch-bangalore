@@ -4,10 +4,13 @@ require '../services/DatabaseService.php';
 
 use Aws\DynamoDb\Marshaler;
 
+date_default_timezone_set('Asia/Calcutta');
+
 class UserService {
 
-	private $dbService = null;
-	private $userTableName = 'Users';
+	private $dbService 		= null;
+	private $userTableName 	= 'Users';
+	public  $responseText	= array();
 
 	public function __construct() {
 		$this->dbService = new \Service\DatabaseService();
@@ -17,16 +20,25 @@ class UserService {
 	public function getUserList()
 	{
 		$response = $this->dbService->scanTable($this->userTableName);
-		//print_r($response);
+
+		if (empty($response))
+		{
+			$this->responseText["error"] 	= true;
+			$this->responseText["message"] = "Oops! An error occurred while get user list";
+			return false;
+		}
+
 		$outputArray = array();
 		foreach ($response['Items'] as $key => $value) {
 			$outputArray[$key]['userID'] = $value['userID']['N'];
-			$outputArray[$key]['password'] = $value['password']['S'];
-			$outputArray[$key]['firstName'] = $value['firstName']['S'];
-			$outputArray[$key]['lastName'] = $value['lastName']['S'];
+			$outputArray[$key]['age'] = $value['age']['S'];
+			$outputArray[$key]['name'] = $value['name']['S'];
+			$outputArray[$key]['emailID'] = $value['emailID']['S'];
 		}
 
-		return $outputArray;
+		$this->responseText["error"] 	= false;
+		$this->responseText["values"] 	= $outputArray;
+		return false;
 	}
 
 	public function createUser($itemsArray)
@@ -37,7 +49,9 @@ class UserService {
 
 		if (self::isUserExists($itemsArray['emailID'], $this->userTableName))
 		{
-			return USER_ALREADY_EXISTED;
+			$this->responseText["error"] 	= true;
+			$this->responseText["message"] = "Sorry, this email already existed";
+			return false;
 		}
 
 		$password_hash = PassHash::hash($itemsArray['password']);
@@ -58,10 +72,16 @@ class UserService {
 
 		if (empty($response))
 		{
-			return true;
+			$this->responseText["error"] 	= true;
+			$this->responseText["message"] = "Oops! An error occurred while registereing";
+			return false;
 		}
-
-		return false;
+		else
+		{
+			$this->responseText["error"] 	= false;
+			$this->responseText["message"] = "You are successfully registered";
+			return false;
+		}
 	}
 
 	/**
@@ -99,6 +119,9 @@ class UserService {
 	{
 		require_once 'PassHash.php';
 
+		$this->responseText["error"] 	= true;
+		$this->responseText["message"] 	= "Oops! There is some error with email or Password";
+
 		$response = $this->dynamodb->query([
 			'TableName' => $this->userTableName,
 			'IndexName' => 'emailID',
@@ -110,18 +133,45 @@ class UserService {
 
 		if (empty($response['Items']))
 		{
-			return FALSE;
+			$this->responseText["error"] 	= true;
+			$this->responseText["message"] = "This email id is not exists";
+			return false;
 		}
 
 		$hashPassword = $response['Items'][0]['password']['S'];
 
 		if(PassHash::check_password($hashPassword, $password))
 		{
-			return TRUE;;
+			$this->responseText["error"] 	= false;
+			$this->responseText["message"] = "Logged in successfully";
+			return false;
 		}
-		else
+	}
+
+	/**
+	 * Checking user exists
+	 * @param String $email User login email id
+	 * @return boolean User login status success/fail
+	 */
+	public function checkUserExists($email)
+	{
+		$this->responseText["error"] 	= true;
+		$this->responseText["message"] 	= "Oops! This email id is already exists";
+
+		$response = $this->dynamodb->query([
+			'TableName' => $this->userTableName,
+			'IndexName' => 'emailID',
+			'KeyConditionExpression' => 'emailID = :email_id',
+			'ExpressionAttributeValues' =>  [
+				':email_id' => ['S' => "{$email}"]
+			]
+		]);
+
+		if (empty($response['Items']))
 		{
-			return FALSE;
+			$this->responseText["error"] 	= false;
+			$this->responseText["message"] = "This email id is not exists";
+			return false;
 		}
 	}
 }
