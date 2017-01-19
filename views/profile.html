@@ -1,0 +1,314 @@
+<section class="section no-pad-bot" id="profile" ng-controller="profileController">
+
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m4">
+				<div class="left-col profile">
+				<div class="profile-img">
+					<img src="/images/avatar.png" />
+					<span>Add your profile pictures or videos</span>
+				</div>
+					<div style="display: none;">
+					<ul ng-init="profilelinks=[{name:'About',link:'#!', selected:'selected'},{name:'Connections',link:'#!', selected: ''},{name:'Co-Creations',link:'#!', selected: ''}]">
+						<li ng-repeat="x in profilelinks">
+						  <a href="{{x.link}}" class="{{x.selected}}">{{ x.name }}</a>
+						</li>
+					</ul>
+					<div class="divider"></div>
+					<div class="aboutme">
+						<p>Happy to contribute in Music, Sound Editing, Voice and Live performance.</p>
+						<div class="row">
+							<div class="col s12"><a href="#!" class=""><i class="material-icons left">message</i>Message me</a></div>
+						</div>
+						<a href="#!" class="btn btn-primary">Add to circle</a><br><br>
+					</div>
+					<div class="divider"></div>
+					<div class="portfoliolinks">
+						<h5>Portfolio</h5>
+						<ul>
+							<li><a href="#!"><img src="images/icons/youtube.png" /></a></li>
+							<li><a href="#!"><img src="images/icons/linkedin.png" /></a></li>
+							<li><a href="#!"><img src="images/icons/picasa.png" /></a></li>
+							<li><a href="#!"><img src="images/icons/behance.png" /></a></li>
+							<li><a href="#!"><img src="images/icons/facebook.png" /></a></li>
+						</ul>
+						<div class="row"><div class="col s12"><a href="#!"><i class="material-icons left">link</i>makotofujimura.com</a></div></div>
+					</div>
+					<div class="divider"></div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="col s12 m8">
+				<div class="right-col profile">
+					<h1>{{user.emailID}}</h1>
+				<div class="row" ng-show="!anyDirtyAndInvalid(submit_entry_form);">
+						<p>It's so good to have you hear.<br>
+						Let's build your best profile page.</p>
+						<div class=""><button ng-click="toggle()" class="btn btn-primary">Create Profile</button></div>
+				</div>
+
+				<div >
+				<h5 class="mTop50">INTERESTS</h5>
+				<span>{{user.interests}}</span>
+				  <h5 class="mTop50">About</h5>
+				  <p>{{user.aboutme}}</p>
+				  <div class="myCreations">
+					<div class="row">
+						<div class="col s12 m9"><h5>My Co-Creations</h5></div>
+						<div class="col s12 m3 right-align"><a href="#!" class="showmore">Show More</a></div>
+					</div>
+					<div class="center-align row" >
+						<p>You have no co-creations yet <a herf="#">Start Project</a> and invite co creators on <a herf="#">Join one</a></p>
+					  <!--div class="masonry">
+							<div class="col s12 m6 item">
+								<a href="#">
+									<img src="images/profiles/portfolios/makota-fujimura/image-1.png" />
+									<p>Project</p>
+									<h4>The Eyeslicer Season One</h4>
+									<span>5 co-creators, 2 connection(s)</span>
+								</a>
+							</div>
+							<div class="col s12 m6 item">
+								<a href="#">
+									<img src="images/profiles/portfolios/makota-fujimura/image-2.png" />
+									<p>Class: Sep19 - Oct 24</p>
+									<h4>The Eyeslicer Season One</h4>
+									<span>12 students, 1 connection(s)</span>
+								</a>
+							</div>
+						</div>
+					</div-->
+				</div>
+				  <div class="recommendations">
+					  <div class="row">
+							<div class="col s12 m9"><h5>Recommendations</h5></div>
+							<div class="col s12 m3 right-align"><a href="#!" class="showmore">Show More</a></div>
+					  </div>
+						<div class="center-align row">
+								<p>You have no recommendation yet <a herf="#">Start a Project</a> and invite co creators on <a herf="#">Join one</a></p>
+						</div>
+					  <!--div class="row">
+							<div class="col s12 m6">
+								<div class="">
+									<div class="col s3"><img src="images/recommendations/joyce.png" /></div>
+									<div class="col s9"><h5>Joyce Yu-Jean Lee</h5><span>WRITER</span></div>
+								</div>
+								<div class="">
+									<div class="col s12">
+										<p>Carlos served on the board of International Arts Movement, overseeing the executive director, and recent transition toward Culture Care. An excellent connector/mentor, who has had enormous impact connecting the influencers in business, arts and faith communities in NYC area.</p>
+									</div>
+								</div>
+							</div>
+							<div class="col s12 m6">
+								<div class="">
+									<div class="col s3"><img src="images/recommendations/joyce.png" /></div>
+									<div class="col s9"><h5>Joyce Yu-Jean Lee</h5><span>WRITER</span></div>
+								</div>
+								<div class="">
+									<div class="col s12">
+										<p>Carlos served on the board of International Arts Movement, overseeing the executive director, and recent transition toward Culture Care. An excellent connector/mentor, who has had enormous impact connecting the influencers in business, arts and faith communities in NYC area.</p>
+									</div>
+								</div>
+							</div>
+					</div-->
+				  </div>
+				  <div class="row"><div class="col s12 m6"><h5>Connections</h5></div><div class="col s12 m6 right-align"><a href="#!">Show More</a></div></div>
+				  <div class="center-align row">
+						<div class="col s12 m3"></div>
+						<div class="col s12 m6"><p>You have no connetions yet <a herf="#">Start a Project</a> and invite co creators on <a herf="#">Join one</a> Your co-creators will be your connections.</p></div>
+						<div class="col s12 m3"></div>
+					  <!--div class="masonry">
+							<div class="col s12 m3 item">
+								<a href="#">
+									<img src="images/community/community-1.png" />
+									<h4>Peter Evanss</h4>
+									<p>Photographer</p>
+								</a>
+							</div>
+							<div class="col s12 m3 item">
+								<a href="#">
+									<img src="images/community/community-2.png" />
+									<h4>Peter Evanss</h4>
+									<p>Product Designer</p>
+								</a>
+							</div>
+							<div class="col s12 m3 item">
+								<a href="#">
+									<img src="images/community/community-3.png" />
+									<h4>Peter Evanss</h4>
+									<p>Writer</p>
+								</a>
+							</div>
+							<div class="col s12 m3 item">
+								<a href="#">
+									<img src="images/community/community-4.png" />
+									<h4>anybarra83</h4>
+									<p>Painter</p>
+								</a>
+							</div>
+							<div class="col s12 m3 item">
+								<a href="#">
+									<img src="images/community/community-5.png" />
+									<h4>bellaarts</h4>
+									<p>Musician</p>
+								</a>
+							</div>
+							<div class="col s12 m3 item">
+							<a href="#">
+								<img src="images/community/community-6.png" />
+								<h4>KaliBali</h4>
+								<p>Dancer</p>
+							</a>
+						</div>
+
+					</div-->
+				 </div>
+				 </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!-- create Profile -->
+<div ng-show="createProfile" class="custom-Modal">
+	<div class="custom-modal-header">
+		<button ng-click="toggle()"><i class="material-icons">close</i></button>
+	</div>
+	<form  name="userDetails" novalidate ng-submit="addProfileDetails()">
+		<div class="costom-modal-content">
+			<!--user: {{user | json}}-->
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<h1>My Profile</h1>
+					<p>Personal</p>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input type="text" name="email" class="validate"  ng-model="user.title" required />
+							<label>Professional Title</label>
+							<div class="error">
+								<small ng-show="user.title.length < 3">
+									Your name must be atleast 3 caracters
+								</small>
+								<small ng-show="user.title.length > 20">
+									Your name must be less than 20 caracters
+								</small>
+							</div>
+
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" name="location" class="validate"  ng-model="user.location" />
+							<label >Location</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input type="text" name="aboutme" class="validate"  ng-model="user.aboutme" />
+							<label >About me</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="text" name="iterests" class="validate"  ng-model="user.iterests" />
+							<label>Interests</label>
+						</div>
+					</div>
+					<p>Expertise</p>
+					<div class="row" ng-init="user.expertise=[{name:'Music',id:'expMusic', checked: 'checked'},{name:'Dance',id:'expDance'},{name:'Painting',id:'expPanting'},{name:'Singing',id:'expSinging'},{name:'Writing',id:'expWriting', checked: 'checked'},{name:'Poetry',id:'expPoetry'},{name:'Design',id:'expDesign'},{name:'Photography',id:'expPhotography'}]">
+						<div class="input-field col s12 m3 {{x.checked}}" ng-repeat="x in user.expertise">
+							<input type="checkbox" id="{{x.id}}" ng-model="x.checked" class="filled-in" />
+							<label for="{{x.id}}">{{x.name}}</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12 input-field">
+							<input type="text" id="addNewExp" />
+							<label for="addNewExp">Add new expertise</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<input type="checkbox" id="acceptExp" class="filled-in" />
+							<label for="acceptExp">Yes I would like to contribute my skills for any project?</label>
+						</div>
+					</div>
+					<p>Portfolio</p>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioYoutube" />
+							<label for="portfolioYoutube">Youtube</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioBehance" />
+							<label for="portfolioBehance">Behance</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioInstagram" />
+							<label for="portfolioInstagram">Instagram</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioVimeo" />
+							<label for="portfolioVimeo">Vimeo</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="portfolioWebsite" />
+							<label for="portfolioWebsite">Personal Website</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<a href="#" class="btn btn-flat waves-effect">Add More</a>
+						</div>
+
+					</div>
+					<p>Portfolio</p>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input type="text" id="socialFb" />
+							<label for="socialFb">Facebook</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="socialLinkedIn" />
+							<label for="socialLinkedIn">LinkedIn</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input type="text" id="socialTwitter" />
+							<label for="socialTwitter">Twitter</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<a href="#" class="btn btn-flat waves-effect">Add More</a>
+						</div>
+					</div>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+
+
+
+		</div>
+		<div class="custom-modal-footer">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8 right-align">
+					<a href="#" class="btn btn-tertiary waves-effect close-modal">Cancel</a>
+					<input type="submit" class="btn btn-primary waves-effect" ng-disabled="userDetails.$invalid" value="Create" />
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+</section>
+<script src="scripts/masonry.pkgd.min.js"></script>
+<!-- Local app main javascript -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.masonry').masonry({
+		// options
+		itemSelector : '.item'
+	});
+
+});
+
+</script>

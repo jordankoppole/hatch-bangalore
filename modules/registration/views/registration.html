@@ -1,0 +1,70 @@
+<section class="section no-pad-bot" ng-controller="RegisterController">
+	<div class="container padding-mobile">
+			<div class="row">
+				<div class="col s2 m2 l1"></div>
+				<div class="col s10 l10">
+						<h1 >Welcome</h1>
+				</div>
+				<div class="col l1 hide-on-med-and-down"></div>
+			</div>
+			<div class="row">
+			<div class="col l1 hide-on-med-and-down"></div>
+			<div class="col s12 l10">
+				<div class="row">
+					<div class="col s12">
+						<a href="#" class="btn btn-facebook waves-effect">Signup with facebook</a>
+						<a href="#" class="btn btn-google waves-effect">Signup with Google</a>
+					</div>
+				</div>
+					<form ng-submit="SaveData(User)" name="regForm" novalidate>
+						<div style="color: red;">{{message}}</div>
+						<div class="row">
+							<div class="input-field col s12 m6">
+							  <input id="uName" type="text" name="uName" ng-model="User.name" ng-class="submitted?'ng-dirty':''" autofocus required />
+							  <label for="uName">Name</label>
+								<span class="error" ng-show="(regForm.uName.$dirty || submitted) && regForm.uName.$error.required">Please enter name</span>
+							</div>
+							<div class="input-field col s12 m6">
+								<input id="uEmail" type="email" name="uEmail" ng-model="User.emailID" ng-class="submitted?'ng-dirty':''" required />
+							  <label for="uEmail">Email ID</label>
+								<span class="error" ng-show="(regForm.uEmail.$dirty || submitted) && regForm.uEmail.$error.email">Please enter valid email</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12 m6" >
+								<input id="uPassword" type="password" name="uPassword" ng-model="User.password" ng-class="submitted?'ng-dirty':''" required />
+							  <label for="uPassword">Password</label>
+								<span class="error" ng-show="(regForm.uPassword.$dirty || submitted) && regForm.uPassword.$error.required">Please enter password</span>
+							</div>
+							<div class="input-field col s12 m6">
+								<input id="uCPassword" type="password" name="uCPassword" ng-model="User.confirmPassword" valid-password-c="User.password" required />
+								<label for="uCPassword" >Confirm Password</label>
+								<span class="error" ng-show="(regForm.uCPassword.$dirty || submitted) && regForm.uCPassword.$error.required">Please enter password</span>
+								<span ng-show="regForm.uCPassword.$error.noMatch" class="error">Passwords do not match.</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12 m6">
+								<input id="uAge" type="number" name="uAge" ng-model="User.age" ng-class="submitted?'ng-dirty':''" autofocus required />
+								<label for="uAge">Age</label>
+								<span class="error" ng-show="(regForm.uAge.$dirty || submitted) && regForm.uAge.$error.required">Please enter age</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12 m6">
+								<input type="checkbox" class="filled-in" id="accept" ng-model="acceptTerms" />
+								<label for="accept">I accept terms and condtions of use.</label>
+							</div>
+							<div class="col s12 m6 right-align">
+								<input type="submit" ng-disabled="!acceptTerms" value="{{submitText}}" class="btn btn-primary waves-effect" />
+							</div>
+						</div>
+						 <!--pre>user : {{User | json}}</pre-->
+
+					</form>
+
+			</div>
+			<div class="col l1 hide-on-med-and-down"></div>
+		</div>
+	</div>
+</section>
