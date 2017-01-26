@@ -35,6 +35,35 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'views/wayto.html'
 	})
 
+  .when('/wayto/research', {
+		controller: 'waytoController',
+		templateUrl: 'views/wayto-research.html'
+	})
+
+  .when('/wayto/fund', {
+		controller: 'waytoController',
+		templateUrl: 'views/wayto-fund.html'
+	})
+
+  .when('/wayto/mentor', {
+		controller: 'waytoController',
+		templateUrl: 'views/wayto-mentor.html'
+	})
+
+  .when('/wayto/learn', {
+		controller: 'waytoController',
+		templateUrl: 'views/wayto-learn.html'
+	})
+
+  .when('/wayto/exhibit', {
+		controller: 'waytoController',
+		templateUrl: 'views/wayto-exhibit.html'
+	})
+
+
+
+
+
 	.when('/commongood', {
 		controller: 'commonGoodController',
 		templateUrl: 'views/commongood.html'
@@ -65,7 +94,7 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
 
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
       // redirect to login page if not logged in
-      var allowedPages = $.inArray($location.path(), ['/','#!', '/about', '/wayto', '/commongood', '/register']) === -1;
+      var allowedPages = $.inArray($location.path(), ['/','#!', '/about', '/wayto', '/commongood', '/register', '/wayto/research', '/wayto/fund', '/wayto/mentor', '/wayto/learn', '/wayto/exhibit']) === -1;
   	  var loggedIn = $rootScope.globals.currentUser;
   		if (allowedPages && !loggedIn) {
   			$location.path('/login');
