@@ -11,16 +11,15 @@ angular.module('Authentication')
         $scope.login = function () {
             $scope.dataLoading = true;
             AuthenticationService.Login($scope.emailID, $scope.password, function(response) {
-                if(response.error == false) {
+                if(response.data.error == false) {
                     AuthenticationService.SetCredentials($scope.emailID, $scope.password);
-					//$window.location.assign('#/');
 					          $scope.userIsLoggedIn = $rootScope.globals.currentUser;
-					       //console.log($scope.userIsLoggedIn);
+					          console.log($scope.userIsLoggedIn);
                     $location.path('/profile');
 					$scope.$apply();
-                } else {
+        } else {
                   //var $httpDefaultCache = $cacheFactory.get('$http');
-					//$httpDefaultCache.remove(key);
+					          //$httpDefaultCache.remove(key);
                     $scope.error = response.message;
                     $scope.dataLoading = false;
                 }

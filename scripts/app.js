@@ -66,54 +66,44 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
       // redirect to login page if not logged in
       var allowedPages = $.inArray($location.path(), ['/','#!', '/about', '/wayto', '/commongood', '/register']) === -1;
-			//console.log($location.path());
-	  var loggedIn = $rootScope.globals.currentUser;
-      //if (allowedPages && !loggedIn) {
-		if (allowedPages && !loggedIn) {
-			$location.path('/login');
-		  }
-    });
+  	  var loggedIn = $rootScope.globals.currentUser;
+  		if (allowedPages && !loggedIn) {
+  			$location.path('/login');
+  		  }
+      });
   }
 ]);
 
-app.controller('profileController', function($scope, profileFactory){
+app.controller('profileController', function($scope, $http){
 	  $scope.createProfile = false;
     $scope.toggle = function() {
         $scope.createProfile = !$scope.createProfile;
     };
+    var emailID = [];
+    $http.post("http://35.161.138.102/src/public/userDetails.php/getUserDetailsByEmailId", {"emailID": emailID}).then(function (emailID) {
+        $scope.profileData = response.data;
+        console.logo(response);
+    });
 
-	//$scope.profileData = [{"name": "blr"}];
-
-	/*$http.get("http://35.161.138.102/src/public/userDetails.php/getUserDetailsByEmailId").then(function (response) {
-		  $scope.profileData = response.data;
-		  console.log(response.data)
-	  });
-
-	  profileFactory.getprofileData().then(
-			function(data){
-				$scope.profileData = data.data;
-				console.log(data.data);
-			},
+	/*profileFactory.getprofileData().then(
+			function(response){
+				  //$scope.profileData = response.data;
+          console.log(response);
+  			},
 			function(err){
-				alert(err.status);
+				console.log(err.status);
 			}
 		);*/
-
-
-
 });
+
 
 app.factory("profileFactory", function($http){
-	//url = "";
 	return {
-		getprofileData  : function(email){
-			return $http.get("http://35.161.138.102/src/public/userDetails.php/getUserDetailsByEmailId");
-		}
+		getprofileData  : function(emailID){
+			return $http.post("http://35.161.138.102/src/public/userDetails.php/getUserDetailsByEmailId", {"emailID": emailID})
+    }
 	}
-
 });
-
-
 
 
 app.controller('communityCtrl', function($scope, $http) {
@@ -124,34 +114,3 @@ app.controller('communityCtrl', function($scope, $http) {
       $scope.upcomingEventsData = response.data.data;
   });
 });
-
-
-/*
-//Request Invite Controller...
-app.controller('inviteController', function($scope, $http) {
-      // create a blank object to handle form data.
-        $scope.user = {};
-		var data = $scope.user;
-      // calling our submit function.
-        $scope.submitForm = function() {
-        // Posting data to php file
-        $http({
-          method  : 'POST',
-          url     :  '',
-          data    : data, //forms user object
-          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-         })
-          .success(function(data) {
-            if (data.errors) {
-              // Showing errors.
-              //$scope.errorName = data.errors.name;
-              //$scope.errorUserName = data.errors.username;
-              $scope.errorEmail = data.errors.email;
-			 // console.log(data);
-            } else {
-              $scope.message = data.message;
-            }
-          });
-        };
-});
-*/

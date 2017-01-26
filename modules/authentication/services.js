@@ -27,7 +27,7 @@ angular.module('Authentication')
 			$http.post('http://35.161.138.102/src/public/userDetails.php/checkLogin', { "emailID": emailID, "password": password })
              .then(function (response) {
                   callback(response);
-                  console.log(status);
+                  //console.log(response);
               });
 
 
@@ -50,7 +50,7 @@ angular.module('Authentication')
         service.ClearCredentials = function () {
             $rootScope.globals = {};
             $cookieStore.remove('globals');
-            $http.defaults.headers.common.Authorization = 'Basic ';
+            ///$http.defaults.headers.common.Authorization = 'Basic ';
         };
 
         return service;
