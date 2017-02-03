@@ -29,6 +29,12 @@ angular.module('Home')
 
 }])
 
+.controller('projectController',
+    ['$scope',
+    function ($scope) {
+
+}])
+
 .controller('RegisterController',
     ['$scope',
     function ($scope) {
