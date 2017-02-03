@@ -73,6 +73,11 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'profileController',
 		templateUrl: 'views/profile.html'
 	})
+	
+	.when('/project', {
+		controller: 'projectController',
+		templateUrl: 'views/project.html'
+	})
 
 	.when('/register', {
 		controller: 'RegisterController',
@@ -123,6 +128,16 @@ app.controller('profileController', function($scope, $http){
 				console.log(err.status);
 			}
 		);*/
+});
+
+app.controller('projectController', function($scope){
+	$scope.createProject = false;
+	$scope.toggle = function() {
+		$scope.createProject = !$scope.createProject;
+	};
+	$scope.toggleClass = function() {
+		$scope.createClass = !$scope.createClass;
+	};
 });
 
 
