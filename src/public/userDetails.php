@@ -40,7 +40,7 @@ $app->post('/addUserDetails', function (Request $request, Response $response)  u
 $app->post('/checkLogin', function (Request $request, Response $response) {
 
 	$getPostData = $request->getParsedBody();
-
+  error_log(json_encode($getPostData));
 	if (is_array($getPostData))
 	{
 		global $userService;

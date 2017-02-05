@@ -1,0 +1,6 @@
+letscreate_api:
+  image: letscreate_api
+  ports:
+    - 8080:80
+  volumes:
+    - .:/var/www/site
