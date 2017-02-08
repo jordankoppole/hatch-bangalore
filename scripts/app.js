@@ -19,74 +19,61 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'modules/authentication/views/login.html',
       hideMenus: true
     })
-
-  .when('/', {
-    controller: 'HomeController',
-    templateUrl: 'views/index.html'
-  })
-
-  .when('/about', {
-    controller: 'AboutController',
-    templateUrl: 'views/about.html'
-  })
-
+	.when('/', {
+		controller: 'HomeController',
+		templateUrl: 'views/index.html'
+	})
+    .when('/home', {
+		templateUrl: 'views/home.html'
+	})
+	.when('/about', {
+		controller: 'AboutController',
+		templateUrl: 'views/about.html'
+	 })
 	.when('/wayto', {
 		controller: 'waytoController',
 		templateUrl: 'views/wayto.html'
 	})
-
-  .when('/wayto/research', {
+	.when('/wayto/research', {
 		controller: 'waytoController',
 		templateUrl: 'views/wayto-research.html'
 	})
-
-  .when('/wayto/fund', {
+	.when('/wayto/fund', {
 		controller: 'waytoController',
 		templateUrl: 'views/wayto-fund.html'
 	})
-
-  .when('/wayto/mentor', {
+	.when('/wayto/mentor', {
 		controller: 'waytoController',
 		templateUrl: 'views/wayto-mentor.html'
 	})
-
-  .when('/wayto/learn', {
+	.when('/wayto/learn', {
 		controller: 'waytoController',
 		templateUrl: 'views/wayto-learn.html'
 	})
-
-  .when('/wayto/exhibit', {
+	.when('/wayto/exhibit', {
 		controller: 'waytoController',
 		templateUrl: 'views/wayto-exhibit.html'
 	})
-
-
-
-
-
 	.when('/commongood', {
 		controller: 'commonGoodController',
 		templateUrl: 'views/commongood.html'
 	})
-
 	.when('/profile', {
 		controller: 'profileController',
 		templateUrl: 'views/profile.html'
 	})
-	
 	.when('/project', {
 		controller: 'projectController',
 		templateUrl: 'views/project.html'
 	})
-
 	.when('/register', {
 		controller: 'RegisterController',
 		templateUrl: 'modules/registration/views/registration.html'
 	})
 	//login redirections
-  .otherwise({
-    redirectTo: '/'
-  });
+	.otherwise({
+		redirectTo: '/'
+	});
 }])
 
 app.run(['$rootScope', '$location', '$cookieStore', '$http',
@@ -137,6 +124,9 @@ app.controller('projectController', function($scope){
 	};
 	$scope.toggleClass = function() {
 		$scope.createClass = !$scope.createClass;
+	};
+	$scope.profileEdit = function() {
+		$scope.editProfile = !$scope.editProfile;
 	};
 });
 
