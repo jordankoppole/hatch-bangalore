@@ -69,7 +69,7 @@ p {
 header {
 	position: fixed;
 	width: 100%;
-	padding-top: 20px;
+	padding-top: 14px;
 	z-index: 9999;
 	right : 0;
 
@@ -77,11 +77,10 @@ header {
 		background: transparent;
 		//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
 		box-shadow: none;
-		height: 130px;
 		padding: 0 20px;
 		.brand-logo {
-			background-color: rgba($primary-color, 0.8);
-			width: 100px;
+			//background-color: rgba($primary-color, 0.8);
+			width: 200px;
 			height: 100px;
 			padding-top: 10px;
 			text-align: center;
@@ -251,7 +250,63 @@ i {
 	}
 }
 
+#text-container {
+	padding-top: 170px;
+	color: $white;
+	h1 {
+		font-size: 4rem;
+		color: $white;
+		margin: 2.1rem 0 1.68rem 0;
+		font-family: $josefin, $roboto;
+		font-weight: bold;
+	}
+}
 
+#start-now{
+	background:#30eee5;
+	padding-top:20px;
+	padding-bottom:15px;
+	.row{
+		margin-bottom:0;
+	}
+	span{
+		display:inline-block;
+		font-size:20px;
+		font-weight:400;
+		padding-right:15px;
+	}
+	.btn.bordered{
+		background-color:transparent;
+		border:1px solid #000;
+	}
+}
+#upcoming-event {
+	background-color: $white;
+	h1{
+		display:inline-block;
+		margin-bottom: 27px;
+		padding-right: 25px;
+	}
+	.tell_us{
+		margin-bottom:25px;
+	}
+	.collection{
+		border:none;
+		.collection-item{
+			padding:10px 0;
+			&:hover{
+				background:none;
+			}
+			.badge{
+				margin-top:0;
+				text-align:center;
+				background:#30eee5;
+				border-radius:15px;
+				font-weight:400;
+			}
+		}
+	}
+}
 
 #upcoming-events {
 	background-color: $color_mercury_approx;
@@ -343,10 +398,17 @@ h5 {
 	width: inherit;
 	&.profile{
 		width: 100%;
-		position:static;
+		position:relative;
 		border: none;
+		z-index:2;
 		.profile-img{
 			max-height: 420px;
+		}
+		.profile_edit{
+			position:absolute;
+			right:5px;
+			top:90px;
+			z-index:3;
 		}
 		.aboutme {
 			color: $primary-color;
@@ -736,7 +798,22 @@ body.nav-expanded{
 	}
 }
 
-
+#editProfile{
+	.upload{
+		display:block;
+		cursor:pointer;
+		color:#30eee5;
+		font-size:20px;
+		font-weight:400;
+		text-transform:uppercase;
+		margin-top:30px;
+	}
+	.add-link{
+		position:absolute;
+		right: 10px;
+		bottom: 25px;
+	}
+}
 
 //parallax Nav...
 .prallaxNav{
