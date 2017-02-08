@@ -3,6 +3,7 @@
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="left-col profile">
+					<a class="right grey-text profile_edit" ng-click="profileEdit()"><i class="material-icons">edit</i></a>
 					<div class="profile-img">
 						<img src="/images/avatar.png"/>
 					</div>
@@ -271,6 +272,44 @@
 				</div>
 				<div class="col s12 l4 right-align">
 					<input type="submit" class="btn btn-primary waves-effect" ng-disabled="createClass.$invalid" value="Save" />
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div ng-show="editProfile" class="custom-Modal" id="editProfile">
+	<div class="custom-modal-header">
+		<button ng-click="profileEdit()"><i class="material-icons">close</i></button>
+	</div>
+	<form  name="Editprofile" novalidate ng-submit="saveProfile()">
+		<div class="costom-modal-content">
+			<!--user: {{user | json}}-->
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<h1>Add Photo and Video</h1>
+					<div class="row">
+						<div class="col s12 l6">
+							<h4>Add Photo</h4>
+							<span>You can upload a JPEG, GIF, or PNG file</span>
+							<a class="upload">Upload Photo</a>
+						</div>
+						<div class="col s12 l6">
+							<h4>Add Video</h4>
+							<span>Link any of your online video</span>
+							<div class="input-field">
+								<a class="upload add-link">ADD</a>
+								<input type="text" class="url">
+								<label>URL</label>
+							</div>
+							<div>
+								Or
+							</div>
+							<a class="upload">Upload Video</a>
+						</div>
+					</div>
 				</div>
 				<div class="col l2 hide-on-med-and-down"></div>
 			</div>
