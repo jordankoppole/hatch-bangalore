@@ -1,0 +1,31 @@
+letscreate_db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: letscreatepass
+  ports:
+    - 8183:3306
+  volumes:
+    - ./dbinstance/dbschema:/home/dbschema
+
+phpmyadmin:
+  image: corbinu/docker-phpmyadmin
+  links:
+    - letscreate_db:mysql
+  ports:
+    - 8181:80
+  environment:
+    MYSQL_USERNAME: root
+    MYSQL_ROOT_PASSWORD: letscreatepass
+
+letscreate_api:
+  build: ./slim-backend
+  links:
+    - letscreate_db:mysql
+  ports:
+    - 8182:80
+  volumes:
+    - ./slim-backend/slim/.:/var/www/site
+  # command: 'composer install -d /var/www/site'
+  environment:
+    MYSQL_USERNAME: root
+    MYSQL_ROOT_PASSWORD: letscreatepass

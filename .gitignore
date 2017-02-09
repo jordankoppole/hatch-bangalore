@@ -69,3 +69,8 @@ dll/
 *.css.shim.ts
 *.ngsummary.json
 *.shim.ngstyle.ts
+
+
+# PHP #
+/slim-backend/slim/vendor/
+composer.lock
