@@ -48,44 +48,17 @@
 	</div>
 </section>
 
-<section id="upcoming-events" class="section " ng-controller="communityCtrl">
+<section id="upcoming-events" class="section ">
 	<div class="container">
 		<div class="row">
 			<div class="col s12 center-align masonry">
 				<h1>Upcoming events</h1>
-				<ul>
-					<li class="col s12 m3 item">
-						<a href="#" id="community-1">
-							<img src="images/events/event-1.png" />
-							<h4>SEP 19 - OCT 24</h4>
-							<p>The Eyeslicer Season One</p>
-						</a>
-					</li>
-				</ul>
-        <ul ng-repeat="x in upcomingEventsData" class="ng-scope">
-					<li class="col s12 m3 item">
+        <ul>
+					<li *ngFor="let event of events" class="col s12 m3 item">
 						<a href="#" id="community-2">
-							<img src="images/events/event-2.png"/>
-							<span class="ng-binding">SEP 19 - OCT 24</span>
-							<h4 class="ng-binding">Peter Evans and Taylor Ho Bynum</h4>
-						</a>
-					</li>
-				</ul>
-        <ul ng-repeat="x in upcomingEventsData" class="ng-scope">
-					<li class="col s12 m3 item">
-						<a href="#" id="community-3">
-							<img src="images/events/event-3.png"/>
-							<span class="ng-binding">SEP 19 - OCT 24</span>
-							<h4 class="ng-binding">Second Sundays</h4>
-						</a>
-					</li>
-				</ul>
-        <ul ng-repeat="x in upcomingEventsData" class="ng-scope">
-					<li class="col s12 m3 item">
-						<a href="#" id="community-4">
-							<img src="images/events/event-4.png"/>
-							<span class="ng-binding">SEP 19 - OCT 24</span>
-							<h4 class="ng-binding">Building and Improvising with Analog Circuitry</h4>
+							<img src="{{event.banner_url}}"/>
+							<span>{{event.start_date}} - {{event.end_date}}</span>
+							<h4 class="event-title">{{event.name}}</h4>
 						</a>
 					</li>
 				</ul>

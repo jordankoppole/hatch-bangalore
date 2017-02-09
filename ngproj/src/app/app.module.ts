@@ -1,3 +1,4 @@
+import { CommonService } from './services/common.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -41,7 +42,8 @@ import '../styles/styles.css';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  CommonService
 ];
 
 type StoreType = {

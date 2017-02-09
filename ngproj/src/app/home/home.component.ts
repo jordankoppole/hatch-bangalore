@@ -1,3 +1,4 @@
+import { CommonService } from './../services/common.service';
 import {
   Component,
   OnInit
@@ -25,14 +26,25 @@ export class HomeComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
   // TypeScript public modifiers
+
+  public events: any[] = [];
+
   constructor(
     public appState: AppState,
-    public title: Title
+    public title: Title,
+    private commonService: CommonService,
   ) {}
 
   public ngOnInit() {
     console.log('hello `Home` component');
-    // this.title.getData().subscribe(data => this.data = data);
+    this.getUpComingEvents();
+  }
+
+  public getUpComingEvents() {
+    this.commonService.getUpComingEvents()
+      .then((data) => {
+        this.events = data;
+      });
   }
 
   public submitState(value: string) {

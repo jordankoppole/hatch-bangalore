@@ -1,7 +1,7 @@
 <?php
-function upcomingevents($response) {
+function upcomingevents() {
   $eventControllers = new EventsController();
   $data = $eventControllers->getUpComingEvents();
-  return $response->withJson($data)->withHeader('Content-type', 'application/json')->withStatus(201);
-  // echo "This is a test API";
+  echo json_encode($data);
+  exit;
 }
