@@ -17,7 +17,8 @@ $apiRouter = "methods";
 $apiVersion = "1.0";
 
 $publicUris = [
-  'testapi'
+  'testapi',
+  'upcomingevents'
 ];
 
 
@@ -27,16 +28,15 @@ $apiUri = end(explode('/', $apiUrl['path']));
 if (in_array($apiUri, $publicUris)) {
   require_once(dirname(__FILE__).'/'.$apiRouter.'/'.$apiUri.'.php');
 }
-error_log(getenv('MYSQL_USERNAME'));
-error_log(getenv('MYSQL_ROOT_PASSWORD'));
+
 R::setup("mysql:host=mysql;dbname=letscreate", getenv('MYSQL_USERNAME'), getenv('MYSQL_ROOT_PASSWORD'));
 
 $fields = R::inspect('test');
-error_log(json_encode($fields));
 /**
  * API End-points definition
 **/
-$app->get('/testapi',               function () { echo testapi(); });
+$app->get('/testapi',               function (ServerRequestInterface $request, ResponseInterface $response) { echo testapi($response); });
+$app->get('/upcomingevents',        function (ServerRequestInterface $request, ResponseInterface $response) { echo upcomingevents($response); });
 
 /**
  * Run the Requested API End-point

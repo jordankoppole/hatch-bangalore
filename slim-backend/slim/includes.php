@@ -4,3 +4,4 @@
 require 'vendor/autoload.php';
 require 'rb.php';
 
+require 'controllers/EventsController.php';
