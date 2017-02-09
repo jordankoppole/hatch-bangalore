@@ -4,8 +4,6 @@ letscreate_db:
     MYSQL_ROOT_PASSWORD: letscreatepass
   ports:
     - 8183:3306
-  volumes:
-    - ./dbinstance/dbschema:/home/dbschema
 
 phpmyadmin:
   image: corbinu/docker-phpmyadmin
@@ -25,7 +23,16 @@ letscreate_api:
     - 8182:80
   volumes:
     - ./slim-backend/slim/.:/var/www/site
-  # command: 'composer install -d /var/www/site'
+    - ./dbinstance/dbschema:/home/dbschema
   environment:
     MYSQL_USERNAME: root
     MYSQL_ROOT_PASSWORD: letscreatepass
+
+letscreate_ui:
+  build: ./ngproj
+  ports:
+    - 80:80
+  volumes:
+    - ./ngproj/dist/:/usr/share/nginx/html
+  environment:
+    BACKEND_PORT: 8182
