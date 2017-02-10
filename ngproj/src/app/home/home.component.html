@@ -42,7 +42,7 @@
 		<div class="">
 			<div class=" center-align">
 				<h3>Dummy Text</h3>
-				<h5>-- Test</h5>
+				<h5>Test</h5>
 			</div>
 		</div>
 	</div>
@@ -58,7 +58,7 @@
 						<a href="#" id="community-2">
 							<img src="{{event.banner_url}}"/>
 							<span>{{event.start_date}} - {{event.end_date}}</span>
-							<h4 class="event-title">{{event.name}}</h4>
+							<h4 class="tmp-text-font">{{event.name}}</h4>
 						</a>
 					</li>
 				</ul>
@@ -74,11 +74,11 @@
 			<div class="col s12 masonry community">
 				<h1 class="center-align ">Community</h1>
 				<ul>
-					<li class="col s12 m2 item">
-						<a href="#" id="community-1">
-							<img src="images/events/event-1.png"/>
-							<h4>SEP 19 - OCT 24</h4>
-							<p>The Eyeslicer Season One</p>
+					<li *ngFor="let user of commUsers" class="col s12 m2 item">
+						<a href="#" id="">
+							<img src="{{user.display_picture}}" />
+							<h4 class="tmp-text-font">{{user.firstname + ' ' + user.lastname}}</h4>
+							<p class="tmp-text-font">{{user.role}}</p>
 						</a>
 					</li>
 				</ul>

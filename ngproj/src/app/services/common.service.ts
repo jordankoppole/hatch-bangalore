@@ -19,12 +19,23 @@ export class CommonService {
 
   public getUpComingEvents() {
     return this.http.get(this.baseApiUrl + 'upcomingevents')
-    .toPromise()
-    .then((data: any) => {
-      return data.json();
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .toPromise()
+      .then((data: any) => {
+        return data.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  public getCommunity() {
+    return this.http.get(this.baseApiUrl + 'activeusers')
+      .toPromise()
+      .then((data: any) => {
+        return data.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }

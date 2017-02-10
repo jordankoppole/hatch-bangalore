@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   // TypeScript public modifiers
 
   public events: any[] = [];
+  public commUsers: any[] = [];
 
   constructor(
     public appState: AppState,
@@ -38,12 +39,20 @@ export class HomeComponent implements OnInit {
   public ngOnInit() {
     console.log('hello `Home` component');
     this.getUpComingEvents();
+    this.getCommunity();
   }
 
   public getUpComingEvents() {
     this.commonService.getUpComingEvents()
       .then((data) => {
         this.events = data;
+      });
+  }
+
+   public getCommunity() {
+    this.commonService.getCommunity()
+      .then((data) => {
+        this.commUsers = data;
       });
   }
 

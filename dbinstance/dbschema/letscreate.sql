@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.2:3306
--- Generation Time: Feb 10, 2017 at 01:49 PM
--- Server version: 10.1.21-MariaDB-1~jessie
+-- Generation Time: Feb 10, 2017 at 03:22 PM
+-- Server version: 10.1.20-MariaDB-1~jessie
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -67,19 +67,31 @@ INSERT INTO `media` (`id`, `url`, `creator_id`) VALUES
 (2, 'images/community/community-2.png', 2),
 (3, 'images/community/community-3.png', 3),
 (4, 'images/community/community-4.png', 4),
-(1, 'images/community/community-1.png', 1),
-(2, 'images/community/community-2.png', 2),
-(3, 'images/community/community-3.png', 3),
-(4, 'images/community/community-4.png', 4),
-(1, 'images/community/community-1.png', 1),
-(2, 'images/community/community-2.png', 2),
-(3, 'images/community/community-3.png', 3),
-(4, 'images/community/community-4.png', 4),
 (5, 'images/community/community-5.png', 5),
 (6, 'images/community/community-6.png', 6),
 (7, 'images/community/community-7.png', 7),
 (8, 'images/community/community-8.png', 8),
 (9, 'images/community/community-9.png', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name`) VALUES
+(1, 'Artist'),
+(2, 'Painter'),
+(3, 'Designer');
 
 -- --------------------------------------------------------
 
@@ -96,23 +108,24 @@ CREATE TABLE `users` (
   `activity_score` int(100) NOT NULL,
   `last_loggedin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL
+  `lastname` varchar(100) NOT NULL,
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `activity_score`, `last_loggedin`, `firstname`, `lastname`) VALUES
-(1, 'petemure', 'petemure', 'pete@lc.com', 1, 23, '2017-02-10 03:42:05', 'Pete', 'Mure'),
-(2, 'jwilson', 'jwilson', 'jwilson@rc.com', 2, 43, '2017-02-10 03:42:05', 'Josh', 'Wilson'),
-(3, 'mkleinz', 'mkleinz', 'mk@rc.com', 3, 12, '2017-02-10 03:43:58', 'Mich', 'Kleinz'),
-(4, 'rmukherjee', 'rmukherjee', 'rm@rc.com', 4, 23, '2017-02-10 03:43:58', 'Rishi', 'Mukherjee'),
-(5, 'viraj', 'viraj', 'vr@rc.com', 5, 32, '2017-02-10 03:43:58', 'Vikram', 'Raj'),
-(6, 'sanborn', 'sanborn', 'sanborn@rc.com', 6, 21, '2017-02-10 03:43:58', 'Sanborn', 'Sen'),
-(7, 'michv', 'michv', 'michv@rc.com', 7, 21, '2017-02-10 03:43:58', 'Michael', 'Virgil'),
-(8, 'luna', 'luna', 'luna@rc.com', 8, 29, '2017-02-10 03:43:58', 'Luna', 'Virgil'),
-(9, 'naina', 'naina', 'naina@rc.com', 9, 29, '2017-02-10 03:43:58', 'Naina', 'Kaur');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `activity_score`, `last_loggedin`, `firstname`, `lastname`, `role_id`) VALUES
+(1, 'petemure', 'petemure', 'pete@lc.com', 1, 23, '2017-02-10 15:18:05', 'Pete', 'Mure', 1),
+(2, 'jwilson', 'jwilson', 'jwilson@rc.com', 2, 43, '2017-02-10 15:18:09', 'Josh', 'Wilson', 2),
+(3, 'mkleinz', 'mkleinz', 'mk@rc.com', 3, 12, '2017-02-10 15:18:10', 'Mich', 'Kleinz', 3),
+(4, 'rmukherjee', 'rmukherjee', 'rm@rc.com', 4, 23, '2017-02-10 15:18:52', 'Rishi', 'Mukherjee', 1),
+(5, 'viraj', 'viraj', 'vr@rc.com', 5, 32, '2017-02-10 15:18:55', 'Vikram', 'Raj', 3),
+(6, 'sanborn', 'sanborn', 'sanborn@rc.com', 6, 21, '2017-02-10 15:18:57', 'Sanborn', 'Sen', 1),
+(7, 'michv', 'michv', 'michv@rc.com', 7, 21, '2017-02-10 15:18:59', 'Michael', 'Virgil', 1),
+(8, 'luna', 'luna', 'luna@rc.com', 8, 29, '2017-02-10 15:19:00', 'Luna', 'Virgil', 2),
+(9, 'naina', 'naina', 'naina@rc.com', 9, 29, '2017-02-10 15:19:02', 'Naina', 'Kaur', 3);
 
 --
 -- Indexes for dumped tables
@@ -122,6 +135,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -139,6 +158,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
