@@ -2,8 +2,8 @@
 -- version 4.5.0.2
 -- http://www.phpmyadmin.net
 --
--- Host: 172.17.0.3:3306
--- Generation Time: Feb 09, 2017 at 06:28 PM
+-- Host: 172.17.0.2:3306
+-- Generation Time: Feb 10, 2017 at 03:48 AM
 -- Server version: 10.1.20-MariaDB-1~jessie
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `events`
 --
 
-CREATE TABLE `events` (
+CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL COMMENT 'Name of the event',
   `description` text COMMENT 'Description of the event',
@@ -49,18 +49,62 @@ INSERT INTO `events` (`id`, `name`, `description`, `start_date`, `end_date`, `cr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `media`
+--
+
+CREATE TABLE IF NOT EXISTS `media` (
+  `id` int(11) NOT NULL,
+  `url` text NOT NULL,
+  `creator_id` int(11) NOT NULL COMMENT 'Foreign key to user'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `media`
+--
+
+INSERT INTO `media` (`id`, `url`, `creator_id`) VALUES
+(1, 'images/community/community-1.png', 1),
+(2, 'images/community/community-2.png', 2),
+(3, 'images/community/community-3.png', 3),
+(4, 'images/community/community-4.png', 4);
+(5, 'images/community/community-5.png', 5);
+(6, 'images/community/community-6.png', 6);
+(7, 'images/community/community-7.png', 7);
+(8, 'images/community/community-8.png', 8);
+(9, 'images/community/community-9.png', 9);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` text NOT NULL,
   `display_picture` int(11) NOT NULL COMMENT 'This is a foreign key to media table',
   `activity_score` int(100) NOT NULL,
-  `last_loggedin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `last_loggedin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `activity_score`, `last_loggedin`, `firstname`, `lastname`) VALUES
+(1, 'petemure', 'petemure', 'pete@lc.com', 1, 23, '2017-02-10 03:42:05', 'Pete', 'Mure'),
+(2, 'jwilson', 'jwilson', 'jwilson@rc.com', 2, 43, '2017-02-10 03:42:05', 'Josh', 'Wilson'),
+(3, 'mkleinz', 'mkleinz', 'mk@rc.com', 3, 12, '2017-02-10 03:43:58', 'Mich', 'Kleinz'),
+(4, 'rmukherjee', 'rmukherjee', 'rm@rc.com', 4, 23, '2017-02-10 03:43:58', 'Rishi', 'Mukherjee'),
+(5, 'viraj', 'viraj', 'vr@rc.com', 5, 32, '2017-02-10 03:43:58', 'Vikram', 'Raj'),
+(6, 'sanborn', 'sanborn', 'sanborn@rc.com', 6, 21, '2017-02-10 03:43:58', 'Sanborn', 'Sen'),
+(7, 'michv', 'michv', 'michv@rc.com', 7, 21, '2017-02-10 03:43:58', 'Michael', 'Virgil'),
+(8, 'luna', 'luna', 'luna@rc.com', 8, 29, '2017-02-10 03:43:58', 'Luna', 'Virgil'),
+(9, 'naina', 'naina', 'naina@rc.com', 9, 29, '2017-02-10 03:43:58', 'Naina', 'Kaur');
 
 --
 -- Indexes for dumped tables
@@ -70,6 +114,12 @@ CREATE TABLE `users` (
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -89,10 +139,15 @@ ALTER TABLE `users`
 ALTER TABLE `events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
