@@ -50,7 +50,7 @@ npm-debug.log
 /ngproj/__build__/**
 /ngproj/public/dist/
 /ngproj/src/*/dist/
-/ngproj/dist/**
+# /ngproj/dist/**
 /ngproj/.awcache
 /ngproj.webpack.json
 /ngproj/compiled/
