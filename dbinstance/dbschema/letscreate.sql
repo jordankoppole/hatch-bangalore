@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.2:3306
--- Generation Time: Feb 10, 2017 at 03:48 AM
--- Server version: 10.1.20-MariaDB-1~jessie
+-- Generation Time: Feb 10, 2017 at 01:49 PM
+-- Server version: 10.1.21-MariaDB-1~jessie
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `events`
 --
 
-CREATE TABLE IF NOT EXISTS `events` (
+CREATE TABLE `events` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL COMMENT 'Name of the event',
   `description` text COMMENT 'Description of the event',
@@ -52,7 +52,7 @@ INSERT INTO `events` (`id`, `name`, `description`, `start_date`, `end_date`, `cr
 -- Table structure for table `media`
 --
 
-CREATE TABLE IF NOT EXISTS `media` (
+CREATE TABLE `media` (
   `id` int(11) NOT NULL,
   `url` text NOT NULL,
   `creator_id` int(11) NOT NULL COMMENT 'Foreign key to user'
@@ -63,6 +63,14 @@ CREATE TABLE IF NOT EXISTS `media` (
 --
 
 INSERT INTO `media` (`id`, `url`, `creator_id`) VALUES
+(1, 'images/community/community-1.png', 1),
+(2, 'images/community/community-2.png', 2),
+(3, 'images/community/community-3.png', 3),
+(4, 'images/community/community-4.png', 4),
+(1, 'images/community/community-1.png', 1),
+(2, 'images/community/community-2.png', 2),
+(3, 'images/community/community-3.png', 3),
+(4, 'images/community/community-4.png', 4),
 (1, 'images/community/community-1.png', 1),
 (2, 'images/community/community-2.png', 2),
 (3, 'images/community/community-3.png', 3),
@@ -79,7 +87,7 @@ INSERT INTO `media` (`id`, `url`, `creator_id`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
@@ -117,17 +125,10 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `media`
---
-ALTER TABLE `media`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -139,15 +140,10 @@ ALTER TABLE `users`
 ALTER TABLE `events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `media`
---
-ALTER TABLE `media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

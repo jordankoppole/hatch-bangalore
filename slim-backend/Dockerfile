@@ -5,7 +5,7 @@ MAINTAINER Sudipta Sen <sanborn.sen@gmail.com>
 RUN apt-get update && apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     apache2 php7.0 php7.0-mysql libapache2-mod-php7.0 curl lynx-cur
 
-# RUN apt-get install -y mysql-client
+RUN apt-get install -y mysql-client
 
 # Enable apache mods.
 RUN a2enmod php7.0
@@ -31,9 +31,8 @@ ADD ./slim /var/www/site
 # Update the default apache site with the config we created.
 ADD ./slim/slim-apache.conf /etc/apache2/sites-enabled/000-default.conf
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer install -d /var/www/site
+
 # By default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
-
-# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# RUN composer install -d /var/www/site
