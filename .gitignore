@@ -44,7 +44,7 @@ npm-debug.log
 /ngproj/tsd_typings/
 
 # Dist #
-/ngproj/dist
+# /ngproj/dist
 /ngproj/public/__build__/
 /ngproj/src/*/__build__/
 /ngproj/__build__/**

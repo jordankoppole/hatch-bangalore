@@ -66,11 +66,11 @@ INSERT INTO `media` (`id`, `url`, `creator_id`) VALUES
 (1, 'images/community/community-1.png', 1),
 (2, 'images/community/community-2.png', 2),
 (3, 'images/community/community-3.png', 3),
-(4, 'images/community/community-4.png', 4);
-(5, 'images/community/community-5.png', 5);
-(6, 'images/community/community-6.png', 6);
-(7, 'images/community/community-7.png', 7);
-(8, 'images/community/community-8.png', 8);
+(4, 'images/community/community-4.png', 4),
+(5, 'images/community/community-5.png', 5),
+(6, 'images/community/community-6.png', 6),
+(7, 'images/community/community-7.png', 7),
+(8, 'images/community/community-8.png', 8),
 (9, 'images/community/community-9.png', 9);
 
 -- --------------------------------------------------------
