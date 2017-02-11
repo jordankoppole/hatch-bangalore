@@ -38,4 +38,16 @@ export class CommonService {
         console.log(error);
       });
   }
+
+  public createUser(user: any) {
+    console.log(user);
+    return this.http.post(this.baseApiUrl + 'register', JSON.stringify(user))
+      .toPromise()
+      .then((data: any) => {
+        return data.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 }

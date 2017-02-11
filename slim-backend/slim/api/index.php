@@ -2,6 +2,7 @@
 ob_start();
 header('Access-Control-Allow-Origin: *');
 header("Content-Type: application/json");
+header("Access-Control-Allow-Headers: Content-Type");
 
 require_once(dirname(__FILE__).'/../includes.php');
 

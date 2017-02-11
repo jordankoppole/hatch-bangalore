@@ -59,7 +59,7 @@
                     validateEqual="pw2" />
                   <label for="pw1">Password</label>
                 </div>
-                <div class="input-field col s12 m6">
+                <div class="input-field col s12 m6 password">
                   <input
                     type="password"
                     class="validate"
@@ -98,7 +98,7 @@
                   </div>
                 </div>
                 <div class="col s12 m6 right-align">
-                  <button type="submit" class="btn btn-primary waves-effect"> Sign Up </button>
+                  <button [disabled]="registerFormDisabled" type="submit" class="btn btn-primary waves-effect"> Sign Up </button>
                 </div>
               </div>
             </form>
