@@ -1,7 +1,7 @@
 <?php
 function activeusers() {
-  $eventControllers = new EventsController();
-  $data = $eventControllers->getActiveUsers();
+  $usersControllers = new UsersController();
+  $data = $usersControllers->getActiveUsers();
   echo json_encode($data);
   exit;
 }

@@ -21,7 +21,8 @@ $apiVersion = "1.0";
 $publicUris = [
   'testapi',
   'upcomingevents',
-  'activeusers'
+  'activeusers',
+  'register'
 ];
 
 
@@ -40,6 +41,8 @@ R::setup("mysql:host=mysql;dbname=letscreate", getenv('MYSQL_USERNAME'), getenv(
 $app->get('/testapi',               function () { echo testapi(); });
 $app->get('/upcomingevents',        function () { echo upcomingevents(); });
 $app->get('/activeusers',           function () { echo activeusers(); });
+
+$app->post('/register',              function () { echo register(); });
 
 /**
  * Run the Requested API End-point
