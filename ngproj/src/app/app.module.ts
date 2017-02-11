@@ -1,3 +1,6 @@
+import { EqualValidatorDirective } from './directives/equal-validator.directive';
+import { Broadcaster } from './services/broadcaster.service';
+import { LoginComponent } from './login/login.component';
 import { CommonService } from './services/common.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -43,7 +46,8 @@ import '../styles/styles.css';
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  CommonService
+  CommonService,
+  Broadcaster
 ];
 
 type StoreType = {
@@ -61,8 +65,10 @@ type StoreType = {
     AppComponent,
     AboutComponent,
     HomeComponent,
+    LoginComponent,
     NoContentComponent,
-    XLargeDirective
+    XLargeDirective,
+    EqualValidatorDirective
   ],
   imports: [ // import Angular's modules
     BrowserModule,

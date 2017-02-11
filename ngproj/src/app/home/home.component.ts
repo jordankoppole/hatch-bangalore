@@ -1,3 +1,4 @@
+import { Broadcaster } from './../services/broadcaster.service';
 import { CommonService } from './../services/common.service';
 import {
   Component,
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit {
     public appState: AppState,
     public title: Title,
     private commonService: CommonService,
+    private broadcaster: Broadcaster
   ) {}
 
   public ngOnInit() {
@@ -60,5 +62,9 @@ export class HomeComponent implements OnInit {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';
+  }
+
+  public openLogin() {
+    this.broadcaster.broadcast('login_modal', 'open');
   }
 }

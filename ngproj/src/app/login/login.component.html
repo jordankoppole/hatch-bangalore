@@ -1,0 +1,140 @@
+<div *ngIf="showModal" class="custom-Modal" id="login">
+  <div class="costom-modal-header">
+    <a (click)="closeModal()" class="close-modal clickable"><i class="material-icons">close</i></a>
+  </div>
+
+  <div>
+    <section class="section no-pad-bot">
+      <div class="container padding-mobile">
+        <div class="row">
+          <div class="col l1 hide-on-med-and-down"></div>
+            <div class="col s12 l10">
+              <h1>Welcome</h1>
+            </div>
+          </div>
+
+          <!-- Register Section -->
+          <div *ngIf="modalType=='register'">
+            <!-- <div class="row">
+              <div class="col s12">
+                <a href="#" class="btn btn-facebook waves-effect">Signup with facebook</a>
+                <a href="#" class="btn btn-google waves-effect">Signup with Google</a>
+              </div>
+            </div>-->
+            <form #f="ngForm" (ngSubmit)="onSubmit(f); f.reset();">
+              <div class="row">
+                <div class="input-field col s12 m6">
+                  <input id="userFirstName" name="userFirstName" type="text" class="validate" ngModel required />
+                  <label for="userFirstName" data-error="Please enter first name">First Name</label>
+                </div>
+                <div class="input-field col s12 m6">
+                  <input id="userLastName" name="userLastName" type="text" class="validate" ngModel required />
+                  <label for="userLastName" data-error="Please enter last name">Last Name</label>
+                </div>
+                 <div class="input-field col s12 m6">
+                  <input id="userName" name="userName" type="text" class="validate" ngModel required />
+                  <label for="userName" data-error="Please enter username">User Name</label>
+                  <div class="msg-block" *ngIf="showUsernameError">
+                    <span class="msg-error">Username already taken, please try another one.</span>
+                  </div>
+                </div>
+                <div class="input-field col s12 m6">
+                  <input
+                    id="userEmail"
+                    name="userEmail"
+                    type="email"
+                    class="validate"
+                    ngModel required />
+                  <label for="userEmail" data-error="Please enter valid email id">Email</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12 m6">
+                  <input
+                    type="password"
+                    class="validate"
+                    id="pw1" name="pw1"
+                    ngModel required
+                    validateEqual="pw2" />
+                  <label for="pw1">Password</label>
+                </div>
+                <div class="input-field col s12 m6">
+                  <input
+                    type="password"
+                    class="validate"
+                    id="pw2" name="pw2"
+                    #pw2="ngModel"
+                    ngModel required
+                    validateEqual="pw1"/>
+                  <label for="pw2">Confirm Password</label>
+                  <div class="msg-block" *ngIf="showPasswordError">
+                    <span class="msg-error">Passwords don't match.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!--<div class="row">
+                <div class="input-field col s12 m6">
+                  <select id="age">
+                    <option value="0" selected>Above 18</option>
+                    <option value="1">Under 18</option>
+                  </select>
+                </div>
+              </div>-->
+
+              <div class="row">
+                <div class="col s24 m12">
+                  Do you already have an account? Then <a class="clickable" (click)="switchTo('login')">login here</a>.
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s12 m6">
+                  <input type="checkbox" name="terms" class="filled-in" id="accept" ngModel />
+                  <label for="accept">I accept terms and condtions of use.</label>
+                  <div class="msg-block" *ngIf="showAcceptTerms">
+                    <span class="msg-error">Please accept our terms and condition</span>
+                  </div>
+                </div>
+                <div class="col s12 m6 right-align">
+                  <button type="submit" class="btn btn-primary waves-effect"> Sign Up </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+          <!-- Login Section -->
+          <div *ngIf="modalType=='login'">
+            <form>
+              <div class="row">
+                <div class="input-field col s12 m6">
+                  <input type="email" name="email" class="validate" />
+                  <label data-error="Please enter email id">Email or Username</label>
+                  <div class="msg-block" *ngIf="showUsernameError">
+                    <span class="msg-error">Invalid email or username.</span>
+                  </div>
+                </div>
+                <div class="input-field col s12 m6">
+                  <input type="password" name="email" />
+                  <label>Password</label>
+                  <div class="msg-block" *ngIf="showPasswordError">
+                    <span class="msg-error">Invalid password, trey again.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12 m6">
+                  Don't have an account? <a class="clickable" (click)="switchTo('register')">Register</a> here.
+                </div>
+                <div class="col s12 m6 right-align">
+                  <input type="submit" value="Login" class="btn btn-primary waves-effect" />
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </section>
+  </div>
+</div>

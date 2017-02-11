@@ -2936,12 +2936,11 @@ body.nav-expanded .prallaxNav {
 /***** Custom Modal *****/
 .custom-Modal {
   position: fixed;
-  height: 100vh;
   background: white;
   z-index: 9999;
-  width: 100%;
-  bottom: 0;
-  height: 100vh;
+  width: 60%;
+  left: 20%;
+  top: 5%;
   overflow: hidden;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -3008,4 +3007,8 @@ body.nav-expanded .prallaxNav {
 
 .error {
   color: #ff5a5f;
+}
+
+.clickable {
+  cursor: pointer;
 }
