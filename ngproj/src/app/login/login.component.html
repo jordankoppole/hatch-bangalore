@@ -21,7 +21,7 @@
                 <a href="#" class="btn btn-google waves-effect">Signup with Google</a>
               </div>
             </div>-->
-            <form #f="ngForm" (ngSubmit)="onSubmit(f); f.reset();">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
               <div class="row">
                 <div class="input-field col s12 m6">
                   <input id="userFirstName" name="userFirstName" type="text" class="validate" ngModel required />
