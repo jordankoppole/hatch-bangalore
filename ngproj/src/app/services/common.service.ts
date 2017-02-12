@@ -4,12 +4,12 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CommonService {
-  // private headers = new Headers(
-  //   {
-  //     'Content-Type': 'application/json',
-  //     'Access-Control-Allow-Origin': '*'
-  //   }
-  // );
+  private headers = new Headers(
+    {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  );
 
   private baseApiUrl = window.location.protocol +
                          '//' + window.location.hostname +
@@ -41,7 +41,29 @@ export class CommonService {
 
   public createUser(user: any) {
     console.log(user);
-    return this.http.post(this.baseApiUrl + 'register', JSON.stringify(user))
+    return this.http.post(
+      this.baseApiUrl + 'register',
+      JSON.stringify(user),
+      { headers: this.headers }
+    )
+      .toPromise()
+      .then((data: any) => {
+        return data.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  public login(user: any) {
+    console.log(user);
+    this.headers.append('Authorization', 'Basic ' + btoa(JSON.stringify(user)));
+    // console.log(this.headers);
+    return this.http.post(
+      this.baseApiUrl + 'login',
+      '',
+      { headers: this.headers }
+    )
       .toPromise()
       .then((data: any) => {
         return data.json();

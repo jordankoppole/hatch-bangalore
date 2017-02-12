@@ -16,15 +16,15 @@ import { AppState } from '../app.service';
 })
 export class LoginComponent implements OnInit {
 
-  private showModal: boolean = false;
-  private modalType: string = 'login'; // register or invite
-  private showPasswordError: boolean = false;
-  private showUsernameError: boolean = false;
-  private showAcceptTerms: boolean = false;
-  private showEmailError: boolean = false;
-  private errorMessage: string = '';
-  private successMessage: string = '';
-  private registerFormDisabled: boolean = false;
+  public showModal: boolean = false;
+  public modalType: string = 'login'; // register or invite
+  public showPasswordError: boolean = false;
+  public showUsernameError: boolean = false;
+  public showAcceptTerms: boolean = false;
+  public showEmailError: boolean = false;
+  public errorMessage: string = '';
+  public successMessage: string = '';
+  public registerFormDisabled: boolean = false;
 
   constructor(
     public appState: AppState,
@@ -45,7 +45,27 @@ export class LoginComponent implements OnInit {
     this.modalType = modalType;
   }
 
-  public onSubmit(f: NgForm) {
+  public onLoginSubmit(f: NgForm) {
+    console.log(f.value);
+    this.resetErrors();
+    let fields: any = f.value;
+    this.commonService.login(fields)
+      .then((resp) => {
+        console.log(resp);
+        if (resp.status === 509) {
+          this.showPasswordError = true;
+          this.errorMessage = resp.message;
+        } else if (resp.status === 508) {
+          this.showEmailError = true;
+          this.errorMessage = resp.message;
+        } else {
+          f.reset();
+          this.successMessage = resp.message;
+        }
+      });
+  }
+
+  public onRegisterSubmit(f: NgForm) {
     // console.log(f.value);  // { first: '', last: '' }
     // console.log(f.valid);  // false
     this.resetErrors();

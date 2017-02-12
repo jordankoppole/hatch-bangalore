@@ -25,7 +25,7 @@
                 <a href="#" class="btn btn-google waves-effect">Signup with Google</a>
               </div>
             </div>-->
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <form #f="ngForm" (ngSubmit)="onRegisterSubmit(f)">
               <div class="row">
                 <div class="input-field col s12 m6">
                   <input id="userFirstName" name="userFirstName" type="text" class="validate" ngModel required />
@@ -114,21 +114,26 @@
 
           <!-- Login Section -->
           <div *ngIf="modalType=='login'">
-            <form>
+            <form #f="ngForm" (ngSubmit)="onLoginSubmit(f)">
               <div class="row">
                 <div class="input-field col s12 m6">
-                  <input type="email" name="email" class="validate" />
-                  <label data-error="Please enter email id">Email or Username</label>
-                  <div class="msg-block" *ngIf="showUsernameError">
-                    <span class="msg-error">Invalid email or username.</span>
-                  </div>
+                  <input
+                    id="username"
+                    name="username"
+                    [ngClass]="{'ng-invalid': showEmailError}"
+                    type="text"
+                    class="validate"
+                    ngModel required />
+                  <label for="username" data-error="Please enter username or email">Username or email</label>
                 </div>
                 <div class="input-field col s12 m6">
-                  <input type="password" name="email" />
-                  <label>Password</label>
-                  <div class="msg-block" *ngIf="showPasswordError">
-                    <span class="msg-error">Invalid password, trey again.</span>
-                  </div>
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    [ngClass]="{'ng-invalid': showPasswordError}"
+                    ngModel required />
+                  <label for="password" data-error="Please enter password">Password</label>
                 </div>
               </div>
               <div class="row">

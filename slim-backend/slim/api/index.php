@@ -2,7 +2,7 @@
 ob_start();
 header('Access-Control-Allow-Origin: *');
 header("Content-Type: application/json");
-header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, Access-Control-Allow-Origin");
 
 require_once(dirname(__FILE__).'/../includes.php');
 
@@ -23,7 +23,8 @@ $publicUris = [
   'testapi',
   'upcomingevents',
   'activeusers',
-  'register'
+  'register',
+  'login'
 ];
 
 
@@ -44,6 +45,7 @@ $app->get('/upcomingevents',        function () { echo upcomingevents(); });
 $app->get('/activeusers',           function () { echo activeusers(); });
 
 $app->post('/register',              function () { echo register(); });
+$app->post('/login',                 function () { echo login(); });
 
 /**
  * Run the Requested API End-point

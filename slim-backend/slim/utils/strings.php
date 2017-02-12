@@ -15,8 +15,14 @@ const STATUS_INVALID_DATA = 504;
 
 const STATUS_USERNAME_EXIST = 506;
 const STATUS_EMAIL_EXIST = 507;
+const STATUS_USER_NOT_EXIST = 508;
+const STATUS_WRONG_PASSWORD = 509;
+
 
 // Strings
 const PARAM_MISSING = 'parameter missing - %s';
 const CREATE_USER_SUCCESS = 'Registration was successful.';
 const USER_EXIST = 'This %s is already registered.';
+const USER_NOT_EXIST = 'This user doesn\'t exit';
+const WRONG_PASSWORD = 'Incorrect password. Please try again.';
+const LOGIN_SUCCESSFUL = 'Login was successful';

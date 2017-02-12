@@ -6,7 +6,7 @@ function register() {
   $postdata = file_get_contents("php://input");
   $request = json_decode($postdata, true);
   $_REQUEST = $request;
-  // echo "This is a test API";
+
   $response = new Response();
   $response->setStatus(STATUS_INVALID_DATA);
 

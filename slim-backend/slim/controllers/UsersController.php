@@ -54,4 +54,65 @@ class UsersController {
     }
     return $this->response;
   }
+
+  public function login($params) {
+    $user = R::findOne(
+      'users',
+      'email=:email OR username=:username',
+      array(
+        'email' => $params['username'],
+        'username' => $params['username']
+      )
+    );
+    if ($user) {
+      if ($user->password === md5($params['password'])) {
+        $newToken = R::dispense('tokens');
+        $newToken->user_id = $user->id;
+        $newToken->token = $this->getToken(64);
+        $newToken->expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
+        R::store($newToken);
+        $user->last_loggedin = date('Y-m-d H:i:s');
+        $user->activity_score += 1;
+        R::store($user);
+        $this->response->setStatus(STATUS_SUCCESS);
+        $this->response->setMessage(LOGIN_SUCCESSFUL);
+        $this->response->setData(['token' => $newToken->token]);
+      } else {
+        $this->response->setStatus(STATUS_WRONG_PASSWORD);
+        $this->response->setMessage(WRONG_PASSWORD);
+      }
+    } else {
+      $this->response->setStatus(STATUS_USER_NOT_EXIST);
+      $this->response->setMessage(USER_NOT_EXIST);
+    }
+    return $this->response;
+  }
+
+  private function getToken($length) {
+    $token = "";
+    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+    $codeAlphabet.= "0123456789";
+    $max = strlen($codeAlphabet); // edited
+
+    for ($i=0; $i < $length; $i++) {
+        $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max-1)];
+    }
+
+    return $token;
+  }
+
+  private function crypto_rand_secure($min, $max) {
+    $range = $max - $min;
+    if ($range < 1) return $min; // not so random...
+    $log = ceil(log($range, 2));
+    $bytes = (int) ($log / 8) + 1; // length in bytes
+    $bits = (int) $log + 1; // length in bits
+    $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+    do {
+        $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+        $rnd = $rnd & $filter; // discard irrelevant bits
+    } while ($rnd > $range);
+    return $min + $rnd;
+  }
 }
