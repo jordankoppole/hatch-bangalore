@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   private showAcceptTerms: boolean = false;
   private showEmailError: boolean = false;
   private errorMessage: string = '';
+  private successMessage: string = '';
   private registerFormDisabled: boolean = false;
 
   constructor(
@@ -80,8 +81,11 @@ export class LoginComponent implements OnInit {
           this.errorMessage = resp.message;
         } else {
           f.reset();
-          this.resetErrors();
-          this.modalType = 'login';
+          this.successMessage = resp.message;
+          setTimeout(() => {
+            this.resetErrors();
+            this.modalType = 'login';
+          }, 3000);
         }
       });
   }
@@ -91,6 +95,8 @@ export class LoginComponent implements OnInit {
     this.showUsernameError = false;
     this.showAcceptTerms = false;
     this.showEmailError = false;
+    this.errorMessage = '';
+    this.successMessage = '';
   }
 
   private listenToEvents() {

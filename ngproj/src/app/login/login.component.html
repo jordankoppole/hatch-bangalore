@@ -10,8 +10,9 @@
           <div class="col l1 hide-on-med-and-down"></div>
             <div class="col s12 l10">
               <h1>Welcome</h1>
-              <div class="msg-block" *ngIf="errorMessage">
-                <span class="msg-error">{{errorMessage}}</span>
+              <div class="msg-block" *ngIf="errorMessage || successMessage">
+                <span *ngIf="errorMessage" class="msg-error">{{errorMessage}}</span>
+                <span *ngIf="successMessage" class="msg-success">{{successMessage}}</span>
               </div>
             </div>
           </div>
