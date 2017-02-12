@@ -13,7 +13,8 @@ const STATUS_APPLICATION_ERROR = 500;
 const STATUS_SERVICE_UNAVAILABLE = 503;
 const STATUS_INVALID_DATA = 504;
 
-
+const STATUS_USERNAME_EXIST = 506;
+const STATUS_EMAIL_EXIST = 507;
 
 // Strings
 const PARAM_MISSING = 'parameter missing - %s';

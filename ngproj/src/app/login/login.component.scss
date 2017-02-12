@@ -21,16 +21,22 @@
 }
 
 
-.password {
-  .ng-valid {
-    border-bottom: 1px solid #9ccc65 !important;
-    -webkit-box-shadow: 0 1px 0 0 #9ccc65 !important;
-    box-shadow: 0 1px 0 0 #9ccc65 !important;
-  }
 
-  .ng-dirty.ng-invalid {
-    border-bottom: 1px solid #f17676 !important;
-    -webkit-box-shadow: 0 1px 0 0 #f17676 !important;
-    box-shadow: 0 1px 0 0 #f17676 !important;
-  }
+.ng-valid {
+  border-bottom: 1px solid #9ccc65 !important;
+  -webkit-box-shadow: 0 1px 0 0 #9ccc65 !important;
+  box-shadow: 0 1px 0 0 #9ccc65 !important;
 }
+
+.ng-dirty.ng-invalid {
+  border-bottom: 1px solid #f17676 !important;
+  -webkit-box-shadow: 0 1px 0 0 #f17676 !important;
+  box-shadow: 0 1px 0 0 #f17676 !important;
+}
+
+.ng-valid.ng-dirty.ng-invalid {
+  border-bottom: 1px solid #f17676 !important;
+  -webkit-box-shadow: 0 1px 0 0 #f17676 !important;
+  box-shadow: 0 1px 0 0 #f17676 !important;
+}
+

@@ -10,6 +10,9 @@
           <div class="col l1 hide-on-med-and-down"></div>
             <div class="col s12 l10">
               <h1>Welcome</h1>
+              <div class="msg-block" *ngIf="errorMessage">
+                <span class="msg-error">{{errorMessage}}</span>
+              </div>
             </div>
           </div>
 
@@ -32,11 +35,14 @@
                   <label for="userLastName" data-error="Please enter last name">Last Name</label>
                 </div>
                  <div class="input-field col s12 m6">
-                  <input id="userName" name="userName" type="text" class="validate" ngModel required />
+                  <input
+                    id="userName"
+                    name="userName"
+                    type="text"
+                    class="validate"
+                    [ngClass]="{'ng-invalid': showUsernameError}"
+                    ngModel required />
                   <label for="userName" data-error="Please enter username">User Name</label>
-                  <div class="msg-block" *ngIf="showUsernameError">
-                    <span class="msg-error">Username already taken, please try another one.</span>
-                  </div>
                 </div>
                 <div class="input-field col s12 m6">
                   <input
@@ -44,6 +50,7 @@
                     name="userEmail"
                     type="email"
                     class="validate"
+                    [ngClass]="{'ng-invalid': showEmailError}"
                     ngModel required />
                   <label for="userEmail" data-error="Please enter valid email id">Email</label>
                 </div>
@@ -55,8 +62,7 @@
                     type="password"
                     class="validate"
                     id="pw1" name="pw1"
-                    ngModel required
-                    validateEqual="pw2" />
+                    ngModel required />
                   <label for="pw1">Password</label>
                 </div>
                 <div class="input-field col s12 m6 password">
@@ -66,11 +72,9 @@
                     id="pw2" name="pw2"
                     #pw2="ngModel"
                     ngModel required
+                    [ngClass]="{'ng-invalid': showPasswordError}"
                     validateEqual="pw1"/>
                   <label for="pw2">Confirm Password</label>
-                  <div class="msg-block" *ngIf="showPasswordError">
-                    <span class="msg-error">Passwords don't match.</span>
-                  </div>
                 </div>
               </div>
 
@@ -91,11 +95,13 @@
 
               <div class="row">
                 <div class="col s12 m6">
-                  <input type="checkbox" name="terms" class="filled-in" id="accept" ngModel />
+                  <input
+                    type="checkbox"
+                    name="terms"
+                    class="filled-in"
+                    [ngClass]="{'ng-invalid': showAcceptTerms}"
+                    id="accept" ngModel />
                   <label for="accept">I accept terms and condtions of use.</label>
-                  <div class="msg-block" *ngIf="showAcceptTerms">
-                    <span class="msg-error">Please accept our terms and condition</span>
-                  </div>
                 </div>
                 <div class="col s12 m6 right-align">
                   <button [disabled]="registerFormDisabled" type="submit" class="btn btn-primary waves-effect"> Sign Up </button>

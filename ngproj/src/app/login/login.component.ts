@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   private showPasswordError: boolean = false;
   private showUsernameError: boolean = false;
   private showAcceptTerms: boolean = false;
+  private showEmailError: boolean = false;
+  private errorMessage: string = '';
   private registerFormDisabled: boolean = false;
 
   constructor(
@@ -45,16 +47,19 @@ export class LoginComponent implements OnInit {
   public onSubmit(f: NgForm) {
     // console.log(f.value);  // { first: '', last: '' }
     // console.log(f.valid);  // false
-    this.registerFormDisabled = true;
+    this.resetErrors();
     let fields: any = f.value;
     if (fields.pw1 !== fields.pw2) {
       this.showPasswordError = true;
+      this.errorMessage = 'Passwords don\'t match';
       return;
     }
     if (!fields.terms) {
       this.showAcceptTerms = true;
+      this.errorMessage = 'Please accept our terms and condition.';
       return;
     }
+    this.registerFormDisabled = true;
     const md5 = require('js-md5');
     let params = {
       firstname: fields.userFirstName,
@@ -67,8 +72,12 @@ export class LoginComponent implements OnInit {
       .then((resp) => {
         this.registerFormDisabled = false;
         console.log(resp);
-        if (resp.status !== 200) {
+        if (resp.status === 506) {
           this.showUsernameError = true;
+          this.errorMessage = resp.message;
+        } else if (resp.status === 507) {
+          this.showEmailError = true;
+          this.errorMessage = resp.message;
         } else {
           f.reset();
           this.resetErrors();
@@ -81,6 +90,7 @@ export class LoginComponent implements OnInit {
     this.showPasswordError = false;
     this.showUsernameError = false;
     this.showAcceptTerms = false;
+    this.showEmailError = false;
   }
 
   private listenToEvents() {

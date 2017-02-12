@@ -36,10 +36,11 @@ class UsersController {
       )
     );
     if ($user) {
-      $this->response->setStatus(STATUS_INVALID_DATA);
       if ($user['email'] == $params['email']) {
+        $this->response->setStatus(STATUS_EMAIL_EXIST);
         $this->response->setMessage(sprintf(USER_EXIST, 'email'));
       } else {
+        $this->response->setStatus(STATUS_USERNAME_EXIST);
         $this->response->setMessage(sprintf(USER_EXIST, 'username'));
       }
     } else {
