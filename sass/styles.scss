@@ -876,6 +876,58 @@ body.nav-expanded{
 	}
 }
 
+#SearchModal{
+	button{
+		position:fixed;
+		right:10px;
+		top:10px;
+		color: #fff;
+		background-color: #ff5a5f;
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		border: none;
+		line-height:60px;
+		z-index:10;
+	}
+	.search-result{
+		padding-top:70px;
+	}
+	h1{
+		font-family: $josefin, $roboto;
+		font-weight: 700;
+		font-size: 3rem;
+		color: #ff5a5f;
+		margin:0;
+	}
+	a{
+		color:#30eee5;
+		font-family:$josefin, $roboto;
+		text-transform:uppercase;
+		margin-top: 22px;
+		display: inline-block;
+	}
+	.select-wrapper{
+		input{
+			padding-left:15px;
+		}
+	}
+	.ser-icon{
+		position:absolute;
+		top:12px;
+		left:0;
+	}
+	.ser-text{
+		padding-left:0;
+	}
+}
+@media screen and (max-width:768px){
+	.ser-text{
+		padding-left:10px !important;
+	}
+}
+
 .tabs{
 	.indicator{
 		height: 6px;
