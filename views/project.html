@@ -5,13 +5,15 @@
 				<div class="left-col profile">
 					<a class="right grey-text profile_edit" ng-click="profileEdit()"><i class="material-icons">edit</i></a>
 					<div class="profile-img">
-						<img src="/images/avatar.png"/>
+						<img src="/images/naveen.jpg"/>
 					</div>
 					<div>
-						<ul ng-init="projectlinks=[{name:'Summary',link:'#!', selected:'selected'},{name:'Class',link:'#!', selected: ''}]">
-							<li ng-repeat="x in projectlinks">
-							  <a href="{{x.link}}" class="{{x.selected}}">{{x.name}}</a>
-							</li>
+						<ul class="tabs">
+							<li class="tab col s12"><a class="active"  href="#summary">Summary</a></li>
+							<li class="tab col s12"><a href="#creation">Co Creatons</a></li>
+							<li class="tab col s12"><a href="#connection">Connections</a></li>
+							<li class="tab col s12"><a href="#file">Files</a></li>
+							<li class="tab col s12"><a href="#account">Accont Settings</a></li>
 						</ul>
 						<div class="divider"></div>
 					</div>
@@ -19,29 +21,158 @@
 			</div>
 			<div class="col s12 m8">
 				<div class="right-col profile">
-					<div class="row">
-						<div class="col s10">
-							<h1>{{class.name}}Class Title</h1>
-						</div>
-						<div class="col s2 right-align">
-							<a href="#!" class="grey-text"><i class="material-icons">edit</i></a>
-							<a href="#!" class="grey-text"><i class="material-icons">share</i></a>
-						</div>
-					</div>
-					<div class="row" ng-show="!anyDirtyAndInvalid(submit_entry_form);">
-							<p>{{class.desc}} Class Description</p>
-							<div>
-								<button ng-click="toggle()" class="btn btn-primary">Enroll</button>
-								<button ng-click="toggleClass()" class="btn btn-primary">Publish Class</button>
+					<div id="summary">
+						<div class="row">
+							<div class="col s10">
+								<h1>Class Title</h1>
 							</div>
-					</div>
-					<div>
-						<h5 class="mTop50">HIGHLIHTS</h5>
-						<h5 class="mTop50">ABOUT THE COURSE</h5>
-						<div id="instructor_detail">
-							<h5 class="mTop50">INSTRUCTOR</h5>
+							<div class="col s2 right-align">
+								<a href="#!" class="grey-text"><i class="material-icons">edit</i></a>
+								<a href="#!" class="grey-text"><i class="material-icons">share</i></a>
+							</div>
 						</div>
-						<h5 class="mTop50">HOW DOES IT SERVES THE COMMON GOOD?</h5>
+						<div class="row" ng-show="!anyDirtyAndInvalid(submit_entry_form);">
+								<p>Class Description</p>
+								<div>
+									<button ng-click="toggle()" class="btn btn-primary">Enroll</button>
+									<button ng-click="toggleClass()" class="btn btn-primary">Publish Class</button>
+								</div>
+						</div>
+						<div>
+							<h5 class="mTop50">HIGHLIHTS</h5>
+							<h5 class="mTop50">ABOUT THE COURSE</h5>
+							<div id="instructor_detail">
+								<h5 class="mTop50">INSTRUCTOR</h5>
+							</div>
+							<h5 class="mTop50">HOW DOES IT SERVES THE COMMON GOOD?</h5>
+						</div>
+					</div>
+					<div id="account">
+						<div class="row">
+							<div class="col s12">
+								<h1>Account Settings</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12 right-align">
+								<a class="btn-flat waves-effect">Upgrade</a>
+								<a class="btn-flat waves-effect">Change Password</a>
+								<a class="btn-flat waves-effect">Deactivate Account</a>
+							</div>
+						</div>
+						<div class="row">
+							<p>General</p>
+							<div class="input-field col s12">
+								<input type="text" id="name">
+								<label for="name">Name</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="username">
+								<label for="username">Username</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<select>
+									<option selected disabled>Country</option>
+									<option>India</option>
+									<option>USA</option>
+									<option>UAE</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="phone">
+								<label for="phone">Phone</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<select>
+									<option selected disabled>Age</option>
+									<option>18-25</option>
+									<option>25-35</option>
+									<option>35-45</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="currency">
+								<label for="currency">Currency</label>
+							</div>
+						</div>
+						<div class="row">
+							<p>Privacy Settings</p>
+							<div class="input-field col s12">
+								<input type="text" id="cntct">
+								<label for="cntct">Who can contact me?</label>
+							</div>
+						</div>
+						<div class="row">
+							<p>Bank Details</p>
+							<div class="input-field col s12">
+								<input type="text" id="bank_name">
+								<label for="bank_name">Bank Name</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="acc_no">
+								<label for="acc_no">Account No</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="ifsc">
+								<label for="ifsc">IFSC</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<select>
+									<option selected disabled>Country</option>
+									<option>India</option>
+									<option>USA</option>
+									<option>UAE</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div id="creation">
+						<div class="row">
+							<div class="col s8">
+								<h1>Co Creations</h1>
+							</div>
+							<div class="col s4 right-align">
+								<a class="grey-text"><i class="material-icons">menu</i></a>
+								<a class="grey-text"><i class="material-icons">more_vert</i></a>
+							</div>
+						</div>
+					</div>
+					<div id="connection">
+						<div class="row">
+							<div class="col s8">
+								<h1>Connections</h1>
+							</div>
+							<div class="col s4 right-align">
+								<a class="grey-text"><i class="material-icons">filter_list</i></a>
+							</div>
+						</div>
+					</div>
+					<div id="file">
+						<div class="row">
+							<div class="col s8">
+								<h1>Files</h1>
+							</div>
+							<div class="col s4 right-align">
+								<a class="grey-text"><i class="material-icons">menu</i></a>
+								<a class="grey-text"><i class="material-icons">filter_list</i></a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -326,6 +457,7 @@ $(document).ready(function(){
 		// options
 		itemSelector : '.item'
 	});
+	$('ul.tabs').tabs();
 	$('select').material_select();
 	$('.datepicker').pickadate({
 		selectMonths: true, // Creates a dropdown to control month
