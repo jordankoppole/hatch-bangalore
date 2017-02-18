@@ -178,6 +178,9 @@ body {
 		}
 	}
 }
+a{
+	cursor:pointer;
+}
 ul {
 	padding: 0;
 	margin: 0;
@@ -389,9 +392,7 @@ h5 {
 }
 .left-col {
 	margin-left: 0;
-	border-right: 1px solid $primary-color;
 	position: fixed;
-	//max-width: 435px;
 	z-index: -1;
 	left: 0;
 	transition: all 0.25s ease-in-out;
@@ -409,6 +410,24 @@ h5 {
 			right:5px;
 			top:90px;
 			z-index:3;
+		}
+		.tabs{
+			height:auto;
+			background:none;
+			.tab{
+				text-align:left;
+				display:block;
+				height:auto;
+				line-height:30px;
+				a{
+					&.active{
+						border-right: 4px solid $primary-color;
+					}
+				}
+			}
+			.indicator{
+				display:none;
+			}
 		}
 		.aboutme {
 			color: $primary-color;
@@ -486,7 +505,6 @@ h5 {
 	padding: 5rem 2rem 0;
 	&.profile{
 		border-left: 1px solid $primary-color;
-		height: 100vh;
 	}
 	h1 {
 		margin: 0;
@@ -502,6 +520,44 @@ h5 {
 		}
 	}
 
+}
+
+.carousel_section{
+	.carousel-slider{
+		height: 600px !important;
+	}
+	.carousel_text{
+		padding-top:300px;
+		color:#30eee5;
+		h2{
+			font-weight: 300 !important;
+			font-size: 30px !important;
+		}
+		p{
+			font-size:20px !important;
+		}
+	}
+	.carousel_one{
+		background-image:url("../images/video-poster.jpg");
+	}
+	.carousel_two{
+		background-image:url("../images/video-poster.jpg");
+	}
+	.carousel_three{
+		background-image:url("../images/video-poster.jpg");
+	}
+	.carousel_four{
+		background-image:url("../images/video-poster.jpg");
+	}
+	.indicator-item{
+		border-radius:0 !important;
+		height:1px !important;
+		width:40px !important;
+		&.active{
+			height:2px !important;
+		}
+	}
+	
 }
 
 .common-quotes{
@@ -528,6 +584,11 @@ h5 {
 	height: 42px;
 	line-height: 42px;
 	color: $black;
+	&.btn-login{
+		background:none;
+		border:1px solid #fff;
+		margin-left:8px;
+	}
 	&.btn-primary {
 		background-color: $color_turquoise_approx;
 	}
@@ -547,7 +608,9 @@ h5 {
 		background-color: $primary-color;
 		color: $white;
 	}
-
+}
+.btn-flat{
+	color:$color_turquoise_approx;
 }
 
 @import "_utils";
