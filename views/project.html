@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="left-col profile">
-					<a class="right grey-text profile_edit" ng-click="profileEdit()"><i class="material-icons">edit</i></a>
+					<a class="right grey-text profile_edit btn_modal" ng-click="profileEdit()"><i class="material-icons">edit</i></a>
 					<div class="profile-img">
 						<img src="/images/naveen.jpg"/>
 					</div>
@@ -34,8 +34,8 @@
 						<div class="row" ng-show="!anyDirtyAndInvalid(submit_entry_form);">
 								<p>Class Description</p>
 								<div>
-									<button ng-click="toggle()" class="btn btn-primary">Enroll</button>
-									<button ng-click="toggleClass()" class="btn btn-primary">Publish Class</button>
+									<button ng-click="toggle()" class="btn btn-primary btn_modal">Enroll</button>
+									<button ng-click="toggleClass()" class="btn btn-primary btn_modal">Publish Class</button>
 								</div>
 						</div>
 						<div>
@@ -183,7 +183,7 @@
 <!-- create Profile -->
 <div ng-show="createProject" class="custom-Modal">
 	<div class="custom-modal-header">
-		<button ng-click="toggle()"><i class="material-icons">close</i></button>
+		<button ng-click="toggle()" class="close-modal"><i class="material-icons">close</i></button>
 	</div>
 	<form  name="createProject" novalidate ng-submit="createProject()">
 		<div class="costom-modal-content">
@@ -285,7 +285,7 @@
 <!-- create Class -->
 <div ng-hide="createClass" class="custom-Modal">
 	<div class="custom-modal-header">
-		<button ng-click="toggleClass()"><i class="material-icons">close</i></button>
+		<button ng-click="toggleClass()" class="close-modal"><i class="material-icons">close</i></button>
 	</div>
 	<form name="createClass" novalidate ng-submit="createClass()">
 		<div class="costom-modal-content">
@@ -412,7 +412,7 @@
 
 <div ng-show="editProfile" class="custom-Modal" id="editProfile">
 	<div class="custom-modal-header">
-		<button ng-click="profileEdit()"><i class="material-icons">close</i></button>
+		<button ng-click="profileEdit()"  class="close-modal"><i class="material-icons">close</i></button>
 	</div>
 	<form  name="Editprofile" novalidate ng-submit="saveProfile()">
 		<div class="costom-modal-content">
