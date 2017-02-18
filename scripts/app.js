@@ -84,14 +84,14 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
     }
 
-    $rootScope.$on('$locationChangeStart', function(event, next, current) {
+    /*$rootScope.$on('$locationChangeStart', function(event, next, current) {
       // redirect to login page if not logged in
       var allowedPages = $.inArray($location.path(), ['/','#!', '/about', '/wayto', '/commongood', '/register', '/wayto/research', '/wayto/fund', '/wayto/mentor', '/wayto/learn', '/wayto/exhibit']) === -1;
   	  var loggedIn = $rootScope.globals.currentUser;
   		if (allowedPages && !loggedIn) {
   			$location.path('/login');
   		  }
-      });
+      });*/
   }
 ]);
 
@@ -130,6 +130,11 @@ app.controller('projectController', function($scope){
 	};
 });
 
+app.controller('MessageCtrl', function($scope, $http){
+	$scope.message = function() {
+		$scope.MessageForm = !$scope.MessageForm;
+	};
+});
 
 app.factory("profileFactory", function($http){
 	return {
