@@ -1,5 +1,21 @@
 /*styles for home content only*/
+.custom-Modal{
+	height:100% !important;
+}
 
+.close-modal {
+	float: right;
+    color: #fff;
+    background-color: #ff5a5f;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding-top: 7px;
+    border: none;
+    line-height: 50px;
+    margin: 15px 15px 0px 0px;
+}
 
 .tmp-text-font {
   font-family: Josefin Sans, Roboto !important;
@@ -28,8 +44,6 @@
   margin-top: 20px;
 }
 
-
-
 .ng-valid {
   border-bottom: 1px solid #9ccc65 !important;
   -webkit-box-shadow: 0 1px 0 0 #9ccc65 !important;
@@ -37,14 +51,14 @@
 }
 
 .ng-dirty.ng-invalid {
-  border-bottom: 1px solid #f17676 !important;
-  -webkit-box-shadow: 0 1px 0 0 #f17676 !important;
-  box-shadow: 0 1px 0 0 #f17676 !important;
+  border-bottom: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .ng-valid.ng-dirty.ng-invalid {
-  border-bottom: 1px solid #f17676 !important;
-  -webkit-box-shadow: 0 1px 0 0 #f17676 !important;
-  box-shadow: 0 1px 0 0 #f17676 !important;
+  border-bottom: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
