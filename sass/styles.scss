@@ -928,9 +928,13 @@ body.nav-expanded{
 		position: absolute;
 		bottom: 0;
 		width: 100%;
+		background:#fff;
+		border-top: 1px solid rgba($black, 0.1);
 		.right-align{
 			padding: 20px 20px 0 20px;
-			border-top: 1px solid rgba($black, 0.1);
+		}
+		.left-align{
+			padding: 20px 0px 0 0px;
 		}
 	}
 }
