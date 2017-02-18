@@ -148,19 +148,6 @@ $(document).ready(function(){
 		}
 	}, 6000);
 
-	//Custom Modal
-	$('.openmodal').on('click', function(){ alert(myID);
-		var myID = $(this).attr('data-href').split('#')[1];
-		alert(myID);
-		$('#'+myID).addClass('active');
-		$('body').css('overflow', 'hidden');
-	});
-
-	$('.custom-Modal .close-modal').on('click', function(){
-		$(this).parents('.custom-Modal').removeClass('active');
-		$('body').css('overflow', '');
-	});
-
 });
 </script>
 </body>
