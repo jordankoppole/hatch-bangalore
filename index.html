@@ -33,45 +33,82 @@
 		</header>
 <!-- content area -->
 		<div ng-view class="sectionArea"></div>
+<div ng-controller="MessageCtrl">
+	<div id="slide-out" class="side-nav">
+		<ul>
+			<li>
+				<div class="userView">
 
-<div id="slide-out" class="side-nav">
-	<ul>
-		<li>
-			<div class="userView">
-
-			  <div class="row" ng-if="loggedIn">
-				 <div class="col s4">
-					<img class="circle" src="/images/avatar.png">
-				 </div>
-				 <div class="col s8">
-					  <span class="name"><a href="#/profile">Meaghan R</a></span>
-					  <span class="email">CURATOR</span>
-					  <a href="#/">Logout</a>
-				 </div>
-				  <div class="right-align col s12">
-					<i class="material-icons waves-effect">notifications</i>
-					<i class="material-icons waves-effect">email</i>
-				 </div>
-			  </div>
-
-
-				<div class="row" ng-if="!loggedIn">
-					<div class="col s12">
-						<a href="#requestInvite" class="btn waves-effect white open-modal">Request for Invite</a>
-						Already a member?
-						<a href="#/login" class="text-uppercase dInlineBlock"><span >Login</span></a> here
+				  <div class="row" ng-if="loggedIn">
+					 <div class="col s4">
+						<img class="circle" src="/images/avatar.png">
 					 </div>
-				</div>
-			</div>
-		</li>
-	<li><div class="divider"></div></li>
-	</ul>
+					 <div class="col s8">
+						  <span class="name"><a href="#/profile">Meaghan R</a></span>
+						  <span class="email">CURATOR</span>
+						  <a href="#/">Logout</a>
+					 </div>
+					  <div class="right-align col s12">
+						<i class="material-icons waves-effect">notifications</i>
+						<i class="material-icons waves-effect">email</i>
+					 </div>
+				  </div>
 
-	<ul ng-init="commonlinks=[{name:'Ways to participate?',link:'#/wayto'},{name:'About Common good',link:'#/commongood'},{name:'About us',link:'#/about'}]">
-		<li ng-repeat="x in commonlinks">
-		  <a href="{{x.link}}">{{ x.name }}</a>
-		</li>
-	</ul>
+
+					<div class="row" ng-if="!loggedIn">
+						<div class="col s12">
+							<a href="#requestInvite" class="btn waves-effect white open-modal">Request for Invite</a>
+							Already a member?
+							<a href="#/login" class="text-uppercase dInlineBlock"><span >Login</span></a> here
+						 </div>
+					</div>
+				</div>
+			</li>
+		<li><div class="divider"></div></li>
+		</ul>
+
+		<ul ng-init="commonlinks=[{name:'Ways to participate?',link:'#/wayto'},{name:'About Common good',link:'#/commongood'},{name:'About us',link:'#/about'}]">
+			<li ng-repeat="x in commonlinks">
+			  <a href="{{x.link}}">{{ x.name }}</a>
+			</li>
+			<li><a href="#!" ng-click="message()">Messages</a></li>
+		</ul>
+	</div>
+	<div ng-hide="MessageForm" class="custom-Modal" id="MessageModal">
+		<button ng-click="message()"><i class="material-icons">close</i></button>
+		<form name="MessageForm" novalidate ng-submit="MessageForm()">
+			<div class="message_list">
+				<div class="input-field col s12">
+					<input type="text" id="msg">
+					<label for="msg">Messages</label>
+					<span id="ser"><i class="material-icons">search</i></span>
+				</div>
+				 <ul class="collection">
+					<li class="collection-item avatar">
+					  <img src="images/joyce.png" alt="" class="circle">
+					  <span class="title">Peter Evans</span>
+					  <p>12 Apr, Last Seen 23 hrs ago</p>
+					  <a href="#!" class="badge">4</a>
+					</li>
+					<li class="collection-item avatar">
+					  <img src="images/joyce.png" alt="" class="circle">
+					  <span class="title">Frodo</span>
+					  <p>12 Apr, Active Now</p>
+					  <a href="#!" class="badge">10</a>
+					</li>
+					<li class="collection-item avatar">
+					  <img src="images/joyce.png" alt="" class="circle">
+					  <span class="title">Bellarts</span>
+					  <p>10 Apr, Last Seen 23 hrs ago</p>
+					  <a href="#!"></a>
+					</li>
+				</ul>
+			</div>
+			<div class="conversation">	
+				<p>Conversations Goes here!!</p>
+			</div>
+		</form>
+	</div>
 </div>
 <script src="scripts/jquery-3.1.1.min.js"></script>
 <script src="scripts/bin/materialize.min.js"></script>
