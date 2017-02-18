@@ -19,13 +19,14 @@
 	<![endif]-->
   </head>
   <body class="{{$location.path}}" ng-class="bodyClass">
+	<div ng-controller="IndexCtrl">
 		<header>
 			<nav role="navigation">
 				<div class="nav-wrapper container">
 				<a id="logo-container" href="#/" class="brand-logo circle"><img src="images/logo-lc-full.png"/></a>
 				<a id="logo-container" href="#!/s" class="brand-logo circle mobile"><img src="images/logo-tree-01.png"/></a>
 					<ul class="right">
-						<li><a><i class="material-icons">search</i></a></li>
+						<li><a ng-click="search()"><i class="material-icons">search</i></a></li>
 						<li class="menu"><span></span><span></span><span></span><span></span></li>
 					</ul>
 				</div>
@@ -33,7 +34,6 @@
 		</header>
 <!-- content area -->
 		<div ng-view class="sectionArea"></div>
-<div ng-controller="MessageCtrl">
 	<div id="slide-out" class="side-nav">
 		<ul>
 			<li>
@@ -106,6 +106,35 @@
 			</div>
 			<div class="conversation">	
 				<p>Conversations Goes here!!</p>
+			</div>
+		</form>
+	</div>
+	
+	<div ng-hide="SearchForm" class="custom-Modal" id="SearchModal">
+		<button ng-click="search()"><i class="material-icons">close</i></button>
+		<form name="SearchForm" novalidate ng-submit="SearchForm()">
+			<div class="search-result">
+				<div class="row">
+					<div class="col offset-l2 offset-m2 l2 m3 s12">
+						<h1>Search</h1>
+					</div>
+					<div class="col l2 m3 s12">
+						<a>Browse</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col offset-l2 offset-m2 m2 s12">
+						<select>
+							<option selected disabled>People</option>
+							<option>People 2</option>
+							<option>People 3</option>
+						</select>
+						<span class="ser-icon"><i class="material-icons">search</i></span>
+					</div>
+					<div class="input-field ser-text col m6 s12">
+						<input type="text" placeholder="Search for projects, people, events,...">
+					</div>
+				</div>
 			</div>
 		</form>
 	</div>
