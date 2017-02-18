@@ -6,16 +6,15 @@
   <div>
     <section class="section no-pad-bot">
       <div class="container padding-mobile">
-        <div class="row">
-          <div class="col l1 hide-on-med-and-down"></div>
-            <div class="col s12 l10">
-              <h1>Welcome</h1>
-              <div class="msg-block" *ngIf="errorMessage || successMessage">
-                <span *ngIf="errorMessage" class="msg-error">{{errorMessage}}</span>
-                <span *ngIf="successMessage" class="msg-success">{{successMessage}}</span>
-              </div>
-            </div>
-          </div>
+			<div class="row">
+				<div class="col s12 l10">
+				  <h1>Welcome</h1>
+				  <div class="msg-block" *ngIf="errorMessage || successMessage">
+					<span *ngIf="errorMessage" class="msg-error">{{errorMessage}}</span>
+					<span *ngIf="successMessage" class="msg-success">{{successMessage}}</span>
+				  </div>
+				</div>
+			</div>
 
           <!-- Register Section -->
           <div *ngIf="modalType=='register'">
@@ -26,57 +25,59 @@
               </div>
             </div>-->
             <form #f="ngForm" (ngSubmit)="onRegisterSubmit(f)">
-              <div class="row">
-                <div class="input-field col s12 m6">
-                  <input id="userFirstName" name="userFirstName" type="text" class="validate" ngModel required />
-                  <label for="userFirstName" data-error="Please enter first name">First Name</label>
-                </div>
-                <div class="input-field col s12 m6">
-                  <input id="userLastName" name="userLastName" type="text" class="validate" ngModel required />
-                  <label for="userLastName" data-error="Please enter last name">Last Name</label>
-                </div>
-                 <div class="input-field col s12 m6">
-                  <input
-                    id="userName"
-                    name="userName"
-                    type="text"
-                    class="validate"
-                    [ngClass]="{'ng-invalid': showUsernameError}"
-                    ngModel required />
-                  <label for="userName" data-error="Please enter username">User Name</label>
-                </div>
-                <div class="input-field col s12 m6">
-                  <input
-                    id="userEmail"
-                    name="userEmail"
-                    type="email"
-                    class="validate"
-                    [ngClass]="{'ng-invalid': showEmailError}"
-                    ngModel required />
-                  <label for="userEmail" data-error="Please enter valid email id">Email</label>
-                </div>
+				<div class="row">
+					<div class="input-field col s12 m6">
+					  <input id="userFirstName" name="userFirstName" type="text" class="validate" ngModel required />
+					  <label for="userFirstName" data-error="Please enter first name">First Name</label>
+					</div>
+					<div class="input-field col s12 m6">
+					  <input id="userLastName" name="userLastName" type="text" class="validate" ngModel required />
+					  <label for="userLastName" data-error="Please enter last name">Last Name</label>
+					</div>
+				</div>
+				<div class="row">
+					 <div class="input-field col s12 m6">
+					  <input
+						id="userName"
+						name="userName"
+						type="text"
+						class="validate"
+						[ngClass]="{'ng-invalid': showUsernameError}"
+						ngModel required />
+					  <label for="userName" data-error="Please enter username">User Name</label>
+					</div>
+					<div class="input-field col s12 m6">
+					  <input
+						id="userEmail"
+						name="userEmail"
+						type="email"
+						class="validate"
+						[ngClass]="{'ng-invalid': showEmailError}"
+						ngModel required />
+					  <label for="userEmail" data-error="Please enter valid email id">Email</label>
+					</div>
               </div>
 
               <div class="row">
-                <div class="input-field col s12 m6">
-                  <input
-                    type="password"
-                    class="validate"
-                    id="pw1" name="pw1"
-                    ngModel required />
-                  <label for="pw1">Password</label>
-                </div>
-                <div class="input-field col s12 m6 password">
-                  <input
-                    type="password"
-                    class="validate"
-                    id="pw2" name="pw2"
-                    #pw2="ngModel"
-                    ngModel required
-                    [ngClass]="{'ng-invalid': showPasswordError}"
-                    validateEqual="pw1"/>
-                  <label for="pw2">Confirm Password</label>
-                </div>
+					<div class="input-field col s12 m6">
+					  <input
+						type="password"
+						class="validate"
+						id="pw1" name="pw1"
+						ngModel required />
+					  <label for="pw1">Password</label>
+					</div>
+					<div class="input-field col s12 m6 password">
+					  <input
+						type="password"
+						class="validate"
+						id="pw2" name="pw2"
+						#pw2="ngModel"
+						ngModel required
+						[ngClass]="{'ng-invalid': showPasswordError}"
+						validateEqual="pw1"/>
+					  <label for="pw2">Confirm Password</label>
+					</div>
               </div>
 
               <!--<div class="row">
@@ -90,7 +91,7 @@
 
               <div class="row">
                 <div class="col s24 m12">
-                  Do you already have an account? Then <a class="clickable" (click)="switchTo('login')">login here</a>.
+                  Already a member? <a class="clickable" (click)="switchTo('login')">log in</a> here.
                 </div>
               </div>
 
