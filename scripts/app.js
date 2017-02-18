@@ -130,9 +130,12 @@ app.controller('projectController', function($scope){
 	};
 });
 
-app.controller('MessageCtrl', function($scope, $http){
+app.controller('IndexCtrl', function($scope){
 	$scope.message = function() {
 		$scope.MessageForm = !$scope.MessageForm;
+	};
+	$scope.search = function() {
+		$scope.SearchForm = !$scope.SearchForm;
 	};
 });
 
