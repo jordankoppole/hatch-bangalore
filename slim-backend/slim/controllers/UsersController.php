@@ -22,7 +22,7 @@ class UsersController {
             WHERE `users`.`display_picture` = `media`.`id`
             AND `users`.`role_id` = `role`.`id`
             ORDER BY `users`.`activity_score` DESC
-            LIMIT 20";
+            LIMIT 6";
     return R::getAll($sql);
   }
 

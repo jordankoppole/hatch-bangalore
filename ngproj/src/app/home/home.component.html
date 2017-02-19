@@ -57,7 +57,7 @@
 					<li *ngFor="let event of events" class="col s12 m3 item">
 						<a href="#" id="community-2">
 							<img src="{{event.banner_url}}"/>
-							<span>{{event.start_date}} - {{event.end_date}}</span>
+							<span>{{event.start_date | date:yMMMd}} - {{event.end_date | date:yMMMd}}</span>
 							<h4 class="tmp-text-font">{{event.name}}</h4>
 						</a>
 					</li>

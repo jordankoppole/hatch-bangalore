@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { EqualValidatorDirective } from './directives/equal-validator.directive';
 import { Broadcaster } from './services/broadcaster.service';
 import { LoginComponent } from './login/login.component';
@@ -73,6 +74,7 @@ type StoreType = {
   ],
   imports: [ // import Angular's modules
     BrowserModule,
+    CommonModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
