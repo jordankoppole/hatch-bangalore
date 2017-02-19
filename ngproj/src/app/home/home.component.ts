@@ -7,7 +7,7 @@ import {
 
 import { AppState } from '../app.service';
 import { Title } from './title';
-import { XLargeDirective } from './x-large';
+// import { XLargeDirective } from './x-large';
 
 @Component({
   // The selector is what angular internally uses
@@ -24,12 +24,18 @@ import { XLargeDirective } from './x-large';
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+
   // Set our default values
   public localState = { value: '' };
   // TypeScript public modifiers
 
   public events: any[] = [];
   public commUsers: any[] = [];
+
+  public currentHeading: number = 0;
+
+  // Number of header text in HTML
+  private numberOfHeaders: number = 5;
 
   constructor(
     public appState: AppState,
@@ -42,6 +48,10 @@ export class HomeComponent implements OnInit {
     console.log('hello `Home` component');
     this.getUpComingEvents();
     this.getCommunity();
+
+    setInterval(() => {
+      this.currentHeading = (this.currentHeading + 1) % this.numberOfHeaders;
+    }, 5000);
   }
 
   public getUpComingEvents() {
@@ -65,6 +75,10 @@ export class HomeComponent implements OnInit {
   }
 
   public openLogin() {
-    this.broadcaster.broadcast('login_modal', 'open');
+    this.broadcaster.broadcast('login_modal', {state: 'open', type: 'login'});
+  }
+
+  public openInvite() {
+    this.broadcaster.broadcast('login_modal', {state: 'open', type: 'invite'});
   }
 }

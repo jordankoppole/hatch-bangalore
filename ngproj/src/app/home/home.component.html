@@ -3,12 +3,12 @@
 		<div class="row">
 			<div class="center-align heading">
 				<div class="col l1 hide-on-med-and-down"></div>
-				<div class="col s12 l10">
-					<h1 class="active">A community of creatives and catalysts who co-create for the Common good!</h1>
-					<h1>An interdisciplinary networked platform that gathers creatives, curators, mentors, patrons and entrepreneurs.</h1>
-					<h1>... at the convergence of arts, design, science, Technology and Business.</h1>
-					<h1>... to foster creativity, co-creation, community, discourse and entrepreneurship.</h1>
-					<h1>... for economic, cultural, environmental and individual flourishing.</h1>
+				<div class="col s12 l10" #headers>
+					<h1 [ngClass]="{'active fadeUp' : currentHeading == 0}">A community of creatives and catalysts who co-create for the Common good!</h1>
+					<h1 [ngClass]="{'active fadeUp' : currentHeading == 1}">An interdisciplinary networked platform that gathers creatives, curators, mentors, patrons and entrepreneurs.</h1>
+					<h1 [ngClass]="{'active fadeUp' : currentHeading == 2}">... at the convergence of arts, design, science, Technology and Business.</h1>
+					<h1 [ngClass]="{'active fadeUp' : currentHeading == 3}">... to foster creativity, co-creation, community, discourse and entrepreneurship.</h1>
+					<h1 [ngClass]="{'active fadeUp' : currentHeading == 4}">... for economic, cultural, environmental and individual flourishing.</h1>
 				</div>
 				<div class="col l1 hide-on-med-and-down"></div>
 			</div>
@@ -17,11 +17,11 @@
 			<div class="col s12 mTop50">
 				<div class="center-align ">
 					<a href="#/register" class="btn btn-primary waves-effect">Explore</a>
-					<a (click)="openLogin()" class="btn waves-effect white hero-btnw">login</a>
+					<a (click)="openInvite()" class="btn waves-effect white hero-btnw">Request For Invite</a>
 				</div>
-				<!--div class="center-align mTop15" ng-if="!loggedIn">
-					Already a member? <a href="#/login" class="text-uppercase white-text open-modal">Login</a> here
-				</div-->
+				<div class="center-align mTop15" ng-if="!loggedIn">
+					Already a member? <a (click)="openLogin()" class="clickable text-uppercase white-text open-modal">Login</a> here
+				</div>
 			</div>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
 					<li *ngFor="let event of events" class="col s12 m3 item">
 						<a href="#" id="community-2">
 							<img src="{{event.banner_url}}"/>
-							<span>{{event.start_date | date:yMMMd}} - {{event.end_date | date:yMMMd}}</span>
+							<span>{{event.start_date | date:'yMMMd'}} - {{event.end_date | date:'yMMMd'}}</span>
 							<h4 class="tmp-text-font">{{event.name}}</h4>
 						</a>
 					</li>

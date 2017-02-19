@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
 
   public closeModal() {
     this.showModal = false;
+    setTimeout(() => this.modalType = 'login', 600);
   }
 
   public switchTo(modalType: string) {
@@ -115,6 +116,16 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  public onInviteSubmit(f: NgForm) {
+    // ToDo
+    console.log(f.value);
+    console.log(f.valid);
+
+    this.resetErrors();
+    this.showEmailError = true;
+    this.errorMessage = 'There is some problem';
+  }
+
   private resetErrors() {
     this.showPasswordError = false;
     this.showUsernameError = false;
@@ -126,8 +137,9 @@ export class LoginComponent implements OnInit {
 
   private listenToEvents() {
     this.broadcaster.on<string>('login_modal')
-      .subscribe((message) => {
-        if (message === 'open') {
+      .subscribe((message: any) => {
+        this.modalType = message.type;
+        if (message.state === 'open') {
           this.showModal = true;
         }
       });

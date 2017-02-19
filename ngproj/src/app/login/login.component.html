@@ -1,4 +1,4 @@
-<div *ngIf="showModal" class="custom-Modal" id="login">
+<div [ngClass]="{'active': showModal}" class="custom-Modal" id="login">
   <div class="costom-modal-header">
     <a (click)="closeModal()" class="close-modal clickable"><i class="material-icons">close</i></a>
   </div>
@@ -10,7 +10,7 @@
 				<div class="col s12 l10">
 				  <h1>Welcome</h1>
 				  <div class="msg-block" *ngIf="errorMessage || successMessage">
-					<span *ngIf="errorMessage" class="msg-error">{{errorMessage}}</span>
+					<!-- <span *ngIf="errorMessage" class="msg-error">{{errorMessage}}</span> -->
 					<span *ngIf="successMessage" class="msg-success">{{successMessage}}</span>
 				  </div>
 				</div>
@@ -42,9 +42,9 @@
 						name="userName"
 						type="text"
 						class="validate"
-						[ngClass]="{'ng-invalid': showUsernameError}"
+						[ngClass]="{'invalid': showUsernameError}"
 						ngModel required />
-					  <label for="userName" data-error="Please enter username">User Name</label>
+					  <label for="userName" [attr.data-error]="errorMessage">User Name</label>
 					</div>
 					<div class="input-field col s12 m6">
 					  <input
@@ -52,9 +52,9 @@
 						name="userEmail"
 						type="email"
 						class="validate"
-						[ngClass]="{'ng-invalid': showEmailError}"
+						[ngClass]="{'invalid': showEmailError}"
 						ngModel required />
-					  <label for="userEmail" data-error="Please enter valid email id">Email</label>
+					  <label for="userEmail" [attr.data-error]="errorMessage">Email</label>
 					</div>
               </div>
 
@@ -74,9 +74,9 @@
 						id="pw2" name="pw2"
 						#pw2="ngModel"
 						ngModel required
-						[ngClass]="{'ng-invalid': showPasswordError}"
+						[ngClass]="{'invalid': showPasswordError}"
 						validateEqual="pw1"/>
-					  <label for="pw2">Confirm Password</label>
+					  <label for="pw2" [attr.data-error]="errorMessage">Confirm Password</label>
 					</div>
         </div>
         <div class="row">
@@ -109,9 +109,13 @@
                     type="checkbox"
                     name="terms"
                     class="filled-in"
-                    [ngClass]="{'ng-invalid': showAcceptTerms}"
+                    [ngClass]="{'invalid': showAcceptTerms}"
                     id="accept" ngModel />
-                  <label for="accept">I accept terms and condtions of use.</label>
+                  <label for="terms">
+                    I accept terms and condtions of use.
+                  </label>
+                  <br>
+                  <span *ngIf="showAcceptTerms" class="msg-error">{{errorMessage}}</span>
                 </div>
                 <div class="col s12 m6 right-align margin-top-20">
                   <button [disabled]="registerFormDisabled" type="submit" class="btn btn-primary waves-effect"> Sign Up </button>
@@ -124,37 +128,82 @@
           <!-- Login Section -->
           <div *ngIf="modalType=='login'">
             <form #f="ngForm" (ngSubmit)="onLoginSubmit(f)">
-              <div class="row">
-                <div class="input-field col s12 m6">
-                  <input
-                    id="username"
-                    name="username"
-                    [ngClass]="{'ng-invalid': showEmailError}"
-                    type="text"
-                    class="validate"
-                    ngModel required />
-                  <label for="username" data-error="Please enter username or email">Username or email</label>
+              <div class="costom-modal-content">
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                    <input
+                      id="username"
+                      name="username"
+                      [ngClass]="{'invalid': showEmailError}"
+                      type="text"
+                      class="validate"
+                      ngModel required />
+                    <label for="username" [attr.data-error]="errorMessage">Username or email</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <input
+                      id="password"
+                      type="password"
+                      name="password"
+                      [ngClass]="{'invalid': showPasswordError}"
+                      ngModel required />
+                    <label for="password" [attr.data-error]="errorMessage">Password</label>
+                  </div>
                 </div>
-                <div class="input-field col s12 m6">
-                  <input
-                    id="password"
-                    type="password"
-                    name="password"
-                    [ngClass]="{'ng-invalid': showPasswordError}"
-                    ngModel required />
-                  <label for="password" data-error="Please enter password">Password</label>
+
+                <div class="row">
+                  <div class="col s12 m6">
+                    Don't have an account? <a class="clickable" (click)="switchTo('register')">Register</a> here.
+                  </div>
+                  <div class="col s12 m6 right-align">
+                    <i class="btn btn-primary waves-effect waves-input-wrapper">
+                      <input type="submit" class="waves-button-input" value="Login">
+                    </i>
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col s12 m6 margin-top-20">
-                  Don't have an account? <a class="clickable" (click)="switchTo('register')">Register</a> here.
+
+            </form>
+          </div>
+
+
+          <!-- Invite Section -->
+          <div *ngIf="modalType=='invite'">
+            <form #f="ngForm" (ngSubmit)="onInviteSubmit(f)">
+              <div class="costom-modal-content">
+                <div class="row">
+                  <div class="col l2 hide-on-med-and-down"></div>
+                  <div class="col s12 l8">
+                    <p>To create a free Lets Create account, you will need a valid email address.
+                    <br> This address will only be used to send your signup link.</p>
+                    <div class="input-field">
+                      <input
+                        type="email"
+                        name="email"
+                        autocomplete="off"
+                        [ngClass]="{'invalid': showEmailError}"
+                        ngModel required />
+                      <label for="email" [attr.data-error]="errorMessage">Email</label>
+                    </div>
+                  </div>
                 </div>
-                <div class="col s12 m6 right-align margin-top-20">
-                  <input type="submit" value="Login" class="btn btn-primary waves-effect" />
+              </div>
+
+              <div class="custom-modal-footer">
+                <div class="row">
+                  <div class="col l2 hide-on-med-and-down"></div>
+                  <div class="col s12 l8 right-align">
+                    <i class="btn btn-primary waves-effect waves-input-wrapper">
+                      <input type="submit" class="waves-button-input" value="Request for Invite">
+                    </i>
+                  </div>
+                  <div class="col l2 hide-on-med-and-down"></div>
                 </div>
               </div>
             </form>
           </div>
+
+
       </div>
     </section>
   </div>
