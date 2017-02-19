@@ -70,6 +70,11 @@ export class LoginComponent implements OnInit {
     // console.log(f.valid);  // false
     this.resetErrors();
     let fields: any = f.value;
+    if (!fields.captcha) {
+      this.errorMessage = 'Please verify that you are not a robot.';
+      return;
+    }
+
     if (fields.pw1 !== fields.pw2) {
       this.showPasswordError = true;
       this.errorMessage = 'Passwords don\'t match';

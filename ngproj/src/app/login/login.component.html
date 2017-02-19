@@ -78,7 +78,15 @@
 						validateEqual="pw1"/>
 					  <label for="pw2">Confirm Password</label>
 					</div>
-              </div>
+        </div>
+        <div class="row">
+          <recaptcha
+            ngModel
+            name="captcha"
+            required
+            siteKey="6LfvHxYUAAAAAM8w5a-ojJqKkVOMDjNeZjPm5SWx"
+          ></recaptcha>
+        </div>
 
               <!--<div class="row">
                 <div class="input-field col s12 m6">
