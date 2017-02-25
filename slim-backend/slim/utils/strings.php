@@ -26,3 +26,7 @@ const USER_EXIST = 'This %s is already registered.';
 const USER_NOT_EXIST = 'This user doesn\'t exit';
 const WRONG_PASSWORD = 'Incorrect password. Please try again.';
 const LOGIN_SUCCESSFUL = 'Login was successful';
+
+const PW_RESET_CODE_SENT = 'Please check your email for the reset code.';
+const INVALID_RESET_CODE = 'Invalid reset code. Please try again';
+const PW_RESET_SUCCESS = 'Password reset was successful.';

@@ -24,7 +24,9 @@ $publicUris = [
   'upcomingevents',
   'activeusers',
   'register',
-  'login'
+  'login',
+  'requestcode',
+  'changepassword'
 ];
 
 
@@ -46,6 +48,8 @@ $app->get('/activeusers',           function () { echo activeusers(); });
 
 $app->post('/register',              function () { echo register(); });
 $app->post('/login',                 function () { echo login(); });
+$app->post('/requestcode',           function () { echo requestcode(); });
+$app->post('/changepassword',        function () { echo changepassword(); });
 
 /**
  * Run the Requested API End-point

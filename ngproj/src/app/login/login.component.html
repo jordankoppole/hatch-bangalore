@@ -8,7 +8,8 @@
       <div class="container padding-mobile">
 			<div class="row">
 				<div class="col s12 l10">
-				  <h1>Welcome</h1>
+				  <h1 *ngIf="modalType=='register' || modalType=='login'">Welcome</h1>
+				  <h1 *ngIf="modalType=='changepassword'">Change Your Password</h1>
 				  <div class="msg-block" *ngIf="errorMessage || successMessage">
 					<!-- <span *ngIf="errorMessage" class="msg-error">{{errorMessage}}</span> -->
 					<span *ngIf="successMessage" class="msg-success">{{successMessage}}</span>
@@ -108,10 +109,9 @@
                   <input
                     type="checkbox"
                     name="terms"
-                    class="filled-in"
                     [ngClass]="{'invalid': showAcceptTerms}"
                     id="accept" ngModel />
-                  <label for="terms">
+                  <label for="accept">
                     I accept terms and condtions of use.
                   </label>
                   <br>
@@ -154,10 +154,85 @@
                 <div class="row">
                   <div class="col s12 m6">
                     Don't have an account? <a class="clickable" (click)="switchTo('register')">Register</a> here.
+                    <br>
+                    Forgot password? <a class="clickable" (click)="switchTo('changepassword')">Recover</a> here.
                   </div>
+
                   <div class="col s12 m6 right-align">
                     <i class="btn btn-primary waves-effect waves-input-wrapper">
                       <input type="submit" class="waves-button-input" value="Login">
+                    </i>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Change password section -->
+          <div *ngIf="modalType=='changepassword'">
+            <form #f="ngForm" (ngSubmit)="onChangePassword(f)">
+              <div class="costom-modal-content">
+                <div class="row">
+
+                  <!-- Email or username input section -->
+                  <div *ngIf="cpType=='request-code'" class="input-field col s12 l8">
+                    <input
+                      autocomplete="off"
+                      id="username"
+                      name="username"
+                      [ngClass]="{'invalid': showEmailError}"
+                      type="text"
+                      class="validate"
+                      ngModel required />
+                    <label for="username" [attr.data-error]="errorMessage">Username or email</label>
+                  </div>
+
+                  <!-- Reset password section -->
+                  <div *ngIf="cpType=='reset-password'" class="input-field col s12 l8">
+                    <input
+                      id="resetcode"
+                      name="resetcode"
+                      [ngClass]="{'invalid': showCodeError}"
+                      type="text"
+                      class="validate"
+                      ngModel required />
+                    <label for="resetcode" [attr.data-error]="errorMessage">Reset code</label>
+                  </div>
+                  <div *ngIf="cpType=='reset-password'" class="input-field col s12 l8">
+                    <input
+                      id="pw1"
+                      type="password"
+                      name="pw1"
+                      ngModel required />
+                    <label for="pw1">New Password</label>
+                  </div>
+                  <div *ngIf="cpType=='reset-password'" class="input-field col s12 l8">
+                    <input
+                      id="pw2"
+                      type="password"
+                      name="pw2"
+                      [ngClass]="{'invalid': showPasswordError}"
+                      ngModel required
+                      validateEqual="pw1" />
+                    <label for="pw2" [attr.data-error]="errorMessage">Re-enter Password</label>
+                  </div>
+
+                </div>
+                <div class="row" *ngIf="cpType=='reset-password'">
+                  <recaptcha
+                    ngModel
+                    name="captcha"
+                    required
+                    siteKey="6LfvHxYUAAAAAM8w5a-ojJqKkVOMDjNeZjPm5SWx"
+                  ></recaptcha>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 m6 right-align">
+                    <input type="submit" class="btn waves-effect white hero-btnw" (click)="modalType='login'" value="Login">
+                    <i class="btn btn-primary waves-effect waves-input-wrapper">
+                      <input *ngIf="cpType=='request-code'" type="submit" class="waves-button-input" value="Get Code">
+                      <input *ngIf="cpType=='reset-password'" type="submit" class="waves-button-input" value="Reset">
                     </i>
                   </div>
                 </div>

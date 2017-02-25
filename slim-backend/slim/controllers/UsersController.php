@@ -56,14 +56,8 @@ class UsersController {
   }
 
   public function login($params) {
-    $user = R::findOne(
-      'users',
-      'email=:email OR username=:username',
-      array(
-        'email' => $params['username'],
-        'username' => $params['username']
-      )
-    );
+    $user = $this->getUserByEmailOrUsername($params);
+
     if ($user) {
       if ($user->password === md5($params['password'])) {
         $newToken = R::dispense('tokens');
@@ -86,6 +80,72 @@ class UsersController {
       $this->response->setMessage(USER_NOT_EXIST);
     }
     return $this->response;
+  }
+
+  public function requestCode($params) {
+    $user = $this->getUserByEmailOrUsername($params);
+
+    if ($user) {
+      $code = mt_rand(100000, 999999);
+      if ($user->pw_reset_code) {
+        $code_arr = json_decode($user->pw_reset_code, true);
+        array_push($code_arr, $code);
+      } else {
+        $code_arr = [$code];
+      }
+      $user->pw_reset_code = json_encode($code_arr);
+      R::store($user);
+
+      $email = $user->email;
+      // TODO
+      // Send the email to the user with new code
+
+      $this->response->setStatus(STATUS_SUCCESS);
+      $this->response->setMessage(PW_RESET_CODE_SENT);
+      $this->response->setData(['code' => $code]);
+    } else {
+      $this->response->setStatus(STATUS_USER_NOT_EXIST);
+      $this->response->setMessage(USER_NOT_EXIST);
+    }
+    return $this->response;
+  }
+
+  public function changePassword($params) {
+    $user = $this->getUserByEmailOrUsername($params);
+
+    if ($user) {
+      $code_arr = json_decode($user->pw_reset_code, true);
+      if (in_array($params['resetcode'], $code_arr)) {
+
+        $user->password = $params['password'];
+        $user->pw_reset_code = null;
+        R::store($user);
+        $email = $user->email;
+        // TODO
+        // Send the email to the user with new code
+
+        $this->response->setStatus(STATUS_SUCCESS);
+        $this->response->setMessage(PW_RESET_SUCCESS);
+      } else {
+        $this->response->setStatus(STATUS_INVALID_DATA);
+        $this->response->setMessage(INVALID_RESET_CODE);
+      }
+    } else {
+      $this->response->setStatus(STATUS_USER_NOT_EXIST);
+      $this->response->setMessage(USER_NOT_EXIST);
+    }
+    return $this->response;
+  }
+
+  public function getUserByEmailOrUsername($params) {
+    return R::findOne(
+      'users',
+      'email=:email OR username=:username',
+      array(
+        'email' => $params['username'],
+        'username' => $params['username']
+      )
+    );
   }
 
   private function getToken($length) {

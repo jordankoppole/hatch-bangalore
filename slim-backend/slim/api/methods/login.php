@@ -5,7 +5,7 @@ function login() {
   // $postdata = file_get_contents("php://input");
   // $request = json_decode($postdata, true);
   // $_REQUEST = $request;
-  error_log(json_encode(getallheaders()));
+  // error_log(json_encode(getallheaders()));
   $headers = getallheaders();
   $response = new Response();
   $response->setStatus(STATUS_INVALID_DATA);

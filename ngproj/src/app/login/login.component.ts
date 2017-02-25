@@ -22,9 +22,12 @@ export class LoginComponent implements OnInit {
   public showUsernameError: boolean = false;
   public showAcceptTerms: boolean = false;
   public showEmailError: boolean = false;
+  public showCodeError: boolean = false;
   public errorMessage: string = '';
   public successMessage: string = '';
   public registerFormDisabled: boolean = false;
+  public cpType: string = 'request-code';
+  public username: string = '';
 
   constructor(
     public appState: AppState,
@@ -118,12 +121,65 @@ export class LoginComponent implements OnInit {
 
   public onInviteSubmit(f: NgForm) {
     // ToDo
-    console.log(f.value);
-    console.log(f.valid);
 
     this.resetErrors();
     this.showEmailError = true;
     this.errorMessage = 'There is some problem';
+  }
+
+  public onChangePassword(f: NgForm): void {
+    // Change password logic
+    let fields: any = f.value;
+    console.log(fields);
+    this.resetErrors();
+    if (this.cpType === 'request-code') {
+      this.username = fields.username;
+      this.commonService.requestResetPassword(fields)
+      .then((resp) => {
+        if (resp.status === 200) {
+          this.successMessage = resp.message;
+          this.cpType = 'reset-password';
+          setTimeout(() => {
+            this.successMessage = '';
+          }, 3000);
+        } else {
+          this.errorMessage = resp.message;
+          this.showEmailError = true;
+        }
+      });
+    } else {
+      if (!fields.captcha) {
+        this.errorMessage = 'Please verify that you are not a robot.';
+        return;
+      }
+      if (fields.pw1 !== fields.pw2) {
+        this.showPasswordError = true;
+        this.errorMessage = 'Passwords don\'t match';
+        return;
+      }
+      const md5 = require('js-md5');
+      let params = {
+        username: this.username,
+        password: md5(fields.pw1),
+        resetcode: fields.resetcode
+      };
+
+      // Reset password
+      this.commonService.changePassword(params)
+        .then((resp) => {
+          if (resp.status === 200) {
+            this.successMessage = resp.message;
+            setTimeout(() => {
+              this.successMessage = '';
+              this.cpType = 'request-code';
+              this.modalType = 'login';
+            });
+          } else if (resp.status === 504) {
+            this.errorMessage = resp.message;
+            this.showCodeError = true;
+          }
+        });
+    }
   }
 
   private resetErrors() {
@@ -131,6 +187,7 @@ export class LoginComponent implements OnInit {
     this.showUsernameError = false;
     this.showAcceptTerms = false;
     this.showEmailError = false;
+    this.showCodeError = false;
     this.errorMessage = '';
     this.successMessage = '';
   }

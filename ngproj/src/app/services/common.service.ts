@@ -72,4 +72,34 @@ export class CommonService {
         console.log(error);
       });
   }
+
+  public requestResetPassword(params: any): any {
+    return this.http.post(
+      this.baseApiUrl + 'requestcode',
+      JSON.stringify(params),
+      { headers: this.headers }
+    )
+      .toPromise()
+      .then((data: any) => {
+        return data.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  public changePassword(params: any): any {
+    return this.http.post(
+      this.baseApiUrl + 'changepassword',
+      JSON.stringify(params),
+      { headers: this.headers }
+    )
+      .toPromise()
+      .then((data: any) => {
+        return data.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 }
