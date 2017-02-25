@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { EqualValidatorDirective } from './directives/equal-validator.directive';
 import { Broadcaster } from './services/broadcaster.service';
@@ -68,6 +69,7 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     LoginComponent,
+    ProfileComponent,
     NoContentComponent,
     XLargeDirective,
     EqualValidatorDirective
