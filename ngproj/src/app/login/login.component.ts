@@ -46,16 +46,19 @@ export class LoginComponent implements OnInit {
   }
 
   public switchTo(modalType: string) {
+    this.cpType = 'request-code';
     this.modalType = modalType;
   }
 
   public onLoginSubmit(f: NgForm) {
     console.log(f.value);
+    this.registerFormDisabled = true;
     this.resetErrors();
     let fields: any = f.value;
     this.commonService.login(fields)
       .then((resp) => {
         console.log(resp);
+        this.registerFormDisabled = false;
         if (resp.status === 509) {
           this.showPasswordError = true;
           this.errorMessage = resp.message;
@@ -134,8 +137,10 @@ export class LoginComponent implements OnInit {
     this.resetErrors();
     if (this.cpType === 'request-code') {
       this.username = fields.username;
+      this.registerFormDisabled = true;
       this.commonService.requestResetPassword(fields)
       .then((resp) => {
+        this.registerFormDisabled = false;
         if (resp.status === 200) {
           this.successMessage = resp.message;
           this.cpType = 'reset-password';
@@ -164,9 +169,11 @@ export class LoginComponent implements OnInit {
         resetcode: fields.resetcode
       };
 
+      this.registerFormDisabled = true;
       // Reset password
       this.commonService.changePassword(params)
         .then((resp) => {
+          this.registerFormDisabled = false;
           if (resp.status === 200) {
             this.successMessage = resp.message;
             setTimeout(() => {

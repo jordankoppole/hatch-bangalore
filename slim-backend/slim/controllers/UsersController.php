@@ -50,6 +50,14 @@ class UsersController {
       }
       $newUser->display_picture = 0;
       R::store($newUser);
+
+      // Send email to the user
+      $mail = new EmailContolller();
+      $mail->setRecipients([$newUser->email]);
+      $mail->setSubject('Welcome to Letscreate');
+      $mail->setBody('<h1> Welcome </h1><p> Thank you for getting on board with us</p>');
+      $mail->sendMail();
+
       $this->response->setMessage(CREATE_USER_SUCCESS);
     }
     return $this->response;
@@ -96,13 +104,16 @@ class UsersController {
       $user->pw_reset_code = json_encode($code_arr);
       R::store($user);
 
-      $email = $user->email;
-      // TODO
       // Send the email to the user with new code
+      $mail = new EmailContolller();
+      $mail->setRecipients([$user->email]);
+      $mail->setSubject('Letscreate :: Change password code');
+      $mail->setBody('<h3>Password recovery code</h3>
+                    <p>Your recovery code is: <strong>'.$code.'</strong></p>');
+      $mail->sendMail();
 
       $this->response->setStatus(STATUS_SUCCESS);
       $this->response->setMessage(PW_RESET_CODE_SENT);
-      $this->response->setData(['code' => $code]);
     } else {
       $this->response->setStatus(STATUS_USER_NOT_EXIST);
       $this->response->setMessage(USER_NOT_EXIST);
@@ -120,9 +131,14 @@ class UsersController {
         $user->password = $params['password'];
         $user->pw_reset_code = null;
         R::store($user);
-        $email = $user->email;
-        // TODO
-        // Send the email to the user with new code
+
+        // Send the email to the user about password change
+        $mail = new EmailContolller();
+        $mail->setRecipients([$user->email]);
+        $mail->setSubject('Letscreate :: Change password');
+        $mail->setBody('<h3>Password recovery</h3>
+                      <p>Your password was changed successfully.</p>');
+        $mail->sendMail();
 
         $this->response->setStatus(STATUS_SUCCESS);
         $this->response->setMessage(PW_RESET_SUCCESS);

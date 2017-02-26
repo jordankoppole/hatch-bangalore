@@ -23,7 +23,7 @@ const STATUS_WRONG_PASSWORD = 509;
 const PARAM_MISSING = 'parameter missing - %s';
 const CREATE_USER_SUCCESS = 'Registration was successful.';
 const USER_EXIST = 'This %s is already registered.';
-const USER_NOT_EXIST = 'This user doesn\'t exit';
+const USER_NOT_EXIST = 'This user doesn\'t exsit';
 const WRONG_PASSWORD = 'Incorrect password. Please try again.';
 const LOGIN_SUCCESSFUL = 'Login was successful';
 

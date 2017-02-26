@@ -159,9 +159,7 @@
                   </div>
 
                   <div class="col s12 m6 right-align">
-                    <i class="btn btn-primary waves-effect waves-input-wrapper">
-                      <input type="submit" class="waves-button-input" value="Login">
-                    </i>
+                    <input [disabled]="registerFormDisabled" type="submit" class="btn btn-primary waves-effect" value="Login">
                   </div>
                 </div>
               </div>
@@ -229,11 +227,9 @@
 
                 <div class="row">
                   <div class="col s12 m6 right-align">
-                    <input type="submit" class="btn waves-effect white hero-btnw" (click)="modalType='login'" value="Login">
-                    <i class="btn btn-primary waves-effect waves-input-wrapper">
-                      <input *ngIf="cpType=='request-code'" type="submit" class="waves-button-input" value="Get Code">
-                      <input *ngIf="cpType=='reset-password'" type="submit" class="waves-button-input" value="Reset">
-                    </i>
+                    <input type="submit" class="btn waves-effect white hero-btnw" (click)="switchTo('login')" value="Login">
+                      <input [disabled]="registerFormDisabled" *ngIf="cpType=='request-code'" type="submit" class="btn btn-primary waves-effect" value="Get Code">
+                      <input [disabled]="registerFormDisabled" *ngIf="cpType=='reset-password'" type="submit" class="btn btn-primary waves-effect" value="Reset">
                   </div>
                 </div>
               </div>
@@ -269,7 +265,7 @@
                   <div class="col l2 hide-on-med-and-down"></div>
                   <div class="col s12 l8 right-align">
                     <i class="btn btn-primary waves-effect waves-input-wrapper">
-                      <input type="submit" class="waves-button-input" value="Request for Invite">
+                      <input type="submit" class="btn btn-primary waves-effect" value="Request for Invite">
                     </i>
                   </div>
                   <div class="col l2 hide-on-med-and-down"></div>
