@@ -2162,7 +2162,7 @@ p {
 header {
   position: fixed;
   width: 100%;
-  padding-top: 20px;
+  padding-top: 14px;
   z-index: 9999;
   right: 0;
 }
@@ -2170,12 +2170,10 @@ header nav {
   background: transparent;
   -webkit-box-shadow: none;
   box-shadow: none;
-  height: 130px;
   padding: 0 20px;
 }
 header nav .brand-logo {
-  background-color: rgba(255, 90, 95, 0.8);
-  width: 100px;
+  width: 200px;
   height: 100px;
   padding-top: 10px;
   text-align: center;
@@ -2256,6 +2254,10 @@ body section h1 {
   font-weight: bold;
 }
 
+a {
+  cursor: pointer;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -2328,6 +2330,65 @@ ul {
 }
 #event-video #event-text-container {
   padding-top: 60vh;
+}
+
+#text-container {
+  padding-top: 170px;
+  color: white;
+}
+#text-container h1 {
+  font-size: 4rem;
+  color: white;
+  margin: 2.1rem 0 1.68rem 0;
+  font-family: Josefin Sans, Roboto;
+  font-weight: bold;
+}
+
+#start-now {
+  background: #30eee5;
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
+#start-now .row {
+  margin-bottom: 0;
+}
+#start-now span {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 400;
+  padding-right: 15px;
+}
+#start-now .btn.bordered {
+  background-color: transparent;
+  border: 1px solid #000;
+}
+
+#upcoming-event {
+  background-color: white;
+}
+#upcoming-event h1 {
+  display: inline-block;
+  margin-bottom: 27px;
+  padding-right: 25px;
+}
+#upcoming-event .tell_us {
+  margin-bottom: 25px;
+}
+#upcoming-event .collection {
+  border: none;
+}
+#upcoming-event .collection .collection-item {
+  padding: 10px 0;
+}
+#upcoming-event .collection .collection-item:hover {
+  background: none;
+}
+#upcoming-event .collection .collection-item .badge {
+  margin-top: 0;
+  text-align: center;
+  background: #30eee5;
+  border-radius: 15px;
+  font-weight: 400;
 }
 
 #upcoming-events {
@@ -2417,7 +2478,6 @@ h5 {
 
 .left-col {
   margin-left: 0;
-  border-right: 1px solid #ff5a5f;
   position: fixed;
   z-index: -1;
   left: 0;
@@ -2427,11 +2487,34 @@ h5 {
 }
 .left-col.profile {
   width: 100%;
-  position: static;
+  position: relative;
   border: none;
+  z-index: 2;
 }
 .left-col.profile .profile-img {
   max-height: 420px;
+}
+.left-col.profile .profile_edit {
+  position: absolute;
+  right: 5px;
+  top: 90px;
+  z-index: 3;
+}
+.left-col.profile .tabs {
+  height: auto;
+  background: none;
+}
+.left-col.profile .tabs .tab {
+  text-align: left;
+  display: block;
+  height: auto;
+  line-height: 30px;
+}
+.left-col.profile .tabs .tab a.active {
+  border-right: 4px solid #ff5a5f;
+}
+.left-col.profile .tabs .indicator {
+  display: none;
 }
 .left-col.profile .aboutme {
   color: #ff5a5f;
@@ -2506,7 +2589,6 @@ h5 {
 }
 .right-col.profile {
   border-left: 1px solid #ff5a5f;
-  height: 100vh;
 }
 .right-col h1 {
   margin: 0;
@@ -2520,6 +2602,41 @@ h5 {
   font-weight: bold;
   font-size: 3rem;
   text-align: left;
+}
+
+.carousel_section .carousel-slider {
+  height: 600px !important;
+}
+.carousel_section .carousel_text {
+  padding-top: 300px;
+  color: #30eee5;
+}
+.carousel_section .carousel_text h2 {
+  font-weight: 300 !important;
+  font-size: 30px !important;
+}
+.carousel_section .carousel_text p {
+  font-size: 20px !important;
+}
+.carousel_section .carousel_one {
+  background-image: url("../images/video-poster.jpg");
+}
+.carousel_section .carousel_two {
+  background-image: url("../images/video-poster.jpg");
+}
+.carousel_section .carousel_three {
+  background-image: url("../images/video-poster.jpg");
+}
+.carousel_section .carousel_four {
+  background-image: url("../images/video-poster.jpg");
+}
+.carousel_section .indicator-item {
+  border-radius: 0 !important;
+  height: 1px !important;
+  width: 40px !important;
+}
+.carousel_section .indicator-item.active {
+  height: 2px !important;
 }
 
 .common-quotes {
@@ -2547,6 +2664,11 @@ h5 {
   line-height: 42px;
   color: black;
 }
+.btn.btn-login {
+  background: none;
+  border: 1px solid #fff;
+  margin-left: 8px;
+}
 .btn.btn-primary {
   background-color: #30eee5;
 }
@@ -2564,6 +2686,10 @@ h5 {
 .btn.btn-google {
   background-color: #ff5a5f;
   color: white;
+}
+
+.btn-flat {
+  color: #30eee5;
 }
 
 .mTop50 {
@@ -2929,6 +3055,131 @@ body.nav-expanded .prallaxNav {
   margin: 10px 0 0;
 }
 
+#MessageModal button {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  color: #fff;
+  background-color: #ff5a5f;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border: none;
+  line-height: 60px;
+  z-index: 10;
+}
+#MessageModal .message_list {
+  background: #30eee5;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #30eee5, #30eee5);
+  /* For Safari 5.1 to 6.0 */
+  /* For Opera 11.1 to 12.0 */
+  /* For Firefox 3.6 to 15 */
+  background: -webkit-gradient(linear, left top, right bottom, from(#30eee5), to(#30eee5));
+  background: -webkit-linear-gradient(top left, #30eee5, #30eee5);
+  background: linear-gradient(to bottom right, #30eee5, #30eee5);
+  /* Standard syntax */
+  height: 100vh;
+  width: 350px;
+  float: right;
+  padding-top: 50px;
+}
+#MessageModal .message_list .input-field {
+  margin-bottom: 0;
+}
+#MessageModal .message_list .input-field input {
+  padding-left: 10px;
+}
+#MessageModal .message_list .input-field #ser {
+  position: absolute;
+  top: 12px;
+  right: 5px;
+}
+#MessageModal .message_list .collection {
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+}
+#MessageModal .message_list .collection .collection-item {
+  background: none;
+}
+#MessageModal .message_list .collection .collection-item.avatar {
+  padding-left: 82px;
+}
+#MessageModal .message_list .collection .collection-item.avatar .circle {
+  width: 60px;
+  height: 60px;
+}
+#MessageModal .message_list .collection .collection-item.avatar .title {
+  font-size: 20px;
+}
+#MessageModal .message_list .collection .collection-item.avatar p {
+  font-size: 14px;
+}
+#MessageModal .message_list .collection .collection-item .badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #fff;
+  border-radius: 40%;
+  width: 20px;
+  height: 20px;
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+}
+#MessageModal .conversation {
+  float: left;
+}
+
+#SearchModal button {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  color: #fff;
+  background-color: #ff5a5f;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border: none;
+  line-height: 60px;
+  z-index: 10;
+}
+#SearchModal .search-result {
+  padding-top: 70px;
+}
+#SearchModal h1 {
+  font-family: Josefin Sans, Roboto;
+  font-weight: 700;
+  font-size: 3rem;
+  color: #ff5a5f;
+  margin: 0;
+}
+#SearchModal a {
+  color: #30eee5;
+  font-family: Josefin Sans, Roboto;
+  text-transform: uppercase;
+  margin-top: 22px;
+  display: inline-block;
+}
+#SearchModal .select-wrapper input {
+  padding-left: 15px;
+}
+#SearchModal .ser-icon {
+  position: absolute;
+  top: 12px;
+  left: 0;
+}
+#SearchModal .ser-text {
+  padding-left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .ser-text {
+    padding-left: 10px !important;
+  }
+}
 .tabs .indicator {
   height: 6px;
 }
@@ -2978,10 +3229,29 @@ body.nav-expanded .prallaxNav {
   position: absolute;
   bottom: 0;
   width: 100%;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 .custom-Modal .custom-modal-footer .right-align {
   padding: 20px 20px 0 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.custom-Modal .custom-modal-footer .left-align {
+  padding: 20px 0px 0 0px;
+}
+
+#editProfile .upload {
+  display: block;
+  cursor: pointer;
+  color: #30eee5;
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+#editProfile .add-link {
+  position: absolute;
+  right: 10px;
+  bottom: 25px;
 }
 
 .prallaxNav {
