@@ -3074,12 +3074,6 @@ body.nav-expanded .prallaxNav {
   margin: 10px 0 0;
 }
 
-#MessageModal {
-  display: none;
-}
-#MessageModal.active {
-  display: block;
-}
 #MessageModal .message_list {
   border-left: 2px solid #ff5a5f;
   height: 100vh;
@@ -3136,11 +3130,7 @@ body.nav-expanded .prallaxNav {
 }
 
 #SearchModal {
-  display: none;
   padding-top: 70px;
-}
-#SearchModal.active {
-  display: block;
 }
 #SearchModal .browse {
   color: #30eee5;
@@ -3163,10 +3153,6 @@ body.nav-expanded .prallaxNav {
 
 #LoginModal, #ForgotPwdModal {
   padding-top: 70px;
-  display: none;
-}
-#LoginModal.active, #ForgotPwdModal.active {
-  display: block;
 }
 #LoginModal .row .row, #ForgotPwdModal .row .row {
   margin-bottom: 0;
@@ -3186,10 +3172,6 @@ body.nav-expanded .prallaxNav {
 
 #SignupModal {
   padding-top: 70px;
-  display: none;
-}
-#SignupModal.active {
-  display: block;
 }
 #SignupModal .row .row {
   margin-bottom: 0;
@@ -3209,35 +3191,6 @@ body.nav-expanded .prallaxNav {
   display: inline-block;
 }
 
-#CreateProject {
-  display: none;
-}
-#CreateProject.active {
-  display: block;
-}
-
-#CreateClass {
-  display: none;
-}
-#CreateClass.active {
-  display: block;
-}
-
-#editProfile {
-  display: none;
-  padding-top: 70px;
-}
-#editProfile.active {
-  display: block;
-}
-
-#ProfileCreation {
-  display: none;
-}
-#ProfileCreation.active {
-  display: block;
-}
-
 @media screen and (max-width: 768px) {
   .ser-text {
     padding-left: 10px !important;
@@ -3251,6 +3204,7 @@ body.nav-expanded .prallaxNav {
 .custom-Modal {
   position: fixed;
   height: 100vh;
+  top: 100%;
   background: white;
   z-index: 9999;
   width: 100%;
@@ -3261,7 +3215,7 @@ body.nav-expanded .prallaxNav {
   transition: all 0.5s ease-in-out;
 }
 .custom-Modal.active {
-  height: 100vh;
+  top: 0%;
 }
 .custom-Modal h1 {
   font-family: Josefin Sans, Roboto;
@@ -3289,7 +3243,7 @@ body.nav-expanded .prallaxNav {
   margin-top: 5px;
 }
 .custom-Modal .custom-modal-close {
-  position: fixed;
+  position: absolute;
   right: 25px;
   top: 12px;
   color: #fff;
