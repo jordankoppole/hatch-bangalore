@@ -17,7 +17,7 @@
 			<div class="col s12 mTop50">
 				<div class="center-align ">
 					<a href="#/register" class="btn btn-primary waves-effect">Explore</a>
-					<a href="#/login" class="btn btn-login waves-effect white-text">login</a>
+					<a class="btn btn-login waves-effect white-text login-open">login</a>
 				</div>
 			</div>
 		</div>
@@ -83,5 +83,11 @@
 <script>
 	$(document).ready(function(){
 		$('.carousel.carousel-slider').carousel({fullWidth: true});
+		setInterval(function(){
+			$('.login-open').on('click',function(){
+				$('#LoginModal').addClass('active');
+				$('#SignupModal').removeClass('active');
+			});
+		},10);
 	});
 </script>

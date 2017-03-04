@@ -1,172 +1,181 @@
-<section class="section no-pad-bot" id="profile" ng-controller="profileController">
-
+<section class="section no-pad-bot" id="project">
 	<div class="container">
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="left-col profile">
-				<div class="profile-img">
-					<img src="/images/avatar.png" />
-					<span>Add your profile pictures or videos</span>
-				</div>
-					<div style="display: none;">
-					<ul ng-init="profilelinks=[{name:'About',link:'#!', selected:'selected'},{name:'Connections',link:'#!', selected: ''},{name:'Co-Creations',link:'#!', selected: ''}]">
-						<li ng-repeat="x in profilelinks">
-						  <a href="{{x.link}}" class="{{x.selected}}">{{ x.name }}</a>
-						</li>
-					</ul>
-					<div class="divider"></div>
-					<div class="aboutme">
-						<p>Happy to contribute in Music, Sound Editing, Voice and Live performance.</p>
-						<div class="row">
-							<div class="col s12"><a href="#!" class=""><i class="material-icons left">message</i>Message me</a></div>
-						</div>
-						<a href="#!" class="btn btn-primary">Add to circle</a><br><br>
+					<a class="right grey-text profile_edit editProfile-open"><i class="material-icons">edit</i></a>
+					<div class="profile-img">
+						<img src="/images/naveen.jpg"/>
 					</div>
-					<div class="divider"></div>
-					<div class="portfoliolinks">
-						<h5>Portfolio</h5>
-						<ul>
-							<li><a href="#!"><img src="images/icons/youtube.png" /></a></li>
-							<li><a href="#!"><img src="images/icons/linkedin.png" /></a></li>
-							<li><a href="#!"><img src="images/icons/picasa.png" /></a></li>
-							<li><a href="#!"><img src="images/icons/behance.png" /></a></li>
-							<li><a href="#!"><img src="images/icons/facebook.png" /></a></li>
+					<div>
+						<ul class="tabs">
+							<li class="tab col s12"><a class="active"  href="#summary">Summary</a></li>
+							<li class="tab col s12"><a href="#creation">Co Creatons</a></li>
+							<li class="tab col s12"><a href="#connection">Connections</a></li>
+							<li class="tab col s12"><a href="#file">Files</a></li>
+							<li class="tab col s12"><a href="#account">Accont Settings</a></li>
 						</ul>
-						<div class="row"><div class="col s12"><a href="#!"><i class="material-icons left">link</i>makotofujimura.com</a></div></div>
+						<div class="divider"></div>
 					</div>
-					<div class="divider"></div>
-					</div>
-
-
 				</div>
 			</div>
-
 			<div class="col s12 m8">
 				<div class="right-col profile">
-					<h1>{{data.data.emailID}}</h1>
-				<div class="row" ng-show="!anyDirtyAndInvalid(submit_entry_form);">
-						<p>It's so good to have you hear.<br>
-						Let's build your best profile page.</p>
-						<div class=""><button ng-click="toggle()" class="btn btn-primary">Create Profile</button></div>
-				</div>
-
-				<div >
-				<h5 class="mTop50">INTERESTS</h5>
-				<span>{{user.interests}}</span>
-				  <h5 class="mTop50">About</h5>
-				  <p>{{user.aboutme}}</p>
-				  <div class="myCreations">
-					<div class="row">
-						<div class="col s12 m9"><h5>My Co-Creations</h5></div>
-						<div class="col s12 m3 right-align"><a href="#!" class="showmore">Show More</a></div>
+					<div id="summary">
+						<div class="row">
+							<div class="col s10">
+								<h1>Naveen</h1>
+							</div>
+							<div class="col s2 right-align">
+								<a href="#!" class="grey-text"><i class="material-icons">edit</i></a>
+								<a href="#!" class="grey-text"><i class="material-icons">share</i></a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12">
+								<p>Flute Artist | Bangalore</p>
+								<div>
+									<a class="btn btn-primary project-open">Enroll</a>
+									<a class="btn btn-primary class-open">Publish Class</a>
+								</div>
+							</div>
+						</div>
+						<div>
+							<h5 class="mTop50">HIGHLIHTS</h5>
+							<h5 class="mTop50">ABOUT THE COURSE</h5>
+							<div id="instructor_detail">
+								<h5 class="mTop50">INSTRUCTOR</h5>
+							</div>
+							<h5 class="mTop50">HOW DOES IT SERVES THE COMMON GOOD?</h5>
+						</div>
 					</div>
-					<div class="center-align row" >
-						<p>You have no co-creations yet <a herf="#">Start Project</a> and invite co creators on <a herf="#">Join one</a></p>
-					  <!--div class="masonry">
-							<div class="col s12 m6 item">
-								<a href="#">
-									<img src="images/profiles/portfolios/makota-fujimura/image-1.png" />
-									<p>Project</p>
-									<h4>The Eyeslicer Season One</h4>
-									<span>5 co-creators, 2 connection(s)</span>
-								</a>
-							</div>
-							<div class="col s12 m6 item">
-								<a href="#">
-									<img src="images/profiles/portfolios/makota-fujimura/image-2.png" />
-									<p>Class: Sep19 - Oct 24</p>
-									<h4>The Eyeslicer Season One</h4>
-									<span>12 students, 1 connection(s)</span>
-								</a>
+					<div id="account">
+						<div class="row">
+							<div class="col s12">
+								<h1>Account Settings</h1>
 							</div>
 						</div>
-					</div-->
-				</div>
-				  <div class="recommendations">
-					  <div class="row">
-							<div class="col s12 m9"><h5>Recommendations</h5></div>
-							<div class="col s12 m3 right-align"><a href="#!" class="showmore">Show More</a></div>
-					  </div>
-						<div class="center-align row">
-								<p>You have no recommendation yet <a herf="#">Start a Project</a> and invite co creators on <a herf="#">Join one</a></p>
+						<div class="row">
+							<div class="col s12 right-align">
+								<a class="btn-flat waves-effect">Upgrade</a>
+								<a class="btn-flat waves-effect">Change Password</a>
+								<a class="btn-flat waves-effect">Deactivate Account</a>
+							</div>
 						</div>
-					  <!--div class="row">
-							<div class="col s12 m6">
-								<div class="">
-									<div class="col s3"><img src="images/recommendations/joyce.png" /></div>
-									<div class="col s9"><h5>Joyce Yu-Jean Lee</h5><span>WRITER</span></div>
-								</div>
-								<div class="">
-									<div class="col s12">
-										<p>Carlos served on the board of International Arts Movement, overseeing the executive director, and recent transition toward Culture Care. An excellent connector/mentor, who has had enormous impact connecting the influencers in business, arts and faith communities in NYC area.</p>
-									</div>
-								</div>
+						<p>General</p>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="name">
+								<label for="name">Name</label>
 							</div>
-							<div class="col s12 m6">
-								<div class="">
-									<div class="col s3"><img src="images/recommendations/joyce.png" /></div>
-									<div class="col s9"><h5>Joyce Yu-Jean Lee</h5><span>WRITER</span></div>
-								</div>
-								<div class="">
-									<div class="col s12">
-										<p>Carlos served on the board of International Arts Movement, overseeing the executive director, and recent transition toward Culture Care. An excellent connector/mentor, who has had enormous impact connecting the influencers in business, arts and faith communities in NYC area.</p>
-									</div>
-								</div>
-							</div>
-					</div-->
-				  </div>
-				  <div class="row"><div class="col s12 m6"><h5>Connections</h5></div><div class="col s12 m6 right-align"><a href="#!">Show More</a></div></div>
-				  <div class="center-align row">
-						<div class="col s12 m3"></div>
-						<div class="col s12 m6"><p>You have no connetions yet <a herf="#">Start a Project</a> and invite co creators on <a herf="#">Join one</a> Your co-creators will be your connections.</p></div>
-						<div class="col s12 m3"></div>
-					  <!--div class="masonry">
-							<div class="col s12 m3 item">
-								<a href="#">
-									<img src="images/community/community-1.png" />
-									<h4>Peter Evanss</h4>
-									<p>Photographer</p>
-								</a>
-							</div>
-							<div class="col s12 m3 item">
-								<a href="#">
-									<img src="images/community/community-2.png" />
-									<h4>Peter Evanss</h4>
-									<p>Product Designer</p>
-								</a>
-							</div>
-							<div class="col s12 m3 item">
-								<a href="#">
-									<img src="images/community/community-3.png" />
-									<h4>Peter Evanss</h4>
-									<p>Writer</p>
-								</a>
-							</div>
-							<div class="col s12 m3 item">
-								<a href="#">
-									<img src="images/community/community-4.png" />
-									<h4>anybarra83</h4>
-									<p>Painter</p>
-								</a>
-							</div>
-							<div class="col s12 m3 item">
-								<a href="#">
-									<img src="images/community/community-5.png" />
-									<h4>bellaarts</h4>
-									<p>Musician</p>
-								</a>
-							</div>
-							<div class="col s12 m3 item">
-							<a href="#">
-								<img src="images/community/community-6.png" />
-								<h4>KaliBali</h4>
-								<p>Dancer</p>
-							</a>
 						</div>
-
-					</div-->
-				 </div>
-				 </div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="username">
+								<label for="username">Username</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<select>
+									<option selected disabled>Country</option>
+									<option>India</option>
+									<option>USA</option>
+									<option>UAE</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="phone">
+								<label for="phone">Phone</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<select>
+									<option selected disabled>Age</option>
+									<option>18-25</option>
+									<option>25-35</option>
+									<option>35-45</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="currency">
+								<label for="currency">Currency</label>
+							</div>
+						</div>
+						<p>Privacy Settings</p>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="cntct">
+								<label for="cntct">Who can contact me?</label>
+							</div>
+						</div>
+						<p>Bank Details</p>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="bank_name">
+								<label for="bank_name">Bank Name</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="acc_no">
+								<label for="acc_no">Account No</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="ifsc">
+								<label for="ifsc">IFSC</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<select>
+									<option selected disabled>Country</option>
+									<option>India</option>
+									<option>USA</option>
+									<option>UAE</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div id="creation">
+						<div class="row">
+							<div class="col s8">
+								<h1>Co Creations</h1>
+							</div>
+							<div class="col s4 right-align">
+								<a class="grey-text"><i class="material-icons">menu</i></a>
+								<a class="grey-text"><i class="material-icons">more_vert</i></a>
+							</div>
+						</div>
+					</div>
+					<div id="connection">
+						<div class="row">
+							<div class="col s8">
+								<h1>Connections</h1>
+							</div>
+							<div class="col s4 right-align">
+								<a class="grey-text"><i class="material-icons">filter_list</i></a>
+							</div>
+						</div>
+					</div>
+					<div id="file">
+						<div class="row">
+							<div class="col s8">
+								<h1>Files</h1>
+							</div>
+							<div class="col s4 right-align">
+								<a class="grey-text"><i class="material-icons">menu</i></a>
+								<a class="grey-text"><i class="material-icons">filter_list</i></a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -174,124 +183,272 @@
 
 
 <!-- create Profile -->
-<div ng-show="createProfile" class="custom-Modal">
-	<div class="custom-modal-header">
-		<button ng-click="toggle()"><i class="material-icons">close</i></button>
-	</div>
-	<form  name="userDetails" novalidate ng-submit="addProfileDetails()">
-		<div class="costom-modal-content">
-			<!--user: {{user | json}}-->
+<div class="custom-Modal active" id="CreateProject">
+	<a class="custom-modal-close"><i class="material-icons">close</i></a>
+	<form  name="createProject">
+		<div class="custom-modal-content">
 			<div class="row">
 				<div class="col l2 hide-on-med-and-down"></div>
 				<div class="col s12 l8">
-					<h1>My Profile</h1>
-					<p>Personal</p>
+					<h1>Create Project</h1>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
 					<div class="row">
-						<div class="input-field col s12 m6">
-							<input type="text" name="email" class="validate"  ng-model="user.title" required />
-							<label>Professional Title</label>
-							<div class="error">
-								<small ng-show="user.title.length < 3">
-									Your name must be atleast 3 caracters
-								</small>
-								<small ng-show="user.title.length > 20">
-									Your name must be less than 20 caracters
-								</small>
-							</div>
-
+						<div class="input-field col s12">
+							<select id="type">
+								<option value="0" selected>Class 1</option>
+								<option value="1">Class 2</option>
+							</select>
+							<label for="type">Project Type</label>
 						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" name="location" class="validate"  ng-model="user.location" />
-							<label >Location</label>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="classname" class="validate">
+							<label>Class Name</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="shortdesc" class="validate">
+							<label>Short Description</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col s6">
-							<input type="text" name="aboutme" class="validate"  ng-model="user.aboutme" />
-							<label >About me</label>
+							<select id="type2">
+								<option selected>Class 1</option>
+								<option>Class 2</option>
+							</select>
+							<label for="type2">Type</label>
 						</div>
 						<div class="input-field col s6">
-							<input type="text" name="iterests" class="validate"  ng-model="user.iterests" />
-							<label>Interests</label>
-						</div>
-					</div>
-					<p>Expertise</p>
-					<div class="row" ng-init="user.expertise=[{name:'Music',id:'expMusic', checked: 'checked'},{name:'Dance',id:'expDance'},{name:'Painting',id:'expPanting'},{name:'Singing',id:'expSinging'},{name:'Writing',id:'expWriting', checked: 'checked'},{name:'Poetry',id:'expPoetry'},{name:'Design',id:'expDesign'},{name:'Photography',id:'expPhotography'}]">
-						<div class="input-field col s12 m3 {{x.checked}}" ng-repeat="x in user.expertise">
-							<input type="checkbox" id="{{x.id}}" ng-model="x.checked" class="filled-in" />
-							<label for="{{x.id}}">{{x.name}}</label>
+							<select id="category">
+								<option selected>Class 1</option>
+								<option>Class 2</option>
+							</select>
+							<label for="category">Category</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col s12 input-field">
-							<input type="text" id="addNewExp" />
-							<label for="addNewExp">Add new expertise</label>
+						<div class="input-field col s6">
+							<input type="text" name="starttime" class="validate">
+							<label>Start Time</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="text" name="endtime" class="validate">
+							<label>End Time</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col s12">
-							<input type="checkbox" id="acceptExp" class="filled-in" />
-							<label for="acceptExp">Yes I would like to contribute my skills for any project?</label>
+						<div class="input-field col s6">
+							<input type="date" name="startdate" class="validate datepicker">
+							<label>Start Date</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="date" name="enddate" class="validate datepicker">
+							<label>End Date</label>
 						</div>
 					</div>
-					<p>Portfolio</p>
 					<div class="row">
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioYoutube" />
-							<label for="portfolioYoutube">Youtube</label>
+						<div class="input-field col s12">
+							<select id="type">
+								<option selected>Class 1</option>
+								<option>Class 2</option>
+							</select>
+							<label for="type">Repeats Weekly, Every Monday</label>
 						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioBehance" />
-							<label for="portfolioBehance">Behance</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioInstagram" />
-							<label for="portfolioInstagram">Instagram</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioVimeo" />
-							<label for="portfolioVimeo">Vimeo</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="portfolioWebsite" />
-							<label for="portfolioWebsite">Personal Website</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<a href="#" class="btn btn-flat waves-effect">Add More</a>
-						</div>
-
 					</div>
-					<p>Portfolio</p>
 					<div class="row">
-						<div class="input-field col s12 m6">
-							<input type="text" id="socialFb" />
-							<label for="socialFb">Facebook</label>
+						<div class="input-field col s6">
+							<input type="text" name="seats" class="validate">
+							<label>Seats Available</label>
 						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="socialLinkedIn" />
-							<label for="socialLinkedIn">LinkedIn</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<input type="text" id="socialTwitter" />
-							<label for="socialTwitter">Twitter</label>
-						</div>
-						<div class="input-field col s12 m6">
-							<a href="#" class="btn btn-flat waves-effect">Add More</a>
+						<div class="input-field col s6">
+							<select id="price">
+								<option selected>50</option>
+								<option>100</option>
+							</select>
+							<label for="price">Price</label>
 						</div>
 					</div>
 				</div>
 				<div class="col l2 hide-on-med-and-down"></div>
 			</div>
-
-
-
 		</div>
 		<div class="custom-modal-footer">
 			<div class="row">
 				<div class="col l2 hide-on-med-and-down"></div>
 				<div class="col s12 l8 right-align">
-					<a href="#" class="btn btn-tertiary waves-effect close-modal">Cancel</a>
-					<input type="submit" class="btn btn-primary waves-effect" ng-disabled="userDetails.$invalid" value="Create" />
+					<a class="btn btn-primary waves-effect">Create</a>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!-- create Class -->
+<div class="custom-Modal" id="CreateClass">
+	<a class="custom-modal-close"><i class="material-icons">close</i></a>
+	<form name="createClass">
+		<div class="custom-modal-content">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<h1>Class Settings</h1>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="cclassname" class="validate">
+							<label>Class Name</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="cshortdesc" class="validate">
+							<label>Short Description</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<select id="type2">
+								<option selected>Class 1</option>
+								<option>Class 2</option>
+							</select>
+							<label for="type2">Type</label>
+						</div>
+						<div class="input-field col s6">
+							<select id="category">
+								<option selected>Class 1</option>
+								<option>Class 2</option>
+							</select>
+							<label for="category">Category</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input type="text" name="starttime" class="validate">
+							<label>Start Time</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="text" name="endtime" class="validate">
+							<label>End Time</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input type="date" name="startdate" class="validate datepicker">
+							<label>Start Date</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="date" name="enddate" class="validate datepicker">
+							<label>End Date</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<select id="type">
+								<option selected>Class 1</option>
+								<option>Class 2</option>
+							</select>
+							<label for="type">Repeats Weekly, Every Monday</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input type="text" name="seats" class="validate">
+							<label>Seats Available</label>
+						</div>
+						<div class="input-field col s6">
+							<select id="price">
+								<option selected>50</option>
+								<option>100</option>
+							</select>
+							<label for="price">Price</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="instructor" class="validate">
+							<label>Add Instructors</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="tags" class="validate">
+							<label>Tags</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="highlights" class="validate">
+							<label>Highlights</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="aboutclass" class="validate">
+							<label>About the Class</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="good" class="validate">
+							<label>This serves common good because</label>
+						</div>
+					</div>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</div>
+		<div class="custom-modal-footer">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l4 left-align">
+					<input type="submit" class="btn-flat waves-effect" value="Repeat Class" />
+					<input type="submit" class="btn-flat waves-effect" value="Delete Class" />
+				</div>
+				<div class="col s12 l4 right-align">
+					<a class="btn btn-primary waves-effect">Save</a>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="custom-Modal" id="editProfile">
+	<a class="custom-modal-close"><i class="material-icons">close</i></a>
+	<form  name="Editprofile">
+		<div class="custom-modal-content">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<h1>Add Photo and Video</h1>
+					<div class="row">
+						<div class="col s12 l6">
+							<h4>Add Photo</h4>
+							<span>You can upload a JPEG, GIF, or PNG file</span>
+							<a class="upload">Upload Photo</a>
+						</div>
+						<div class="col s12 l6">
+							<h4>Add Video</h4>
+							<span>Link any of your online video</span>
+							<div class="input-field">
+								<a class="upload add-link">ADD</a>
+								<input type="text" class="url">
+								<label>URL</label>
+							</div>
+							<div>
+								Or
+							</div>
+							<a class="upload">Upload Video</a>
+						</div>
+					</div>
 				</div>
 				<div class="col l2 hide-on-med-and-down"></div>
 			</div>
@@ -308,6 +465,32 @@ $(document).ready(function(){
 		// options
 		itemSelector : '.item'
 	});
+	$('ul.tabs').tabs();
+	$('select').material_select();
+	$('.datepicker').pickadate({
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 15 // Creates a dropdown of 15 years to control year
+	});
+	$('.project-open').on('click',function(){
+		$('#CreateProject').addClass('active');
+	});
+	$('.class-open').on('click',function(){
+		$('#CreateClass').addClass('active');
+	});
+	$('.editProfile-open').on('click',function(){
+		$('#editProfile').addClass('active');
+	});
+	$('.custom-modal-close').on('click',function(){
+		$('.custom-Modal').removeClass('active');
+	});
+	setInterval(function(){
+		if($('.custom-Modal').hasClass('active')){
+			$('body').css('overflow','hidden');
+		}
+		else{
+			$('body').css('overflow','');
+		}
+	},10);
 
 });
 
