@@ -2273,6 +2273,7 @@ ul {
   background-size: cover;
   background-position: center center;
   height: 100vh;
+  position: relative;
 }
 
 #hero-text-container {
@@ -2293,6 +2294,28 @@ ul {
 #hero-text-container h3 {
   font-family: Cardo, Roboto, arial;
   font-weight: 300;
+}
+
+#start-now {
+  background: #30eee5;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+#start-now .row {
+  margin-bottom: 0;
+}
+#start-now span {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 400;
+  padding-right: 15px;
+}
+#start-now .btn.bordered {
+  background-color: transparent;
+  border: 1px solid #000;
 }
 
 #eco-system {
@@ -2342,25 +2365,6 @@ ul {
   margin: 2.1rem 0 1.68rem 0;
   font-family: Josefin Sans, Roboto;
   font-weight: bold;
-}
-
-#start-now {
-  background: #30eee5;
-  padding-top: 20px;
-  padding-bottom: 15px;
-}
-#start-now .row {
-  margin-bottom: 0;
-}
-#start-now span {
-  display: inline-block;
-  font-size: 20px;
-  font-weight: 400;
-  padding-right: 15px;
-}
-#start-now .btn.bordered {
-  background-color: transparent;
-  border: 1px solid #000;
 }
 
 #upcoming-event {
