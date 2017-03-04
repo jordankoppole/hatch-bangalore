@@ -26,5 +26,6 @@ export class ProfileComponent implements OnInit {
 
   public ngOnInit() {
     // Init function
+
   }
 }
