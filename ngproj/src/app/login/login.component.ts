@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Broadcaster } from './../services/broadcaster.service';
 import { CommonService } from './../services/common.service';
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public appState: AppState,
     private commonService: CommonService,
-    private broadcaster: Broadcaster
+    private broadcaster: Broadcaster,
+    private router: Router
   ) {}
 
   public ngOnInit() {
@@ -68,6 +70,8 @@ export class LoginComponent implements OnInit {
         } else {
           f.reset();
           this.successMessage = resp.message;
+          this.router.navigate([resp.data.username]);
+          this.closeModal();
         }
       });
   }

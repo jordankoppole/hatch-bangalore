@@ -1,3 +1,4 @@
+import { ActivatedRoute, Params } from '@angular/router';
 import { Broadcaster } from './../services/broadcaster.service';
 import { CommonService } from './../services/common.service';
 import {
@@ -21,11 +22,14 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private commonService: CommonService,
-    private broadcaster: Broadcaster
+    private broadcaster: Broadcaster,
+    private route: ActivatedRoute,
   ) {}
 
   public ngOnInit() {
     // Init function
-
+    this.route.params.forEach((params: Params) => {
+      console.log(params);
+    });
   }
 }

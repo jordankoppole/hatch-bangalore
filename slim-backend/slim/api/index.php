@@ -29,15 +29,26 @@ $publicUris = [
   'changepassword'
 ];
 
+$authUris = [
+  'getprofile'
+];
+
+R::setup("mysql:host=mysql;dbname=letscreate", getenv('MYSQL_USERNAME'), getenv('MYSQL_ROOT_PASSWORD'));
 
 $apiUrl = parse_url($_SERVER['REQUEST_URI']);
 $apiUri = end(explode('/', $apiUrl['path']));
 
 if (in_array($apiUri, $publicUris)) {
   require_once(dirname(__FILE__).'/'.$apiRouter.'/'.$apiUri.'.php');
+} else if (in_array($apiUri, $authUris)) {
+  $headers = getallheaders();
+  $auth = new AuthController();
+  if ($auth->authenticate($headers)) {
+    require_once(dirname(__FILE__).'/'.$apiRouter.'/'.$apiUri.'.php');
+  } else {
+    $auth->getResponse();
+  }
 }
-
-R::setup("mysql:host=mysql;dbname=letscreate", getenv('MYSQL_USERNAME'), getenv('MYSQL_ROOT_PASSWORD'));
 
 /**
  * API End-points definition
@@ -45,6 +56,8 @@ R::setup("mysql:host=mysql;dbname=letscreate", getenv('MYSQL_USERNAME'), getenv(
 $app->get('/testapi',               function () { echo testapi(); });
 $app->get('/upcomingevents',        function () { echo upcomingevents(); });
 $app->get('/activeusers',           function () { echo activeusers(); });
+
+$app->get('/getprofile',            function () { echo getprofile(); });
 
 $app->post('/register',              function () { echo register(); });
 $app->post('/login',                 function () { echo login(); });

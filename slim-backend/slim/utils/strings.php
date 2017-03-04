@@ -26,6 +26,8 @@ const USER_EXIST = 'This %s is already registered.';
 const USER_NOT_EXIST = 'This user doesn\'t exsit';
 const WRONG_PASSWORD = 'Incorrect password. Please try again.';
 const LOGIN_SUCCESSFUL = 'Login was successful';
+const USER_NOT_AUTHORIZED = 'User is not authorised';
+const AUTH_TOKEN_MISSING = 'Authorization header missing';
 
 const PW_RESET_CODE_SENT = 'Please check your email for the reset code.';
 const INVALID_RESET_CODE = 'Invalid reset code. Please try again';

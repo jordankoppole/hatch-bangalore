@@ -78,7 +78,7 @@ class UsersController {
         R::store($user);
         $this->response->setStatus(STATUS_SUCCESS);
         $this->response->setMessage(LOGIN_SUCCESSFUL);
-        $this->response->setData(['token' => $newToken->token]);
+        $this->response->setData(['token' => $newToken->token, 'username' => $user->username]);
       } else {
         $this->response->setStatus(STATUS_WRONG_PASSWORD);
         $this->response->setMessage(WRONG_PASSWORD);
