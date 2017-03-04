@@ -14,11 +14,6 @@ var app = angular.module('myApp', [
 app.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
-    .when('/login', {
-      controller: 'LoginController',
-      templateUrl: 'modules/authentication/views/login.html',
-      hideMenus: true
-    })
 	.when('/', {
 		controller: 'HomeController',
 		templateUrl: 'views/index.html'
@@ -60,15 +55,11 @@ app.config(['$routeProvider', function($routeProvider) {
 	})
 	.when('/profile', {
 		controller: 'profileController',
+		templateUrl: 'views/create-profile.html'
+	})
+	.when('/profileDetails', {
+		controller: 'profileController',
 		templateUrl: 'views/profile.html'
-	})
-	.when('/project', {
-		controller: 'projectController',
-		templateUrl: 'views/project.html'
-	})
-	.when('/register', {
-		controller: 'RegisterController',
-		templateUrl: 'modules/registration/views/registration.html'
 	})
 	//login redirections
 	.otherwise({
@@ -84,14 +75,14 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
     }
 
-    $rootScope.$on('$locationChangeStart', function(event, next, current) {
+    /*$rootScope.$on('$locationChangeStart', function(event, next, current) {
       // redirect to login page if not logged in
       var allowedPages = $.inArray($location.path(), ['/','#!', '/about', '/wayto', '/commongood', '/register', '/wayto/research', '/wayto/fund', '/wayto/mentor', '/wayto/learn', '/wayto/exhibit']) === -1;
   	  var loggedIn = $rootScope.globals.currentUser;
   		if (allowedPages && !loggedIn) {
   			$location.path('/login');
   		  }
-      });
+      });*/
   }
 ]);
 
