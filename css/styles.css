@@ -2589,6 +2589,7 @@ h5 {
 }
 .right-col.profile {
   border-left: 1px solid #ff5a5f;
+  height: 100vh;
 }
 .right-col h1 {
   margin: 0;
@@ -2602,6 +2603,16 @@ h5 {
   font-weight: bold;
   font-size: 3rem;
   text-align: left;
+}
+.right-col h2 {
+  font-family: Josefin Sans, Roboto, arial;
+  font-weight: bold;
+  font-size: 3rem;
+  color: #ff5a5f;
+  margin-top: 0;
+}
+.right-col p.welcome {
+  margin-bottom: 0;
 }
 
 .carousel_section .carousel-slider {
@@ -2714,6 +2725,10 @@ h5 {
 
 .mTop60vh {
   margin-top: 60vh;
+}
+
+.mBottom0 {
+  margin-bottom: 0px;
 }
 
 .mBot10 {
@@ -3055,31 +3070,14 @@ body.nav-expanded .prallaxNav {
   margin: 10px 0 0;
 }
 
-#MessageModal button {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  color: #fff;
-  background-color: #ff5a5f;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border: none;
-  line-height: 60px;
-  z-index: 10;
+#MessageModal {
+  display: none;
+}
+#MessageModal.active {
+  display: block;
 }
 #MessageModal .message_list {
-  background: #30eee5;
-  /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left top, #30eee5, #30eee5);
-  /* For Safari 5.1 to 6.0 */
-  /* For Opera 11.1 to 12.0 */
-  /* For Firefox 3.6 to 15 */
-  background: -webkit-gradient(linear, left top, right bottom, from(#30eee5), to(#30eee5));
-  background: -webkit-linear-gradient(top left, #30eee5, #30eee5);
-  background: linear-gradient(to bottom right, #30eee5, #30eee5);
-  /* Standard syntax */
+  border-left: 2px solid #ff5a5f;
   height: 100vh;
   width: 350px;
   float: right;
@@ -3120,43 +3118,27 @@ body.nav-expanded .prallaxNav {
   position: absolute;
   top: 16px;
   right: 16px;
-  background: #fff;
+  background: #ff5a5f;
   border-radius: 40%;
-  width: 20px;
-  height: 20px;
-  color: #000;
+  width: 23px;
+  height: 18px;
+  color: #fff;
   text-align: center;
-  font-size: 14px;
+  font-size: 10px;
+  line-height: 19px;
 }
 #MessageModal .conversation {
   float: left;
 }
 
-#SearchModal button {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  color: #fff;
-  background-color: #ff5a5f;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border: none;
-  line-height: 60px;
-  z-index: 10;
-}
-#SearchModal .search-result {
+#SearchModal {
+  display: none;
   padding-top: 70px;
 }
-#SearchModal h1 {
-  font-family: Josefin Sans, Roboto;
-  font-weight: 700;
-  font-size: 3rem;
-  color: #ff5a5f;
-  margin: 0;
+#SearchModal.active {
+  display: block;
 }
-#SearchModal a {
+#SearchModal .browse {
   color: #30eee5;
   font-family: Josefin Sans, Roboto;
   text-transform: uppercase;
@@ -3175,6 +3157,83 @@ body.nav-expanded .prallaxNav {
   padding-left: 0;
 }
 
+#LoginModal, #ForgotPwdModal {
+  padding-top: 70px;
+  display: none;
+}
+#LoginModal.active, #ForgotPwdModal.active {
+  display: block;
+}
+#LoginModal .row .row, #ForgotPwdModal .row .row {
+  margin-bottom: 0;
+}
+#LoginModal .search-result, #ForgotPwdModal .search-result {
+  padding-top: 70px;
+}
+#LoginModal span, #ForgotPwdModal span {
+  font-family: Josefin Sans, Roboto;
+}
+#LoginModal span a, #ForgotPwdModal span a {
+  color: #ff5a5f;
+  text-transform: uppercase;
+  margin-top: 22px;
+  display: inline-block;
+}
+
+#SignupModal {
+  padding-top: 70px;
+  display: none;
+}
+#SignupModal.active {
+  display: block;
+}
+#SignupModal .row .row {
+  margin-bottom: 0;
+}
+#SignupModal .search-result {
+  padding-top: 70px;
+}
+#SignupModal span {
+  font-family: Josefin Sans, Roboto;
+  display: block;
+  margin-bottom: 10px;
+}
+#SignupModal span a {
+  color: #ff5a5f;
+  text-transform: uppercase;
+  margin-top: 22px;
+  display: inline-block;
+}
+
+#CreateProject {
+  display: none;
+}
+#CreateProject.active {
+  display: block;
+}
+
+#CreateClass {
+  display: none;
+}
+#CreateClass.active {
+  display: block;
+}
+
+#editProfile {
+  display: none;
+  padding-top: 70px;
+}
+#editProfile.active {
+  display: block;
+}
+
+#ProfileCreation {
+  display: none;
+}
+#ProfileCreation.active {
+  display: block;
+}
+
 @media screen and (max-width: 768px) {
   .ser-text {
     padding-left: 10px !important;
@@ -3184,7 +3243,7 @@ body.nav-expanded .prallaxNav {
   height: 6px;
 }
 
-/***** Custom Modal *****/
+/***** Custom Modal CSS *****/
 .custom-Modal {
   position: fixed;
   height: 100vh;
@@ -3199,6 +3258,13 @@ body.nav-expanded .prallaxNav {
 }
 .custom-Modal.active {
   height: 100vh;
+}
+.custom-Modal h1 {
+  font-family: Josefin Sans, Roboto;
+  font-weight: 700;
+  font-size: 3rem;
+  color: #ff5a5f;
+  margin: 0;
 }
 .custom-Modal .custom-modal-header {
   padding: 20px;
@@ -3218,9 +3284,26 @@ body.nav-expanded .prallaxNav {
   font-size: 1.8rem;
   margin-top: 5px;
 }
-.custom-Modal .costom-modal-content {
+.custom-Modal .custom-modal-close {
+  position: fixed;
+  right: 25px;
+  top: 12px;
+  color: #fff;
+  background-color: #ff5a5f;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border: none;
+  line-height: 55px;
+  z-index: 10;
+}
+.custom-Modal .custom-modal-close i {
+  color: #ffffff;
+}
+.custom-Modal .custom-modal-content {
   padding: 20px;
-  max-height: 500px;
+  height: 87vh;
   overflow-x: hidden;
   overflow-y: auto;
   width: 100%;
