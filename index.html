@@ -26,57 +26,54 @@
 				<a id="logo-container" href="#/" class="brand-logo circle"><img src="images/logo-lc-full.png"/></a>
 				<a id="logo-container" href="#!/s" class="brand-logo circle mobile"><img src="images/logo-tree-01.png"/></a>
 					<ul class="right">
-						<li><a ng-click="search()"><i class="material-icons">search</i></a></li>
+						<li><a class="search-open"><i class="material-icons">search</i></a></li>
 						<li class="menu"><span></span><span></span><span></span><span></span></li>
 					</ul>
 				</div>
 			</nav>
 		</header>
 <!-- content area -->
-		<div ng-view class="sectionArea"></div>
+	<div ng-view class="sectionArea"></div>
 	<div id="slide-out" class="side-nav">
 		<ul>
 			<li>
 				<div class="userView">
-
-				  <div class="row" ng-if="loggedIn">
-					 <div class="col s4">
-						<img class="circle" src="/images/avatar.png">
-					 </div>
-					 <div class="col s8">
-						  <span class="name"><a href="#/profile">Meaghan R</a></span>
-						  <span class="email">CURATOR</span>
-						  <a href="#/">Logout</a>
-					 </div>
-					  <div class="right-align col s12">
-						<i class="material-icons waves-effect">notifications</i>
-						<i class="material-icons waves-effect">email</i>
-					 </div>
-				  </div>
-
-
-					<div class="row" ng-if="!loggedIn">
+					<div class="row" style="display:none">
+						<div class="col s4">
+							<img class="circle" src="/images/avatar.png">
+						</div>
+						<div class="col s8">
+							<span class="name"><a href="#/profile">Meaghan R</a></span>
+							<span class="email">CURATOR</span>
+							<a href="#/">Logout</a>
+						</div>
+						<div class="right-align col s12">
+							<i class="material-icons waves-effect">notifications</i>
+							<i class="material-icons waves-effect">email</i>
+						</div>
+					</div>
+					<div class="row">
 						<div class="col s12">
-							<a href="#requestInvite" class="btn waves-effect white open-modal">Request for Invite</a>
-							Already a member?
-							<a href="#/login" class="text-uppercase dInlineBlock"><span >Login</span></a> here
+							<a class="btn waves-effect white login-open">Login</a>
+							New to let's create?
+							<a class="text-uppercase dInlineBlock signup-open"><span>Sign Up</span></a> here
 						 </div>
 					</div>
 				</div>
 			</li>
-		<li><div class="divider"></div></li>
+			<li><div class="divider"></div></li>
 		</ul>
 
-		<ul ng-init="commonlinks=[{name:'Ways to participate?',link:'#/wayto'},{name:'About Common good',link:'#/commongood'},{name:'About us',link:'#/about'}]">
-			<li ng-repeat="x in commonlinks">
-			  <a href="{{x.link}}">{{ x.name }}</a>
-			</li>
-			<li><a href="#!" ng-click="message()">Messages</a></li>
+		<ul>
+			<li><a href="#/wayto">Ways to Participate</a></li>
+			<li><a href="#/commongood">About Common Good</a></li>
+			<li><a href="#/about">About Us</a></li>
+			<li><a class="chat-open">Messages</a></li>
 		</ul>
 	</div>
-	<div ng-hide="MessageForm" class="custom-Modal" id="MessageModal">
-		<button ng-click="message()"><i class="material-icons">close</i></button>
-		<form name="MessageForm" novalidate ng-submit="MessageForm()">
+	<div class="custom-Modal" id="MessageModal">
+		<a class="custom-modal-close"><i class="material-icons">close</i></a>
+		<form name="MessageForm">
 			<div class="message_list">
 				<div class="input-field col s12">
 					<input type="text" id="msg">
@@ -110,34 +107,180 @@
 		</form>
 	</div>
 	
-	<div ng-hide="SearchForm" class="custom-Modal" id="SearchModal">
-		<button ng-click="search()"><i class="material-icons">close</i></button>
-		<form name="SearchForm" novalidate ng-submit="SearchForm()">
-			<div class="search-result">
-				<div class="row">
-					<div class="col offset-l2 offset-m2 l2 m3 s12">
-						<h1>Search</h1>
-					</div>
-					<div class="col l2 m3 s12">
-						<a>Browse</a>
-					</div>
+	<div class="custom-Modal" id="SearchModal">
+		<a class="custom-modal-close"><i class="material-icons">close</i></a>
+		<form>
+			<div class="row">
+				<div class="col offset-l2 offset-m2 l2 m3 s12">
+					<h1>Search</h1>
 				</div>
-				<div class="row">
-					<div class="input-field col offset-l2 offset-m2 m2 s12">
-						<select>
-							<option selected disabled>People</option>
-							<option>People 2</option>
-							<option>People 3</option>
-						</select>
-						<span class="ser-icon"><i class="material-icons">search</i></span>
-					</div>
-					<div class="input-field ser-text col m6 s12">
-						<input type="text" placeholder="Search for projects, people, events,...">
-					</div>
+				<div class="col l2 m3 s12">
+					<a class="browse">Browse</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col offset-l2 offset-m2 m2 s12">
+					<select>
+						<option selected disabled>People</option>
+						<option>People 2</option>
+						<option>People 3</option>
+					</select>
+					<span class="ser-icon"><i class="material-icons">search</i></span>
+				</div>
+				<div class="input-field ser-text col m6 s12">
+					<input type="text" placeholder="Search for projects, people, events,...">
 				</div>
 			</div>
 		</form>
 	</div>
+	
+	<div class="custom-Modal" id="LoginModal">
+		<a class="custom-modal-close"><i class="material-icons">close</i></a>
+		<form name="form" role="form">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<h1>Welcome</h1>
+					<p>Glad you are here</p>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+			<div class="row mBottom0">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="email">
+							<label>Email ID</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="password" name="password">
+							<label>Password</label>
+						</div>
+					</div>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<span>Forgot <a href="#!" class="frgt-password">Password?</a></span>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<div class="row">
+						<div class="col s6">
+							<span>New to let's create? <a class="signup-open">Sign Up</a></span>
+						</div>
+						<div class="col s6 right-align">
+							<button class="btn btn-primary waves-effect">Login</button>
+						</div>
+					</div>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</form>
+	</div>
+	
+	<div class="custom-Modal" id="ForgotPwdModal">
+		<a class="custom-modal-close"><i class="material-icons">close</i></a>
+		<form name="form" role="form">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<h1>Forgot your password?</h1>
+					<p>It happens to the best of us. Give us your email address and we'll send you an email with instructions to reset your password.</p>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+			<div class="row mBottom0">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="input-field col s12 l8">
+					<input type="text" name="email">
+					<label>Email ID</label>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<span>New to let's create? <a class="signup-open">Sign Up</a></span>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8 right-align">
+					<button class="btn btn-primary waves-effect">Reset Password</button>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</form>
+	</div>
+	
+	<div class="custom-Modal" id="SignupModal">
+		<a class="custom-modal-close"><i class="material-icons">close</i></a>
+		<form name="form" role="form">
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<h1>Welcome!</h1>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+			<div class="row">
+				<div class="col l2 hide-on-med-and-down"></div>
+				<div class="col s12 l8">
+					<form>
+						<div class="row">
+							<div class="input-field col s12">
+							  <input type="text" class="validate">
+							  <label>Name</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+							  <input type="text" class="validate">
+							  <label>Email</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+							  <input type="text" class="validate">
+							  <label>Password(6 or more characters)</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12 m6">
+								&nbsp;
+							</div>
+							<div class="col s12 m6 right-align">
+								<span>By signing in you agree to our <a>Terms & Privacy Policy</a></span>
+								<button class="btn btn-primary waves-effect">Sign Up</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12">
+								<div class="row">
+									<div class="col s12">
+										<span>Already a member? <a class="login-open">Log in</a> here</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col l2 hide-on-med-and-down"></div>
+			</div>
+		</form>
+	</div>
+	
+	
 </div>
 <script src="scripts/jquery-3.1.1.min.js"></script>
 <script src="scripts/bin/materialize.min.js"></script>
@@ -165,7 +308,28 @@ $(document).ready(function(){
 		}
 		//Materialize.showStaggeredList('#slide-out ul');
 	});
-
+	$('.search-open').on('click',function(){
+		$('#SearchModal').addClass('active');
+	});
+	$('.chat-open').on('click',function(){
+		$('#MessageModal').addClass('active');
+	});
+	$('.login-open').on('click',function(){
+		$('#LoginModal').addClass('active');
+		$('#SignupModal').removeClass('active');
+	});
+	$('.signup-open').on('click',function(){
+		$('#SignupModal').addClass('active');
+		$('#LoginModal').removeClass('active');
+		$('#ForgotPwdModal').removeClass('active');
+	});
+	$('.frgt-password').on('click',function(){
+		$('#ForgotPwdModal').addClass('active');
+	});
+	$('.custom-modal-close').on('click',function(){
+		$('.custom-Modal').removeClass('active');
+	});
+	
 	setInterval(function(){
 		var len = $('.heading h1').length,
 			pos = $('.heading h1.active').index();
@@ -176,6 +340,15 @@ $(document).ready(function(){
 			$('.heading h1.active').removeClass('active fadeUp').next().addClass('active fadeUp');
 		}
 	}, 6000);
+	
+	setInterval(function(){
+		if($('.custom-Modal').hasClass('active')){
+			$('body').css('overflow','hidden');
+		}
+		else{
+			$('body').css('overflow','');
+		}
+	},10);
 
 });
 </script>
