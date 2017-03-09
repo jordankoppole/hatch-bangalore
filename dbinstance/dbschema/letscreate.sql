@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.3:3306
--- Generation Time: Mar 09, 2017 at 06:56 AM
+-- Generation Time: Mar 09, 2017 at 11:22 AM
 -- Server version: 10.1.20-MariaDB-1~jessie
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
@@ -222,7 +222,9 @@ CREATE TABLE `tokens` (
 --
 
 INSERT INTO `tokens` (`id`, `token`, `expiry`, `user_id`) VALUES
-(1, 'x8KDGlMljfoaESkGqG24mH7o5JVvmoaC9yKy0U0ACltXx02hLB2EpHv2NTWvWI1I', '2017-03-09 07:54:58', 9);
+(1, 'x8KDGlMljfoaESkGqG24mH7o5JVvmoaC9yKy0U0ACltXx02hLB2EpHv2NTWvWI1I', '2017-03-09 07:54:58', 9),
+(2, 'hYmrIc2IsYcjTeibCbsUeOVS1BBz8S6fTwFliodAH8GQy7oXBzSsIA6vi7evvbr5', '2017-03-09 09:38:11', 6),
+(3, 'HD7Yvaeey6CP2Edkn9vHs7vGB8YdOO0RuHaARwuGDlKhLqQlGbd1huvBGzrYtCjL', '2017-03-09 12:18:05', 6);
 
 -- --------------------------------------------------------
 
@@ -265,7 +267,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `
 (3, 'mkleinz', 'mkleinz', 'mk@rc.com', 3, 12, '2017-02-10 15:18:10', 'Mich', 'Kleinz', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
 (4, 'rmukherjee', 'rmukherjee', 'rm@rc.com', 4, 23, '2017-02-10 15:18:52', 'Rishi', 'Mukherjee', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
 (5, 'viraj', 'viraj', 'vr@rc.com', 5, 32, '2017-02-10 15:18:55', 'Vikram', 'Raj', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
-(6, 'sanborn', 'sanborn', 'sanborn@rc.com', 6, 21, '2017-02-10 15:18:57', 'Sanborn', 'Sen', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(6, 'sanborn', 'a91c170933a7deb1906e4747a6daa946', 'sanborn@rc.com', 6, 23, '2017-03-09 08:58:02', 'Sanborn', 'Sen', NULL, 'This is some text', 'Statement', 'Yourslef text', 0, 0, 0, '', '', '', '', 0, 0),
 (7, 'michv', 'michv', 'michv@rc.com', 7, 21, '2017-02-10 15:18:59', 'Michael', 'Virgil', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
 (8, 'luna', 'luna', 'luna@rc.com', 8, 29, '2017-02-10 15:19:00', 'Luna', 'Virgil', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
 (9, 'naina', 'naina', 'naina@rc.com', 9, 29, '2017-02-10 15:19:02', 'Naina', 'Kaur', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
@@ -406,7 +408,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --

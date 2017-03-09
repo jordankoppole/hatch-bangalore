@@ -11,6 +11,8 @@ export class CommonService {
     }
   );
 
+  private token = 'HD7Yvaeey6CP2Edkn9vHs7vGB8YdOO0RuHaARwuGDlKhLqQlGbd1huvBGzrYtCjL';
+
   private baseApiUrl = window.location.protocol +
                          '//' + window.location.hostname +
                          ':8182/api/index.php/';
@@ -65,8 +67,10 @@ export class CommonService {
       { headers: this.headers }
     )
       .toPromise()
-      .then((data: any) => {
-        return data.json();
+      .then((resp: any) => {
+        let data = resp.json();
+        this.token = data.data.token;
+        return data;
       })
       .catch((error) => {
         console.log(error);
@@ -101,5 +105,16 @@ export class CommonService {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  public getProfile() {
+    this.headers.set('Authorization', 'Bearer ' + this.token);
+    return this.http.get(
+      this.baseApiUrl + 'getprofile',
+      { headers: this.headers }
+    ).toPromise()
+    .then((resp) => {
+      return resp.json().data;
+    });
   }
 }

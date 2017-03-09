@@ -1,4 +1,4 @@
-<section class="section no-pad-bot" id="profile" ng-controller="profileController">
+<section *ngIf="profile" class="section no-pad-bot" id="profile" ng-controller="profileController">
   <div class="container">
     <div class="row mBottom0">
       <div class="col s12 m4">
@@ -13,13 +13,13 @@
       <div class="col s12 m8">
         <div class="right-col profile">
           <p class="welcome">Welcome</p>
-          <h2>Naveen</h2>
+          <h2>{{profile?.firstname}}</h2>
           <p>It's so good to have you hear.<br>
           Let's build your best profile page.</p>
-          <a class="btn btn-primary profileCreation" (click)="createModal.openModal()">Create Profile</a>
+          <a *ngIf="profile.active == 0" class="btn btn-primary profileCreation" (click)="createModal.openModal()">Create Profile</a>
         </div>
       </div>
     </div>
   </div>
-  <profile-create #createModal></profile-create>
+  <profile-create #createModal [profile]="profile"></profile-create>
 </section>

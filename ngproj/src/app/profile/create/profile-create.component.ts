@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Broadcaster } from './../../services/broadcaster.service';
 import { CommonService } from './../../services/common.service';
 import {
@@ -20,7 +21,12 @@ export class ProfileCreateComponent implements OnInit {
   public events: any[] = [];
   public commUsers: any[] = [];
 
+  public errorMessage: string = '';
+  public professionalTitleError: boolean = false;
+  public statementErrorMsg: boolean = false;
+
   @Input() private showModal: boolean = false;
+  @Input() private profile;
 
   constructor(
     private commonService: CommonService,
@@ -28,6 +34,7 @@ export class ProfileCreateComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
+    console.log(this.profile);
     // Init function
   }
 
@@ -37,6 +44,10 @@ export class ProfileCreateComponent implements OnInit {
 
   public closeModal() {
     this.showModal = false;
+  }
+
+  public onProfileSubmit(f: NgForm) {
+    console.log(f.value);
   }
 
 }

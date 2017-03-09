@@ -180,7 +180,7 @@ module.exports = function (options) {
         },
 
         {
-          test: /\.woff2?$/,
+          test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
           // Inline small woff files and output them below font/.
           // Set mimetype just in case.
           loader: 'url-loader',

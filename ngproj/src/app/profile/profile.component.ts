@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
   public events: any[] = [];
   public commUsers: any[] = [];
+  public profile: any;
 
   constructor(
     private commonService: CommonService,
@@ -29,7 +30,10 @@ export class ProfileComponent implements OnInit {
   public ngOnInit() {
     // Init function
     this.route.params.forEach((params: Params) => {
-      console.log(params);
+      this.commonService.getProfile().then((profile) => {
+        console.log('Profile data', profile);
+        this.profile = profile;
+      });
     });
   }
 }

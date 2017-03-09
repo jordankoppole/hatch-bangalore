@@ -37,9 +37,11 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 
-import '../styles/materialize.scss';
+// import '../styles/materialize.scss';
 import '../styles/styles.scss';
 
+import 'materialize-css';
+import { MaterializeModule } from 'angular2-materialize';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -75,6 +77,7 @@ type StoreType = {
     CommonModule,
     FormsModule,
     HttpModule,
+    MaterializeModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
     RecaptchaModule.forRoot()
   ],
