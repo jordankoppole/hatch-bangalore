@@ -26,7 +26,8 @@ $publicUris = [
   'register',
   'login',
   'requestcode',
-  'changepassword'
+  'changepassword',
+  'getplaces'
 ];
 
 $authUris = [
@@ -59,6 +60,7 @@ if (in_array($apiUri, $publicUris)) {
 $app->get('/testapi',               function () { echo testapi(); });
 $app->get('/upcomingevents',        function () { echo upcomingevents(); });
 $app->get('/activeusers',           function () { echo activeusers(); });
+$app->get('/getplaces',             function () { echo getplaces(); });
 
 $app->get('/getprofile',            function () { echo getprofile(); });
 // $app->get('/getprofile/{username}',  function ($req, $res, $args) { echo getprofile($args); });
