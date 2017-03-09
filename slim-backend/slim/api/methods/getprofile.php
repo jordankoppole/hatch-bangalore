@@ -2,5 +2,5 @@
 function getprofile() {
   global $authUserID;
   $userClass = new UsersController();
-  $userClass->getProfile();
+  $userClass->getProfile($authUserID)->getResponse();
 }

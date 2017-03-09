@@ -11,7 +11,7 @@ export class CommonService {
     }
   );
 
-  private token = 'HD7Yvaeey6CP2Edkn9vHs7vGB8YdOO0RuHaARwuGDlKhLqQlGbd1huvBGzrYtCjL';
+  private token = 'Len3MwR63n5vf7hEiWtA3piRYwQ1EmlXFm2ThIjVGEZFpoWKsah0HCwsRHbTzN8R';
 
   private baseApiUrl = window.location.protocol +
                          '//' + window.location.hostname +
@@ -111,6 +111,16 @@ export class CommonService {
     this.headers.set('Authorization', 'Bearer ' + this.token);
     return this.http.get(
       this.baseApiUrl + 'getprofile',
+      { headers: this.headers }
+    ).toPromise()
+    .then((resp) => {
+      return resp.json().data;
+    });
+  }
+
+  public getPlaces() {
+    return this.http.get(
+      this.baseApiUrl + 'getplaces',
       { headers: this.headers }
     ).toPromise()
     .then((resp) => {
