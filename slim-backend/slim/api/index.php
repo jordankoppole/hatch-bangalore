@@ -35,8 +35,10 @@ $authUris = [
 
 R::setup("mysql:host=mysql;dbname=letscreate", getenv('MYSQL_USERNAME'), getenv('MYSQL_ROOT_PASSWORD'));
 
-$apiUrl = parse_url($_SERVER['REQUEST_URI']);
-$apiUri = end(explode('/', $apiUrl['path']));
+$apiUrl = explode('/', end(parse_url($_SERVER['REQUEST_URI'])));
+$apiUri = $apiUrl[3];
+
+$authUserID = null;
 
 if (in_array($apiUri, $publicUris)) {
   require_once(dirname(__FILE__).'/'.$apiRouter.'/'.$apiUri.'.php');
@@ -44,6 +46,7 @@ if (in_array($apiUri, $publicUris)) {
   $headers = getallheaders();
   $auth = new AuthController();
   if ($auth->authenticate($headers)) {
+    $authUserID = $auth->getAuthUser();
     require_once(dirname(__FILE__).'/'.$apiRouter.'/'.$apiUri.'.php');
   } else {
     $auth->getResponse();
@@ -58,6 +61,7 @@ $app->get('/upcomingevents',        function () { echo upcomingevents(); });
 $app->get('/activeusers',           function () { echo activeusers(); });
 
 $app->get('/getprofile',            function () { echo getprofile(); });
+// $app->get('/getprofile/{username}',  function ($req, $res, $args) { echo getprofile($args); });
 
 $app->post('/register',              function () { echo register(); });
 $app->post('/login',                 function () { echo login(); });

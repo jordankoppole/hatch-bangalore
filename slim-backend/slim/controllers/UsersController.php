@@ -14,16 +14,32 @@ class UsersController {
 
   public function getActiveUsers() {
     $sql = "SELECT
+              `users`.`id`,
               `users`.`firstname`,
               `users`.`lastname`,
-              `media`.`url` as `display_picture`,
-              `role`.`name` as `role`
-            FROM `users`, `media`, `role`
+              `media`.`url` as `display_picture`
+            FROM `users`, `media`
             WHERE `users`.`display_picture` = `media`.`id`
-            AND `users`.`role_id` = `role`.`id`
             ORDER BY `users`.`activity_score` DESC
             LIMIT 6";
-    return R::getAll($sql);
+    $users = R::getAll($sql);
+    for ($i = 0; $i < sizeof($users); $i++) {
+      $rolesql = "SELECT
+                    `role`.`name`
+                  FROM `role`
+                  WHERE `role`.`id` IN (
+                    SELECT
+                      `user_role`.`role_id`
+                    FROM `user_role`
+                    WHERE `user_role`.`user_id` = :user_id
+                  )";
+      $roles_rows = R::getAll($rolesql, array(user_id => $users[$i]['id']));
+      $roles = implode(', ', array_map(function($item){
+        return $item['name'];
+      }, $roles_rows));
+      $users[$i]['role'] = $roles;
+    }
+    return $users;
   }
 
   public function createUser($params) {
@@ -161,6 +177,75 @@ class UsersController {
         'email' => $params['username'],
         'username' => $params['username']
       )
+    );
+  }
+
+  public function getProfile($userID) {
+    $data = [];
+    $user = R::load('users', $userID);
+    if ($user) {
+      unset($user->password);
+      unset($user->pw_reset_code);
+
+      $categories = $this->getAllCategories();
+
+      $user_interests = $this->getInterestIds($user->id);
+
+      for ($i = 0; $i < sizeof($categories); $i++){
+        if (in_array($categories[$i]['id'], $user_interests)) {
+          $categories[$i]['active'] = true;
+        } else {
+          $categories[$i]['active'] = false;
+        }
+        for ($j = 0; $j < sizeof($categories[$i]['children']); $j++) {
+          if ($categories[$i]['active'] || in_array($categories[$i]['children'][$j]['id'], $user_interests)) {
+            $categories[$i]['children'][$j]['active'] = true;
+          } else {
+            $categories[$i]['children'][$j]['active'] = false;
+          }
+        }
+      }
+      $user['categories'] = $categories;
+
+      $this->response->setStatus(STATUS_SUCCESS);
+      $this->response->setData($user);
+    } else {
+      $this->response->setStatus(STATUS_USER_NOT_EXIST);
+      $this->response->setMessage(USER_NOT_EXIST);
+    }
+    return $this->response;
+  }
+
+  public function updateProfile($userID, $params) {
+
+  }
+
+  private function getInterestIds($userId) {
+    $interests = R::findAll('interest', 'user_id = :user_id', array('user_id' => $userId));
+    return explode(',',implode(',', array_map(function($item) {
+      return $item->category_id;
+    }, $interests)));
+  }
+
+  public function getAllCategories() {
+    $parents = $this->getCategoriesByParent(null);
+    for($i = 0; $i < sizeof($parents); $i++) {
+      $parents[$i]['children'] = $this->getCategoriesByParent($parents[$i]['id']);
+    }
+    return $parents;
+  }
+
+  private function getCategoriesByParent($parentId) {
+    $sql = '';
+    if ($parentId) {
+      $sql = 'parent_id = :parent_id';
+    } else {
+      $sql = 'parent_id IS :parent_id';
+    }
+    return R::findAll(
+      'categories',
+      $sql,
+      array('parent_id' => $parentId)
     );
   }
 

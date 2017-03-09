@@ -1,6 +1,6 @@
 <?php
-
 function getprofile() {
-  $getdata = $_GET;
-
+  global $authUserID;
+  $userClass = new UsersController();
+  $userClass->getProfile($authUserID)->getResponse();
 }

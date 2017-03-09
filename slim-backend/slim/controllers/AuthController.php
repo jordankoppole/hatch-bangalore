@@ -3,6 +3,7 @@
 
 class AuthController {
   private $response;
+  private $user_id = null;
 
   public function __construct() {
     $this->response = new Response();
@@ -30,12 +31,17 @@ class AuthController {
     $token_row = R::findOne('tokens', $sql, array(':token' => $token));
     if ($token_row) {
       $token_row->expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
+      $this->user_id = $token_row->user_id;
       R::store($token_row);
       return true;
     } else {
       $this->response->setMessage(USER_NOT_AUTHORIZED);
     }
     return false;
+  }
+
+  public function getAuthUser() {
+    return $this->user_id;
   }
 
   public function getResponse() {

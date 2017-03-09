@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.3:3306
--- Generation Time: Mar 04, 2017 at 05:32 AM
+-- Generation Time: Mar 08, 2017 at 06:47 PM
 -- Server version: 10.1.20-MariaDB-1~jessie
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
@@ -188,24 +188,61 @@ CREATE TABLE `users` (
   `last_loggedin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `pw_reset_code` text
+  `pw_reset_code` text,
+  `professionaltitle` varchar(200) NOT NULL,
+  `statement` text NOT NULL,
+  `yourself` text NOT NULL,
+  `country_id` int(11) NOT NULL,
+  `city_id` int(11) NOT NULL,
+  `state_id` int(11) NOT NULL,
+  `youtube` text NOT NULL,
+  `behance` text NOT NULL,
+  `linkedin` text NOT NULL,
+  `facebook` text NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `activity_score`, `last_loggedin`, `firstname`, `lastname`, `role_id`, `pw_reset_code`) VALUES
-(1, 'petemure', 'petemure', 'pete@lc.com', 1, 23, '2017-02-10 15:18:05', 'Pete', 'Mure', 1, NULL),
-(2, 'jwilson', 'jwilson', 'jwilson@rc.com', 2, 43, '2017-02-10 15:18:09', 'Josh', 'Wilson', 2, NULL),
-(3, 'mkleinz', 'mkleinz', 'mk@rc.com', 3, 12, '2017-02-10 15:18:10', 'Mich', 'Kleinz', 3, NULL),
-(4, 'rmukherjee', 'rmukherjee', 'rm@rc.com', 4, 23, '2017-02-10 15:18:52', 'Rishi', 'Mukherjee', 1, NULL),
-(5, 'viraj', 'viraj', 'vr@rc.com', 5, 32, '2017-02-10 15:18:55', 'Vikram', 'Raj', 3, NULL),
-(6, 'sanborn', 'sanborn', 'sanborn@rc.com', 6, 21, '2017-02-10 15:18:57', 'Sanborn', 'Sen', 1, NULL),
-(7, 'michv', 'michv', 'michv@rc.com', 7, 21, '2017-02-10 15:18:59', 'Michael', 'Virgil', 1, NULL),
-(8, 'luna', 'luna', 'luna@rc.com', 8, 29, '2017-02-10 15:19:00', 'Luna', 'Virgil', 2, NULL),
-(9, 'naina', 'naina', 'naina@rc.com', 9, 29, '2017-02-10 15:19:02', 'Naina', 'Kaur', 3, NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `activity_score`, `last_loggedin`, `firstname`, `lastname`, `pw_reset_code`, `professionaltitle`, `statement`, `yourself`, `country_id`, `city_id`, `state_id`, `youtube`, `behance`, `linkedin`, `facebook`, `active`) VALUES
+(1, 'petemure', 'petemure', 'pete@lc.com', 1, 23, '2017-02-10 15:18:05', 'Pete', 'Mure', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
+(2, 'jwilson', 'jwilson', 'jwilson@rc.com', 2, 43, '2017-02-10 15:18:09', 'Josh', 'Wilson', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
+(3, 'mkleinz', 'mkleinz', 'mk@rc.com', 3, 12, '2017-02-10 15:18:10', 'Mich', 'Kleinz', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
+(4, 'rmukherjee', 'rmukherjee', 'rm@rc.com', 4, 23, '2017-02-10 15:18:52', 'Rishi', 'Mukherjee', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
+(5, 'viraj', 'viraj', 'vr@rc.com', 5, 32, '2017-02-10 15:18:55', 'Vikram', 'Raj', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
+(6, 'sanborn', 'sanborn', 'sanborn@rc.com', 6, 21, '2017-02-10 15:18:57', 'Sanborn', 'Sen', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
+(7, 'michv', 'michv', 'michv@rc.com', 7, 21, '2017-02-10 15:18:59', 'Michael', 'Virgil', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
+(8, 'luna', 'luna', 'luna@rc.com', 8, 29, '2017-02-10 15:19:00', 'Luna', 'Virgil', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
+(9, 'naina', 'naina', 'naina@rc.com', 9, 29, '2017-02-10 15:19:02', 'Naina', 'Kaur', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role`
+--
+
+CREATE TABLE `user_role` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_role`
+--
+
+INSERT INTO `user_role` (`id`, `user_id`, `role_id`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 1),
+(5, 5, 2),
+(6, 6, 3),
+(7, 7, 1),
+(8, 8, 2),
+(9, 9, 3);
 
 --
 -- Indexes for dumped tables
@@ -254,6 +291,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -291,6 +334,11 @@ ALTER TABLE `tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `user_role`
+--
+ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
