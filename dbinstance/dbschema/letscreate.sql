@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.3:3306
--- Generation Time: Mar 08, 2017 at 06:47 PM
+-- Generation Time: Mar 09, 2017 at 06:56 AM
 -- Server version: 10.1.20-MariaDB-1~jessie
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
@@ -19,6 +19,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `letscreate`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `fieldname` varchar(150) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `fieldname`, `name`, `parent_id`) VALUES
+(1, 'visualarts', 'Visual Arts', NULL),
+(2, 'performingarts', 'Performing Arts', NULL),
+(3, 'painting', 'Painting', 1),
+(4, 'illustration', 'Illustration', 1),
+(5, 'music', 'Music', 2),
+(6, 'dance', 'Dance', 2);
 
 -- --------------------------------------------------------
 
@@ -88,6 +113,26 @@ INSERT INTO `events` (`id`, `name`, `description`, `start_date`, `end_date`, `cr
 (2, 'Peter Evans and Taylor Ho Bynum', NULL, '2017-04-23 00:00:00', '2017-04-30 00:00:00', NULL, 'images/events/event-2.png'),
 (3, 'Second Sundays', NULL, '2017-04-24 00:00:00', '2017-04-30 00:00:00', NULL, 'images/events/event-3.png'),
 (4, 'Building and Improvising with Analog Circuitry', NULL, '2017-04-25 00:00:00', '2017-04-30 00:00:00', NULL, 'images/events/event-4.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `interest`
+--
+
+CREATE TABLE `interest` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `interest`
+--
+
+INSERT INTO `interest` (`id`, `user_id`, `category_id`) VALUES
+(1, 9, 4),
+(2, 9, 6);
 
 -- --------------------------------------------------------
 
@@ -172,6 +217,13 @@ CREATE TABLE `tokens` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tokens`
+--
+
+INSERT INTO `tokens` (`id`, `token`, `expiry`, `user_id`) VALUES
+(1, 'x8KDGlMljfoaESkGqG24mH7o5JVvmoaC9yKy0U0ACltXx02hLB2EpHv2NTWvWI1I', '2017-03-09 07:54:58', 9);
+
 -- --------------------------------------------------------
 
 --
@@ -199,23 +251,25 @@ CREATE TABLE `users` (
   `behance` text NOT NULL,
   `linkedin` text NOT NULL,
   `facebook` text NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0'
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `contrubutor` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `activity_score`, `last_loggedin`, `firstname`, `lastname`, `pw_reset_code`, `professionaltitle`, `statement`, `yourself`, `country_id`, `city_id`, `state_id`, `youtube`, `behance`, `linkedin`, `facebook`, `active`) VALUES
-(1, 'petemure', 'petemure', 'pete@lc.com', 1, 23, '2017-02-10 15:18:05', 'Pete', 'Mure', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
-(2, 'jwilson', 'jwilson', 'jwilson@rc.com', 2, 43, '2017-02-10 15:18:09', 'Josh', 'Wilson', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
-(3, 'mkleinz', 'mkleinz', 'mk@rc.com', 3, 12, '2017-02-10 15:18:10', 'Mich', 'Kleinz', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
-(4, 'rmukherjee', 'rmukherjee', 'rm@rc.com', 4, 23, '2017-02-10 15:18:52', 'Rishi', 'Mukherjee', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
-(5, 'viraj', 'viraj', 'vr@rc.com', 5, 32, '2017-02-10 15:18:55', 'Vikram', 'Raj', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
-(6, 'sanborn', 'sanborn', 'sanborn@rc.com', 6, 21, '2017-02-10 15:18:57', 'Sanborn', 'Sen', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
-(7, 'michv', 'michv', 'michv@rc.com', 7, 21, '2017-02-10 15:18:59', 'Michael', 'Virgil', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
-(8, 'luna', 'luna', 'luna@rc.com', 8, 29, '2017-02-10 15:19:00', 'Luna', 'Virgil', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0),
-(9, 'naina', 'naina', 'naina@rc.com', 9, 29, '2017-02-10 15:19:02', 'Naina', 'Kaur', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `display_picture`, `activity_score`, `last_loggedin`, `firstname`, `lastname`, `pw_reset_code`, `professionaltitle`, `statement`, `yourself`, `country_id`, `city_id`, `state_id`, `youtube`, `behance`, `linkedin`, `facebook`, `active`, `contrubutor`) VALUES
+(1, 'petemure', 'petemure', 'pete@lc.com', 1, 23, '2017-02-10 15:18:05', 'Pete', 'Mure', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(2, 'jwilson', 'jwilson', 'jwilson@rc.com', 2, 43, '2017-02-10 15:18:09', 'Josh', 'Wilson', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(3, 'mkleinz', 'mkleinz', 'mk@rc.com', 3, 12, '2017-02-10 15:18:10', 'Mich', 'Kleinz', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(4, 'rmukherjee', 'rmukherjee', 'rm@rc.com', 4, 23, '2017-02-10 15:18:52', 'Rishi', 'Mukherjee', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(5, 'viraj', 'viraj', 'vr@rc.com', 5, 32, '2017-02-10 15:18:55', 'Vikram', 'Raj', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(6, 'sanborn', 'sanborn', 'sanborn@rc.com', 6, 21, '2017-02-10 15:18:57', 'Sanborn', 'Sen', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(7, 'michv', 'michv', 'michv@rc.com', 7, 21, '2017-02-10 15:18:59', 'Michael', 'Virgil', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(8, 'luna', 'luna', 'luna@rc.com', 8, 29, '2017-02-10 15:19:00', 'Luna', 'Virgil', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(9, 'naina', 'naina', 'naina@rc.com', 9, 29, '2017-02-10 15:19:02', 'Naina', 'Kaur', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0),
+(10, 'sanborn2', 'a91c170933a7deb1906e4747a6daa946', 'sanborn.sen+2@gmail.com', 0, 1, '2017-03-09 04:40:08', 'Sudipta', 'Sen', NULL, '', '', '', 0, 0, 0, '', '', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -242,11 +296,18 @@ INSERT INTO `user_role` (`id`, `user_id`, `role_id`) VALUES
 (6, 6, 3),
 (7, 7, 1),
 (8, 8, 2),
-(9, 9, 3);
+(9, 9, 3),
+(10, 9, 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `city`
@@ -264,6 +325,12 @@ ALTER TABLE `country`
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `interest`
+--
+ALTER TABLE `interest`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -301,6 +368,11 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
@@ -316,6 +388,11 @@ ALTER TABLE `country`
 ALTER TABLE `events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `interest`
+--
+ALTER TABLE `interest`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
@@ -329,17 +406,17 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
