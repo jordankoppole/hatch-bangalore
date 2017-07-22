@@ -10,7 +10,7 @@
 					<div>
 						<ul class="tabs">
 							<li class="tab col s12"><a class="active"  href="#summary">Summary</a></li>
-							<li class="tab col s12"><a href="#creation">Co Creatons</a></li>
+							<li class="tab col s12"><a href="#creation">Co Creators</a></li>
 							<li class="tab col s12"><a href="#connection">Connections</a></li>
 							<li class="tab col s12"><a href="#file">Files</a></li>
 							<li class="tab col s12"><a href="#account">Accont Settings</a></li>
@@ -25,28 +25,72 @@
 						<div class="row">
 							<div class="col s10">
 								<h1>Naveen</h1>
+								<p>Flute Artist | Bangalore</p>
 							</div>
 							<div class="col s2 right-align">
-								<a href="#!" class="grey-text"><i class="material-icons">edit</i></a>
-								<a href="#!" class="grey-text"><i class="material-icons">share</i></a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col s12">
-								<p>Flute Artist | Bangalore</p>
-								<div>
-									<a class="btn btn-primary project-open">Enroll</a>
-									<a class="btn btn-primary class-open">Publish Class</a>
+								<div class="action_icons">
+									<a href="#!" class="grey-text"><i class="material-icons">share</i></a>
+									<a href="#!" class="grey-text"><i class="material-icons">more_vert</i></a>
 								</div>
 							</div>
 						</div>
-						<div>
-							<h5 class="mTop50">HIGHLIHTS</h5>
-							<h5 class="mTop50">ABOUT THE COURSE</h5>
-							<div id="instructor_detail">
-								<h5 class="mTop50">INSTRUCTOR</h5>
+						<div class="row publishAlert">
+							<div class="col s8">
+								<p><i class="material-icons red-text left">error</i>Your profile has not been published yet. Verify your email to publish</p>
 							</div>
-							<h5 class="mTop50">HOW DOES IT SERVES THE COMMON GOOD?</h5>
+							<div class="col s4 right-align">
+								<a class="btn btn-flat">Publish Now</a>
+							</div>
+						</div>
+						<div class="row quote">
+							<div class="col s12">
+								<p>"We need to feed our souls too"</p>
+							</div>
+						</div>
+						<!-- <div class="row">
+							<div class="col s12">
+								<a class="btn btn-primary project-open">Create Project</a>
+							</div>
+						</div> -->
+						<div class="profileContent">
+							<div class="row">
+								<div class="col s6">
+									<h4>COUNT ME IN FOR</h4>
+									<p>Painting, Sculpture</p>
+								</div>
+								<div class="col s6">
+									<h4>MY INTERESTS</h4>
+									<p>UX Design, Music, Writing</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<h4>About</h4>
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries..<a class="show_more">Show More</a></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<h4>My Co-Creations</h4>
+									<p class="center">You have no co creations yet.<br/>
+									<a href="#!">Start a Project</a> and invite co creators or <a href="#!">Join One</a></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<h4>Recommendations</h4>
+									<p class="center">You have no recommendations yet.<br/>
+									<a href="#!">Ask for Recommendations</a></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<h4>My Connections</h4>
+									<p class="center">You have no connections yet.<br/>
+									<a href="#!">Start a Project</a> and invite co creators or <a href="#!">Join One</a><br/>
+									Your co creators will be your connections.</p>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div id="account">
@@ -292,135 +336,6 @@
 	</form>
 </div>
 
-<!-- create Class -->
-<div class="custom-Modal" id="CreateClass">
-	<a class="custom-modal-close"><i class="material-icons">close</i></a>
-	<form name="createClass">
-		<div class="custom-modal-content">
-			<div class="row">
-				<div class="col l2 hide-on-med-and-down"></div>
-				<div class="col s12 l8">
-					<h1>Class Settings</h1>
-					<div class="row">
-						<div class="input-field col s12">
-							<input type="text" name="cclassname" class="validate">
-							<label>Class Name</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input type="text" name="cshortdesc" class="validate">
-							<label>Short Description</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s6">
-							<select id="type2">
-								<option selected>Class 1</option>
-								<option>Class 2</option>
-							</select>
-							<label for="type2">Type</label>
-						</div>
-						<div class="input-field col s6">
-							<select id="category">
-								<option selected>Class 1</option>
-								<option>Class 2</option>
-							</select>
-							<label for="category">Category</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s6">
-							<input type="text" name="starttime" class="validate">
-							<label>Start Time</label>
-						</div>
-						<div class="input-field col s6">
-							<input type="text" name="endtime" class="validate">
-							<label>End Time</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s6">
-							<input type="date" name="startdate" class="validate datepicker">
-							<label>Start Date</label>
-						</div>
-						<div class="input-field col s6">
-							<input type="date" name="enddate" class="validate datepicker">
-							<label>End Date</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<select id="type">
-								<option selected>Class 1</option>
-								<option>Class 2</option>
-							</select>
-							<label for="type">Repeats Weekly, Every Monday</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s6">
-							<input type="text" name="seats" class="validate">
-							<label>Seats Available</label>
-						</div>
-						<div class="input-field col s6">
-							<select id="price">
-								<option selected>50</option>
-								<option>100</option>
-							</select>
-							<label for="price">Price</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input type="text" name="instructor" class="validate">
-							<label>Add Instructors</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input type="text" name="tags" class="validate">
-							<label>Tags</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input type="text" name="highlights" class="validate">
-							<label>Highlights</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input type="text" name="aboutclass" class="validate">
-							<label>About the Class</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input type="text" name="good" class="validate">
-							<label>This serves common good because</label>
-						</div>
-					</div>
-				</div>
-				<div class="col l2 hide-on-med-and-down"></div>
-			</div>
-		</div>
-		<div class="custom-modal-footer">
-			<div class="row">
-				<div class="col l2 hide-on-med-and-down"></div>
-				<div class="col s12 l4 left-align">
-					<input type="submit" class="btn-flat waves-effect" value="Repeat Class" />
-					<input type="submit" class="btn-flat waves-effect" value="Delete Class" />
-				</div>
-				<div class="col s12 l4 right-align">
-					<a class="btn btn-primary waves-effect">Save</a>
-				</div>
-				<div class="col l2 hide-on-med-and-down"></div>
-			</div>
-		</div>
-	</form>
-</div>
-
 <div class="custom-Modal" id="editProfile">
 	<a class="custom-modal-close"><i class="material-icons">close</i></a>
 	<form  name="Editprofile">
@@ -473,9 +388,6 @@ $(document).ready(function(){
 	});
 	$('.project-open').on('click',function(){
 		$('#CreateProject').addClass('active');
-	});
-	$('.class-open').on('click',function(){
-		$('#CreateClass').addClass('active');
 	});
 	$('.editProfile-open').on('click',function(){
 		$('#editProfile').addClass('active');
